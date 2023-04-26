@@ -13,20 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2023/04/26/test/"/>
+    <link rel="canonical" href="http://example.com/2023/04/26/tensor_flow&sklearn环境配置/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="这是我的第一篇博客">
+        <meta name="description" content="Tensor Flow&amp;Sklearn 环境配置环境 Mac OS Ventura 13.2.1 Macbook pro M1 pro 2021 Python 3.9 conda 23.1.0  Tensor Flow检查自己的conda环境虽然conda官方已提供minicoda的mac m1适配，但也不能用，一定需要miniforge3,如以前环境较乱，最好是删除自己装过的minifo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2023/04/26/test/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/04/26/Tensor_Flow&Sklearn%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这是我的第一篇博客">
+<meta property="og:description" content="Tensor Flow&amp;Sklearn 环境配置环境 Mac OS Ventura 13.2.1 Macbook pro M1 pro 2021 Python 3.9 conda 23.1.0  Tensor Flow检查自己的conda环境虽然conda官方已提供minicoda的mac m1适配，但也不能用，一定需要miniforge3,如以前环境较乱，最好是删除自己装过的minifo">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-26T06:23:12.000Z">
-<meta property="article:modified_time" content="2023-04-26T06:24:00.720Z">
+<meta property="article:published_time" content="2023-04-26T07:59:49.417Z">
+<meta property="article:modified_time" content="2023-04-26T07:59:49.417Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -38,8 +38,6 @@
     <!--- Page Info-->
     
     <title>
-        
-            test -
         
         Tj-Jiaoao
     </title>
@@ -194,7 +192,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">test</h1>
+                    <h1 class="article-title-regular"></h1>
                 </div>
             
                 
@@ -216,15 +214,15 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-04-26 14:23:12</span>
-        <span class="mobile">2023-04-26 14:23</span>
+        <span class="desktop">2023-04-26 15:59:49</span>
+        <span class="mobile">2023-04-26 15:59</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-04-26 14:24</span>
-            <span class="mobile">2023-04-26 14:24</span>
+            <span class="desktop">2023-04-26 15:59:49</span>
+            <span class="mobile">2023-04-26 15:59</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -248,23 +246,58 @@
             
 
             <div class="article-content markdown-body">
-                <h1 id="这是我的第一篇博客"><a href="#这是我的第一篇博客" class="headerlink" title="这是我的第一篇博客"></a>这是我的第一篇博客</h1>
+                <h1 id="Tensor-Flow-amp-Sklearn-环境配置"><a href="#Tensor-Flow-amp-Sklearn-环境配置" class="headerlink" title="Tensor Flow&amp;Sklearn 环境配置"></a>Tensor Flow&amp;Sklearn 环境配置</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>Mac OS Ventura 13.2.1</li>
+<li>Macbook pro M1 pro 2021</li>
+<li>Python 3.9</li>
+<li>conda 23.1.0</li>
+</ul>
+<h2 id="Tensor-Flow"><a href="#Tensor-Flow" class="headerlink" title="Tensor Flow"></a>Tensor Flow</h2><h3 id="检查自己的conda环境"><a href="#检查自己的conda环境" class="headerlink" title="检查自己的conda环境"></a><strong>检查自己的conda环境</strong></h3><p>虽然conda官方已提供minicoda的mac m1适配，但也不能用，一定需要miniforge3,如以前环境较乱，最好是删除自己装过的miniforge3环境重装。</p>
+<p>安装miniforge3步骤</p>
+<ol>
+<li>删除已有环境</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">  rm -rf ~/miniforge3</span><br><span class="line">  rm -rf .conda</span><br><span class="line">  rm -rf .condarc</span><br><span class="line">  完成后，进入 .zshrc ，gg 将末端配置 miniforge3 的 PATH 配置删除。 ``</span><br></pre></td></tr></table></figure></div>
+
+<ol>
+<li>下载 <a class="link"   href="https://link.zhihu.com/?target=https://github.com/conda-forge/miniforge/%23download" >Miniforge3_MacOS_ARM64 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> <em>选择 Miniforge3-MacOSX-arm64</em></li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ~/Downloads/Miniforge3-MacOSX-arm64.sh</span><br><span class="line">   sh ~/Downloads/Miniforge3-MacOSX-arm64.sh</span><br><span class="line">   source ~/miniforge3/bin/activate</span><br><span class="line"></span><br><span class="line">   按提示装, 并确保.zshrc文件配置了miniforge3的</span><br><span class="line">   conda --version</span><br><span class="line">   安装路径一定要在/User/xiaomao/miniforge3, 不然可能有权限问题</span><br></pre></td></tr></table></figure></div>
+
+<ol>
+<li>创建一个conda环境</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 3.8和3.9都可以，pytorch需要3.9</span><br><span class="line">   conda create -n tf26 python==3.9</span><br><span class="line">   conda create -n tf26 python==3.8</span><br></pre></td></tr></table></figure></div>
+
+<p>完成以上的准备后，才正式开始安装tensorflow,可安装tensorflow2.5&#x2F;2.6,并且<strong>不需要再去github下载安装包</strong></p>
+<h3 id="安装Tensorflow"><a href="#安装Tensorflow" class="headerlink" title="安装Tensorflow"></a><strong>安装Tensorflow</strong></h3><h3 id="1-切换到自己的conda环境"><a href="#1-切换到自己的conda环境" class="headerlink" title="1. 切换到自己的conda环境"></a><strong>1. 切换到自己的conda环境</strong></h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate tf26</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-依赖包tensorflow-deps的安装步骤"><a href="#2-依赖包tensorflow-deps的安装步骤" class="headerlink" title="2. 依赖包tensorflow-deps的安装步骤"></a><strong>2. 依赖包tensorflow-deps的安装步骤</strong></h3><p>详细步骤参考: <a class="link"   href="https://link.zhihu.com/?target=https://developer.apple.com/metal/tensorflow-plugin/" >apple开发者官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>未安装过的安装tensorflow依赖包，安装过的需要卸载旧版, 慢,需要科学上网</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. conda install -c apple tensorflow-deps    </span><br><span class="line"># 指定定版本安装   </span><br><span class="line">2. conda install -c apple tensorflow-deps==2.6.0</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3-安装tensorflow"><a href="#3-安装tensorflow" class="headerlink" title="3. 安装tensorflow"></a><strong>3. 安装tensorflow</strong></h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install tensorflow-macos    </span><br><span class="line">*# 会有个报错, 自己安装下 pip install torch     然后再重新执行一遍* </span><br><span class="line">python -m pip install tensorflow-macos</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="4-安装tensorflow-metal"><a href="#4-安装tensorflow-metal" class="headerlink" title="4. 安装tensorflow-metal"></a><strong>4. 安装tensorflow-metal</strong></h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install tensorflow-metal</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Sklearn"><a href="#Sklearn" class="headerlink" title="Sklearn"></a>Sklearn</h2><p>若想用conda安装sklearn，不能输入sklearn，而是<code>conda install scikit-learn</code></p>
+
             </div>
 
             
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> test</li>
+        <li><strong>Title:</strong> </li>
         <li><strong>Author:</strong> Ao Jiao</li>
-        <li><strong>Created at:</strong> 2023-04-26 14:23:12</li>
+        <li><strong>Created at:</strong> 2023-04-26 15:59:49</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-04-26 14:24:00
+                <strong>Updated at:</strong> 2023-04-26 15:59:49
             </li>
         
         <li>
-            <strong>Link:</strong> https://github.com/Tj-jiaoao/2023/04/26/test/
+            <strong>Link:</strong> https://github.com/Tj-jiaoao/2023/04/26/Tensor_Flow&amp;Sklearn环境配置/
         </li>
         <li>
             <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
@@ -282,29 +315,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/04/26/Tensor_Flow&amp;Sklearn%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item"></span>
-                                    <span class="post-nav-item">Prev posts</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/04/26/hello-world/"
+                            href="/2023/04/26/test/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Hello World</span>
+                                    <span class="post-nav-title-item">test</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -369,8 +387,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">test</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E6%98%AF%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2"><span class="nav-text">这是我的第一篇博客</span></a></li></ol>
+        <div class="page-title"></div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tensor-Flow-amp-Sklearn-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">Tensor Flow&amp;Sklearn 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor-Flow"><span class="nav-text">Tensor Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E8%87%AA%E5%B7%B1%E7%9A%84conda%E7%8E%AF%E5%A2%83"><span class="nav-text">检查自己的conda环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Tensorflow"><span class="nav-text">安装Tensorflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%87%E6%8D%A2%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84conda%E7%8E%AF%E5%A2%83"><span class="nav-text">1. 切换到自己的conda环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BE%9D%E8%B5%96%E5%8C%85tensorflow-deps%E7%9A%84%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-text">2. 依赖包tensorflow-deps的安装步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85tensorflow"><span class="nav-text">3. 安装tensorflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85tensorflow-metal"><span class="nav-text">4. 安装tensorflow-metal</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sklearn"><span class="nav-text">Sklearn</span></a></li></ol></li></ol>
 
     </div>
 </div>
