@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ao Jiao">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/05/17/分层架构/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="本文由 简悦 SimpRead  转码， 原文地址 www.oreilly.com    Chapter 1. Layered Architecture The most common architecture pattern is the layered architecture pat……  Chapter 1. Layered Architecture第一章分层架构The most com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分层架构">
+<meta property="og:url" content="http://example.com/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文由 简悦 SimpRead  转码， 原文地址 www.oreilly.com    Chapter 1. Layered Architecture The most common architecture pattern is the layered architecture pat……  Chapter 1. Layered Architecture第一章分层架构The most com">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0101.png">
+<meta property="og:image" content="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0102.png">
+<meta property="og:image" content="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0103.png">
+<meta property="og:image" content="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0104.png">
+<meta property="article:published_time" content="2023-05-17T12:35:10.000Z">
+<meta property="article:modified_time" content="2023-05-16T23:39:12.089Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="系统分析与设计，分层架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0101.png">
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/leo.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/leo.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/leo.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            分层架构 -
+        
+        Tj-Jiaoao
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"/images/leo.png","dark":"/images/leo.png"},"title":"Hello There","subtitle":{"text":["To make each day count."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":100,"starting_delay":500,"backing_delay":1200,"loop":false,"smart_backspace":false},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/Tj-Jiaoao","instagram":"https://instagram.com/jiaoao73?igshid=YmMyMTA2M2Y=","zhihu":null,"twitter":null,"email":"2050780@tongji.edu.cn"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"wanderer","artist":"cafe ibiza","url":"img/bgmusic.mp3","cover":"https://th.bing.com/th/id/R.268b1b0e03fb11335fe433f15ddabe60?rik=U%2f5d2RdbWQK9xA&pid=ImgRaw&r=0"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Tj-Jiaoao
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">分层架构</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://th.bing.com/th/id/OIP.OJ53CYMW1JkTD-QHGI1wTgHaFj?pid=ImgDet&rs=1">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Ao Jiao</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-17 20:35:10</span>
+        <span class="mobile">2023-05-17 20:35</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-17 07:39:12</span>
+            <span class="mobile">2023-05-17 07:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%8C%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/">系统分析与设计，分层架构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <blockquote>
+<p>本文由 <a class="link"   target="_blank" rel="noopener" href="http://ksria.com/simpread/" >简悦 SimpRead <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 转码， 原文地址 <a class="link"   target="_blank" rel="noopener" href="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html" >www.oreilly.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+<blockquote>
+<p>Chapter 1. Layered Architecture The most common architecture pattern is the layered architecture pat……</p>
+</blockquote>
+<h1 id="Chapter-1-Layered-Architecture"><a href="#Chapter-1-Layered-Architecture" class="headerlink" title="Chapter 1. Layered Architecture"></a>Chapter 1. Layered Architecture</h1><h1 id="第一章分层架构"><a href="#第一章分层架构" class="headerlink" title="第一章分层架构"></a>第一章分层架构</h1><p>The most common architecture pattern is the layered architecture pattern, otherwise known as the n-tier architecture pattern. This pattern is the de facto standard for most Java EE applications and therefore is widely known by most architects, designers, and developers. The layered architecture pattern closely matches the traditional IT communication and organizational structures found in most companies, making it a natural choice for most business application development efforts. </p>
+<p>最常见的架构模式是分层架构模式，也称为 n 层架构模式。这种模式是大多数 JavaEE 应用程序的行业标准，因此为大多数架构师、设计师和开发人员所熟知。分层体系结构模式与大多数公司中的传统 IT 通信和组织结构非常匹配，这使其成为大多数业务应用程序开发工作的自然选择。 </p>
+<h1 id="Pattern-Description"><a href="#Pattern-Description" class="headerlink" title="Pattern Description"></a>Pattern Description</h1><h1 id="模式描述"><a href="#模式描述" class="headerlink" title="模式描述"></a>模式描述</h1><p>Components within the layered architecture pattern are organized into horizontal layers, each layer performing a specific role within the application (e.g., presentation logic or business logic). Although the layered architecture pattern does not specify the number and types of layers that must exist in the pattern, most layered architectures consist of four standard layers: presentation, business, persistence, and database (<a href="#sapr_0101_img">Figure 1-1</a>). In some cases, the business layer and persistence layer are combined into a single business layer, particularly when the persistence logic (e.g., SQL or HSQL) is embedded within the business layer components. Thus, smaller applications may have only three layers, whereas larger and more complex business applications may contain five or more layers. </p>
+<p>分层体系结构模式中的组件被组织成水平层，每个层在应用程序中执行特定的角色 (例如，表示逻辑或业务逻辑)。尽管分层架构模式没有指定模式中必须存在的层的数量和类型，但是大多数分层架构由四个标准层组成: 表示层、业务层、持久层和数据库层(图 1-1)。在某些情况下，业务层和持久层合并为一个业务层，特别是当持久化逻辑(例如 SQL 或 HSQL) 嵌入到业务层组件中时。因此，较小的应用程序可能只有三层，而较大和更复杂的业务应用程序可能包含五层或更多层。 </p>
+<p>Each layer of the layered architecture pattern has a specific role and responsibility within the application. For example, a presentation layer would be responsible for handling all user interface and browser communication logic, whereas a business layer would be responsible for executing specific business rules associated with the request. Each layer in the architecture forms an abstraction around the work that needs to be done to satisfy a particular business request. For example, the presentation layer doesn’t need to know or worry about <em>how</em> to get customer data; it only needs to display that information on a screen in particular format. Similarly, the business layer doesn’t need to be concerned about how to format customer data for display on a screen or even where the customer data is coming from; it only needs to get the data from the persistence layer, perform business logic against the data (e.g., calculate values or aggregate data), and pass that information up to the presentation layer.  </p>
+<p>分层架构模式的每一层在应用程序中都有特定的角色和职责。例如，表示层负责处理所有用户界面和浏览器通信逻辑，而业务层负责执行与请求相关的特定业务规则。体系结构中的每一层都围绕满足特定业务请求所需完成的工作形成一个抽象。例如，表示层不需要知道或担心如何获取客户数据; 它只需要在屏幕上以特定的格式显示该信息。类似地，业务层不需要关心如何格式化客户数据以便在屏幕上显示，甚至不需要关心客户数据来自哪里; 它只需要从持久层获取数据，对数据执行业务逻辑 (例如，计算值或聚合数据) ，并将该信息传递给表示层。  </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0101.png"
+                     
+                ></p>
+<h6 id="Figure-1-1-Layered-architecture-pattern"><a href="#Figure-1-1-Layered-architecture-pattern" class="headerlink" title="Figure 1-1. Layered architecture pattern"></a>Figure 1-1. Layered architecture pattern</h6><h6 id="图-1-1-分层架构模式"><a href="#图-1-1-分层架构模式" class="headerlink" title="图 1-1 分层架构模式"></a>图 1-1 分层架构模式</h6><p>One of the powerful features of the layered architecture pattern is the <em>separation of concerns</em> among components. Components within a specific layer deal only with logic that pertains to that layer. For example, components in the presentation layer deal only with presentation logic, whereas components residing in the business layer deal only with business logic. This type of component classification makes it easy to build effective roles and responsibility models into your architecture, and also makes it easy to develop, test, govern, and maintain applications using this architecture pattern due to well-defined component interfaces and limited component scope.</p>
+<p>分层架构模式的一个强大特性是组件之间的关注点分离。特定层中的组件只处理属于该层的逻辑。例如，表示层中的组件只处理表示逻辑，而业务层中的组件只处理业务逻辑。这种类型的组件分类使得在体系结构中构建有效的角色和职责模型变得非常容易，而且由于定义良好的组件接口和有限的组件范围，使得使用这种体系结构模式开发、测试、治理和维护应用程序变得非常容易。</p>
+<h1 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h1><h1 id="关键概念"><a href="#关键概念" class="headerlink" title="关键概念"></a>关键概念</h1><p>Notice in <a href="#sapr_0102_img">Figure 1-2</a> that each of the layers in the architecture is marked as being <em>closed</em>. This is a very important concept in the layered architecture pattern. A closed layer means that as a request moves from layer to layer, it must go through the layer right below it to get to the next layer below that one. For example, a request originating from the presentation layer must first go through the business layer and then to the persistence layer before finally hitting the database layer. </p>
+<p>注意，在图 1-2 中，体系结构中的每个层都被标记为已关闭。这是分层架构模式中的一个非常重要的概念。封闭层意味着当一个请求从一个层移动到另一个层时，它必须通过它下面的层才能到达下一个层。例如，来自表示层的请求必须首先经过业务层，然后到达持久层，最后才能到达数据库层。 </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0102.png"
+                     
+                ></p>
+<h6 id="Figure-1-2-Closed-layers-and-request-access"><a href="#Figure-1-2-Closed-layers-and-request-access" class="headerlink" title="Figure 1-2. Closed layers and request access"></a>Figure 1-2. Closed layers and request access</h6><h6 id="图-1-2。封闭层和请求访问"><a href="#图-1-2。封闭层和请求访问" class="headerlink" title="图 1-2。封闭层和请求访问"></a>图 1-2。封闭层和请求访问</h6><p>So why not allow the presentation layer direct access to either the persistence layer or database layer? After all, direct database access from the presentation layer is much faster than going through a bunch of unnecessary layers just to retrieve or save database information. The answer to this question lies in a key concept known as <em>layers of isolation</em>. </p>
+<p>那么，为什么不允许表示层直接访问持久层或数据库层呢？毕竟，从表示层直接访问数据库要比仅仅为了检索或保存数据库信息而穿过一大堆不必要的层快得多。这个问题的答案在于一个被称为隔离层的关键概念。 </p>
+<p>The layers of isolation concept means that changes made in one layer of the architecture generally don’t impact or affect components in other layers: the change is isolated to the components within that layer, and possibly another associated layer (such as a persistence layer containing SQL). If you allow the presentation layer direct access to the persistence layer, then changes made to SQL within the persistence layer would impact both the business layer and the presentation layer, thereby producing a very tightly coupled application with lots of interdependencies between components. This type of architecture then becomes very hard and expensive to change.  </p>
+<p>隔离层的概念意味着在体系结构的一个层中所做的更改通常不会影响或影响其他层中的组件: 这个更改被隔离到该层中的组件，可能还有另一个相关联的层 (比如包含 SQL 的持久层)。如果允许表示层直接访问持久层，那么对持久层中的 SQL 所做的更改将同时影响业务层和表示层，从而产生一个具有组件之间大量相互依赖性的非常紧密耦合的应用程序。这种类型的体系结构变得非常困难和昂贵的改变。  </p>
+<p>The layers of isolation concept also means that each layer is independent of the other layers, thereby having little or no knowledge of the inner workings of other layers in the architecture. To understand the power and importance of this concept, consider a large refactoring effort to convert the presentation framework from JSP (Java Server Pages) to JSF (Java Server Faces). Assuming that the contracts (e.g., model) used between the presentation layer and the business layer remain the same, the business layer is not affected by the refactoring and remains completely independent of the type of user-interface framework used by the presentation layer.  </p>
+<p>隔离层的概念还意味着每一层独立于其他层，因此对体系结构中其他层的内部工作原理知之甚少或根本不知道。为了理解这个概念的力量和重要性，请考虑进行大规模的重构工作，将表示框架从 JSP (Java Server Pages)转换为 JSF (Java Server Faces)。假设表示层和业务层之间使用的契约 (例如，模型) 保持不变，业务层不受重构的影响，并且完全独立于表示层使用的用户界面框架的类型。  </p>
+<p>While closed layers facilitate layers of isolation and therefore help isolate change within the architecture, there are times when it makes sense for certain layers to be open. For example, suppose you want to add a shared-services layer to an architecture containing common service components accessed by components within the business layer (e.g., data and string utility classes or auditing and logging classes). Creating a services layer is usually a good idea in this case because architecturally it restricts access to the shared services to the business layer (and not the presentation layer). Without a separate layer, there is nothing architecturally that restricts the presentation layer from accessing these common services, making it difficult to govern this access restriction.  </p>
+<p>虽然封闭层有助于隔离层，因此有助于隔离体系结构中的更改，但有时候某些层开放是有意义的。例如，假设您希望将共享服务层添加到一个体系结构中，该体系结构包含由业务层中的组件访问的公共服务组件 (例如，数据和字符串实用工具类或审计和日志记录类)。在这种情况下，创建服务层通常是一个好主意，因为在体系结构上，它将对共享服务的访问限制在业务层 (而不是表示层)。如果没有单独的层，那么在体系结构上就不存在任何限制表示层访问这些公共服务的东西，这使得很难控制这种访问限制。  </p>
+<p>In this example, the new services layer would likely reside <em>below</em> the business layer to indicate that components in this services layer are not accessible from the presentation layer. However, this presents a problem in that the business layer is now required to go through the services layer to get to the persistence layer, which makes no sense at all. This is an age-old problem with the layered architecture, and is solved by creating open layers within the architecture.  </p>
+<p>在这个示例中，新的服务层可能位于业务层之下，以指示此服务层中的组件不能从表示层访问。但是，这样就出现了一个问题，业务层现在需要穿过服务层才能到达持久层，这是毫无意义的。这是分层体系结构的一个古老问题，可以通过在体系结构中创建开放层来解决。  </p>
+<p>As illustrated in <a href="#sapr_0103_img">Figure 1-3</a>, the services layer in this case is marked as open,  meaning requests are allowed to bypass this open layer and go directly to the layer below it. In the following example, since the services layer is open, the business layer is now allowed to bypass it and go directly to the persistence layer, which makes perfect sense.  </p>
+<p>如图 1-3 所示，在这种情况下，服务层被标记为打开的，这意味着请求可以绕过这个打开的层，直接进入它下面的层。在下面的示例中，因为服务层是开放的，所以现在允许业务层绕过它，直接进入持久层，这非常有意义。  </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0103.png"
+                     
+                ></p>
+<h6 id="Figure-1-3-Open-layers-and-request-flow"><a href="#Figure-1-3-Open-layers-and-request-flow" class="headerlink" title="Figure 1-3. Open layers and request flow"></a>Figure 1-3. Open layers and request flow</h6><h6 id="图-1-3。打开层和请求流"><a href="#图-1-3。打开层和请求流" class="headerlink" title="图 1-3。打开层和请求流"></a>图 1-3。打开层和请求流</h6><p>Leveraging the concept of open and closed layers helps define the relationship between architecture layers and request flows and also provides designers and developers with the necessary information to understand the various layer access restrictions within the architecture. Failure to document or properly communicate which layers in the architecture are open and closed (and why) usually results in tightly coupled and brittle architectures that are very difficult to test, maintain, and deploy.</p>
+<p>利用开放和封闭层的概念有助于定义体系结构层和请求流之间的关系，并为设计人员和开发人员提供必要的信息，以理解体系结构中各种层访问限制。如果不能记录或正确地交流架构中的哪些层是开放和关闭的 (以及为什么) ，通常会导致紧密耦合和脆弱的架构，这些架构很难测试、维护和部署。</p>
+<h1 id="Pattern-Example"><a href="#Pattern-Example" class="headerlink" title="Pattern Example"></a>Pattern Example</h1><h1 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h1><p>To illustrate how the layered architecture works, consider a request from a business user to retrieve customer information for a particular individual as illustrated in <a href="#sapr_0104_img">Figure 1-4</a>. The black arrows show the request flowing down to the database to retrieve the customer data, and the red arrows show the response flowing back up to the screen to display the data. In this example, the customer information consists of both customer data and order data (orders placed by the customer).  </p>
+<p>为了说明分层架构是如何工作的，考虑一个来自业务用户的请求，为一个特定的个人检索客户信息，如图 1-4 所示。黑色箭头显示流向数据库以检索客户数据的请求，红色箭头显示流回屏幕以显示数据的响应。在此示例中，客户信息由客户数据和订单数据 (由客户下达的订单) 组成。  </p>
+<p>The <em>customer screen</em> is responsible for accepting the request and displaying the customer information. It does not know where the data is, how it is retrieved, or how many database tables must be queries to get the data. Once the customer screen receives a request to get customer information for a particular individual, it then forwards that request onto the <em>customer delegate</em> module. This module is responsible for knowing which modules in the business layer can process that request and also how to get to that module and what data it needs (the contract). The <em>customer object</em> in the business layer is responsible for aggregating all of the information needed by the business request (in this case to get customer information). This module calls out to the <em>customer dao</em> (data access object) module in the persistence layer to get customer data, and also the <em>order dao</em> module to get order information. These modules in turn execute SQL statements to retrieve the corresponding data and pass it back up to the customer object in the business layer. Once the customer object receives the data, it aggregates the data and passes that information back up to the customer delegate, which then passes that data to the customer screen to be presented to the user.      </p>
+<p>客户屏幕负责接受请求并显示客户信息。它不知道数据在哪里，如何检索数据，或者必须查询多少个数据库表才能获得数据。一旦客户屏幕接收到为特定个人获取客户信息的请求，它就会将该请求转发到客户委托模块。该模块负责了解业务层中哪些模块可以处理该请求，以及如何访问该模块和它需要什么数据 (契约)。业务层中的客户对象负责聚合业务请求所需的所有信息(在本例中是为了获取客户信息)。该模块调用持久层中的客户道(数据访问对象) 模块来获取客户数据，同时调用订单道模块来获取订单信息。这些模块依次执行 SQL 语句来检索相应的数据，并将其传递回业务层中的客户对象。一旦客户对象接收到数据，它就会聚合数据并将该信息传递回客户委托，然后委托将该数据传递到客户屏幕，以呈现给用户。      </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.oreilly.com/api/v2/epubs/9781491971437/files/assets/sapr_0104.png"
+                     
+                ></p>
+<h6 id="Figure-1-4-Layered-architecture-example"><a href="#Figure-1-4-Layered-architecture-example" class="headerlink" title="Figure 1-4. Layered architecture example"></a>Figure 1-4. Layered architecture example</h6><h6 id="图-1-4。分层架构示例"><a href="#图-1-4。分层架构示例" class="headerlink" title="图 1-4。分层架构示例"></a>图 1-4。分层架构示例</h6><p>From a technology perspective, there are literally dozens of ways these modules can be implemented. For example, in the Java platform, the customer screen can be a (JSF) Java Server Faces screen coupled with the customer delegate as the managed bean component. The customer object in the business layer can be a local Spring bean or a remote EJB3 bean. The data access objects illustrated in the previous example can be implemented as simple POJO’s (Plain Old Java Objects), MyBatis XML Mapper files, or even objects encapsulating raw JDBC calls or Hibernate queries. From a Microsoft platform perspective, the customer screen can be an ASP (active server pages) module using the .NET framework to access C# modules in the business layer, with the customer and order data access modules implemented as ADO (ActiveX Data Objects). </p>
+<p>从技术的角度来看，实现这些模块的方法有几十种。例如，在 Java 平台中，客户屏幕可以是 (JSF) JavaServerFaces 屏幕，客户委托作为托管 bean 组件耦合在一起。业务层中的客户对象可以是本地 Spring bean 或远程 EJB3 bean。前面示例中说明的数据访问对象可以实现为简单的 POJO (普通的旧 Java 对象)、 MyBatis XML Mapper 文件，甚至是封装原始 JDBC 调用或 Hibernate 查询的对象。从 Microsoft 平台的角度来看，客户界面可以是一个 ASP (活动服务器页) 模块，使用。NET 框架访问业务层的 C # 模块，客户和订单数据访问模块实现为 ADO (ADO)。 </p>
+<h1 id="Considerations"><a href="#Considerations" class="headerlink" title="Considerations"></a>Considerations</h1><h1 id="考虑因素"><a href="#考虑因素" class="headerlink" title="考虑因素"></a>考虑因素</h1><p>The layered architecture pattern is a solid general-purpose pattern, making it a good starting point for most applications, particularly when you are not sure what architecture pattern is best suited for your application. However, there are a couple of things to consider from an architecture standpoint when choosing this pattern.</p>
+<p>分层架构模式是一个坚实的通用模式，对于大多数应用程序来说，它是一个很好的起点，特别是当您不确定什么架构模式最适合您的应用程序时。然而，在选择这种模式时，从体系结构的角度来看，有一些事情需要考虑。</p>
+<p>The first thing to watch out for is what is known as the <em>architecture sinkhole anti-pattern</em>. This anti-pattern describes the situation where requests flow through multiple layers of the architecture as simple pass-through processing with little or no logic performed within each layer. For example, assume the presentation layer responds to a request from the user to retrieve customer data. The presentation layer passes the request to the business layer, which simply passes the request to the persistence layer, which then makes a simple SQL call to the database layer to retrieve the customer data. The data is then passed all the way back up the stack with no additional processing or logic to aggregate, calculate, or transform the data. </p>
+<p>首先要注意的是所谓的建筑陷坑反模式。这个反模式描述了这样一种情况，即请求流通过体系结构的多个层，作为简单的传递处理，在每个层中很少或根本不执行逻辑。例如，假设表示层响应来自用户的检索客户数据的请求。表示层将请求传递给业务层，业务层只是将请求传递给持久层，然后持久层对数据库层执行一个简单的 SQL 调用以检索客户数据。然后将数据一路传递回堆栈，不需要额外的处理或逻辑来聚合、计算或转换数据。 </p>
+<p>Every layered architecture will have at least some scenarios that fall into the architecture sinkhole anti-pattern. The key, however, is to analyze the percentage of requests that fall into this category. The 80-20 rule is usually a good practice to follow to determine whether or not you are experiencing the architecture sinkhole anti-pattern. It is typical to have around 20 percent of the requests as simple pass-through processing and 80 percent of the requests having some business logic associated with the request. However, if you find that this ratio is reversed and a majority of your requests are simple pass-through processing, you might want to consider making some of the architecture layers open, keeping in mind that it will be more difficult to control change due to the lack of layer isolation. </p>
+<p>每个分层体系结构都至少有一些场景落入体系结构陷坑反模式。但是，关键是要分析属于这一类别的请求的百分比。80-20 规则通常是一个很好的实践，可以用来确定您是否正在经历体系结构陷坑反模式。通常有大约 20% 的请求作为简单的传递处理，80% 的请求具有与请求相关联的一些业务逻辑。但是，如果您发现这个比例是相反的，并且您的大多数请求都是简单的传递处理，那么您可能需要考虑开放一些架构层，请记住，由于缺乏层隔离，控制更改将更加困难。 </p>
+<p>Another consideration with the layered architecture pattern is that it tends to lend itself toward monolithic applications, even if you split the presentation layer and business layers into separate deployable units. While this may not be a concern for some applications, it does pose some potential issues in terms of deployment, general robustness and reliability, performance, and scalability.   </p>
+<p>分层体系结构模式的另一个考虑因素是，即使您将表示层和业务层划分为单独的可部署单元，它也倾向于使用单一应用程序。虽然这可能不是某些应用程序所关心的问题，但是它确实在部署、一般的健壮性和可靠性、性能和可伸缩性方面提出了一些潜在的问题。   </p>
+<h1 id="Pattern-Analysis"><a href="#Pattern-Analysis" class="headerlink" title="Pattern Analysis"></a>Pattern Analysis</h1><h1 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h1><p>The following table contains a rating and analysis of the common architecture characteristics for the layered architecture pattern. The rating for each characteristic is based on the natural tendency for that characteristic as a capability based on a typical implementation of the pattern, as well as what the pattern is generally known for. For a side-by-side comparison of how this pattern relates to other patterns in this report, please refer to <a href="app01.html#pattern-analysis-summary">Appendix A</a> at the end of this report.</p>
+<p>下表对分层架构模式的常见架构特征进行了评级和分析。每个特征的评级基于该特征的自然趋势，即基于模式的典型实现的功能，以及模式通常为人所知的功能。关于这种模式与本报告中其他模式的并行比较，请参阅本报告末尾的附录 A。</p>
+<p><strong>Overall agility</strong></p>
+<p>整体灵活性</p>
+<p><em>Rating:</em> Low</p>
+<p>评分: 低</p>
+<p><em>Analysis:</em> Overall agility is the ability to respond quickly to a constantly changing environment. While change can be isolated through the layers of isolation feature of this pattern, it is still cumbersome and time-consuming to make changes in this architecture pattern because of the monolithic nature of most implementations as well as the tight coupling of components usually found with this pattern.</p>
+<p>分析: 总体敏捷性是对不断变化的环境作出快速反应的能力。虽然可以通过这个模式的隔离特性层来隔离变更，但是在这个架构模式中进行变更仍然是非常麻烦和耗时的，因为大多数实现的单一性以及通常与这个模式相关的组件之间的紧密耦合。</p>
+<p><strong>Ease of deployment</strong></p>
+<p>易于部署</p>
+<p><em>Rating:</em> Low</p>
+<p>评分: 低</p>
+<p><em>Analysis:</em> Depending on how you implement this pattern, deployment can become an issue, particularly for larger applications. One small change to a component can require a redeployment of the entire application (or a large portion of the application), resulting in deployments that need to be planned, scheduled, and executed during off-hours or on weekends. As such, this pattern does not easily lend itself toward a continuous delivery pipeline, further reducing the overall rating for deployment.</p>
+<p>分析: 根据您实现此模式的方式，部署可能成为一个问题，特别是对于较大的应用程序。对组件的一个小更改可能需要重新部署整个应用程序 (或应用程序的大部分) ，导致需要在非工作时间或周末计划、安排和执行部署。因此，这种模式不容易适用于持续交付管道，从而进一步降低了部署的总体评级。</p>
+<p><strong>Testability</strong></p>
+<p>可测试性</p>
+<p><em>Rating:</em> High</p>
+<p>收视率: 高</p>
+<p><em>Analysis:</em> Because components belong to specific layers in the architecture, other layers can be mocked or stubbed, making this pattern is relatively easy to test. A developer can mock a presentation component or screen to isolate testing within a business component, as well as mock the business layer to test certain screen functionality.</p>
+<p>分析: 因为组件属于体系结构中的特定层，所以其他层可以被模拟或存根化，这使得该模式相对容易测试。开发人员可以模拟表示组件或屏幕来隔离业务组件中的测试，也可以模拟业务层来测试某些屏幕功能。</p>
+<p><strong>Performance</strong></p>
+<p>表演</p>
+<p><em>Rating:</em> Low</p>
+<p>评分: 低</p>
+<p><em>Analysis:</em> While it is true some layered architectures can perform well, the pattern does not lend itself to high-performance applications due to the inefficiencies of having to go through multiple layers of the architecture to fulfill a business request.</p>
+<p>分析: 虽然一些分层架构确实可以很好地执行，但是由于必须通过多层架构来满足业务请求的效率低下，这种模式不适合高性能应用程序。</p>
+<p><strong>Scalability</strong></p>
+<p>可伸缩性</p>
+<p><em>Rating:</em> Low</p>
+<p>评分: 低</p>
+<p><em>Analysis:</em> Because of the trend toward tightly coupled and monolithic implementations of this pattern, applications build using this architecture pattern are generally difficult to scale. You can scale a layered architecture by splitting the layers into separate physical deployments or replicating the entire application into multiple nodes, but overall the granularity is too broad, making it expensive to scale.</p>
+<p>分析: 由于这种模式的紧密耦合和单片实现的趋势，使用这种体系结构模式构建的应用程序通常难以扩展。您可以通过将层划分为单独的物理部署或将整个应用程序复制到多个节点来扩展分层体系结构，但总体而言粒度太大，因此扩展成本很高。</p>
+<p><strong>Ease of development</strong></p>
+<p>易于开发</p>
+<p><em>Rating:</em> High</p>
+<p>收视率: 高</p>
+<p><em>Analysis:</em> Ease of development gets a relatively high score, mostly because this pattern is so well known and is not overly complex to implement. Because most companies develop applications by separating skill sets by layers (presentation, business, database), this pattern becomes a natural choice for most business-application development. The connection between a company’s communication and organization structure and the way it develops software is outlined is what is called <em>Conway’s law</em>. You can Google “Conway’s law” to get more information about this fascinating correlation.</p>
+<p>分析: 易于开发得到了相对较高的分数，主要是因为这种模式是众所周知的，并且实现起来不会过于复杂。因为大多数公司通过按层 (表示、业务、数据库) 分离技能集来开发应用程序，所以这种模式成为大多数业务应用程序开发的自然选择。一个公司的沟通和组织结构与它开发软件的方式之间的联系被概述为所谓的康威定律。你可以在谷歌上搜索 “康威定律” 来获得更多关于这种迷人的相关性的信息。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 分层架构</li>
+        <li><strong>Author:</strong> Ao Jiao</li>
+        <li><strong>Created at:</strong> 2023-05-17 20:35:10</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-17 07:39:12
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/Tj-jiaoao/2023/05/17/分层架构/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%8C%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/">#系统分析与设计，分层架构</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/08/24/%E7%AC%AC%E4%B8%80%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part1/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">60天算法训练 Day1 数组基础</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">数据库范式详解</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">分层架构</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-Layered-Architecture"><span class="nav-text">Chapter 1. Layered Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="nav-text">第一章分层架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pattern-Description"><span class="nav-text">Pattern Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E6%8F%8F%E8%BF%B0"><span class="nav-text">模式描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Key-Concepts"><span class="nav-text">Key Concepts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5"><span class="nav-text">关键概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pattern-Example"><span class="nav-text">Pattern Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-text">模式示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Considerations"><span class="nav-text">Considerations</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E8%99%91%E5%9B%A0%E7%B4%A0"><span class="nav-text">考虑因素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pattern-Analysis"><span class="nav-text">Pattern Analysis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90"><span class="nav-text">模式分析</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ao Jiao</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.2</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
