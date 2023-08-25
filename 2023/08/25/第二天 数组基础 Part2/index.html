@@ -13,23 +13,26 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2023/08/24/第一天 数组基础 part1/"/>
+    <link rel="canonical" href="http://example.com/2023/08/25/第二天 数组基础 part2/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="二分法查找二分查找适用于有序数组中的元素查找，时间复杂度为O(logn)，根据右指针设置的不同可以有两种不同的写法。 第一种也是我主要记忆的方法就是左闭右闭区间查找，右指针指向nums.size() - 1，这种方法的重要特征是循环条件while(l &lt;&#x3D; r), 当左边与右边相等时是有比较意义的，因为本来就需要看两边的值。这种实现方式的C++代码如下: 123456789101112131">
+        <meta name="description" content="有序数组的平方题目描述给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。 思路解析此题很容易想到暴力解法，只需要先平方再排序即可，但是那样的话时间复杂度最快是O(nlogn)，不够好，像这样的题追求的基本都是线性的时间复杂度。 注意到对于非负值来说，其原来的顺序就是平方后的顺序，可能改变的就是负数平方之后会插入在这些非负数平方之间。另">
 <meta property="og:type" content="article">
-<meta property="og:title" content="60天算法训练 Day1 数组基础">
-<meta property="og:url" content="http://example.com/2023/08/24/%E7%AC%AC%E4%B8%80%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part1/index.html">
+<meta property="og:title" content="60天算法训练 Day2 数组基础">
+<meta property="og:url" content="http://example.com/2023/08/25/%E7%AC%AC%E4%BA%8C%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="二分法查找二分查找适用于有序数组中的元素查找，时间复杂度为O(logn)，根据右指针设置的不同可以有两种不同的写法。 第一种也是我主要记忆的方法就是左闭右闭区间查找，右指针指向nums.size() - 1，这种方法的重要特征是循环条件while(l &lt;&#x3D; r), 当左边与右边相等时是有比较意义的，因为本来就需要看两边的值。这种实现方式的C++代码如下: 123456789101112131">
+<meta property="og:description" content="有序数组的平方题目描述给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。 思路解析此题很容易想到暴力解法，只需要先平方再排序即可，但是那样的话时间复杂度最快是O(nlogn)，不够好，像这样的题追求的基本都是线性的时间复杂度。 注意到对于非负值来说，其原来的顺序就是平方后的顺序，可能改变的就是负数平方之后会插入在这些非负数平方之间。另">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-24T06:40:00.000Z">
-<meta property="article:modified_time" content="2023-08-24T06:40:16.965Z">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
+<meta property="article:published_time" content="2023-08-25T03:12:00.000Z">
+<meta property="article:modified_time" content="2023-08-25T03:12:38.111Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
     
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png" sizes="192x192">
@@ -40,7 +43,7 @@
     
     <title>
         
-            60天算法训练 Day1 数组基础 -
+            60天算法训练 Day2 数组基础 -
         
         Tj-Jiaoao
     </title>
@@ -195,7 +198,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">60天算法训练 Day1 数组基础</h1>
+                    <h1 class="article-title-regular">60天算法训练 Day2 数组基础</h1>
                 </div>
             
                 
@@ -217,15 +220,15 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-08-24 14:40</span>
-        <span class="mobile">2023-08-24 14:40</span>
+        <span class="desktop">2023-08-25 11:12</span>
+        <span class="mobile">2023-08-25 11:12</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-08-24 14:40:16</span>
-            <span class="mobile">2023-08-24 14:40</span>
+            <span class="desktop">2023-08-25 11:12:38</span>
+            <span class="mobile">2023-08-25 11:12</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -260,25 +263,54 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="二分法查找"><a href="#二分法查找" class="headerlink" title="二分法查找"></a>二分法查找</h2><p>二分查找适用于有序数组中的元素查找，时间复杂度为O(logn)，根据右指针设置的不同可以有两种不同的写法。</p>
-<p><mark>第一种也是我主要记忆的方法就是左闭右闭区间查找</mark>，右指针指向<code>nums.size() - 1</code>，这种方法的重要特征是循环条件<code>while(l &lt;= r)</code>, 当左边与右边相等时是有比较意义的，因为本来就需要看两边的值。<br>这种实现方式的C++代码如下:</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">BinarySearch</span><span class="params">(vector&lt;<span class="type">int</span>&gt; nums, <span class="type">int</span> target)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (l &lt;= r)&#123;</span><br><span class="line">		<span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (num[mid] &lt; target)&#123;</span><br><span class="line">			r = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			l = mid - <span class="number">1</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+                <h2 id="有序数组的平方"><a href="#有序数组的平方" class="headerlink" title="有序数组的平方"></a>有序数组的平方</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个按 <strong>非递减顺序</strong> 排序的整数数组 <code>nums</code>，返回 <strong>每个数字的平方</strong> 组成的新数组，要求也按 <strong>非递减顺序</strong> 排序。</p>
+<h3 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h3><p>此题很容易想到暴力解法，只需要先平方再排序即可，但是那样的话时间复杂度最快是<code>O(nlogn)</code>，不够好，像这样的题追求的基本都是线性的时间复杂度。</p>
+<p>注意到对于非负值来说，其原来的顺序就是平方后的顺序，可能改变的就是负数平方之后会插入在这些非负数平方之间。另外，<mark>负数越小，平方之后就越大，插入的位置就越往后。</mark>所以我们想到用双指针的方法，设置<strong>一前一后两个指针，前指针指向要插入的负数，后指针指向负数平方后将要插入的位置。</strong></p>
+<p>基本的代码逻辑是，右指针不断向左移动找插入位置，左指针一个个插入右指针找好的位置，直到左指针与右指针相遇后<strong>传入最后一个值</strong>随后退出循环。</p>
+<p>代码如下：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> pl = <span class="number">0</span>, pr = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> k = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(nums.size())</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (pl &lt;= pr)&#123;</span><br><span class="line">		<span class="keyword">while</span> (nums[pr] &gt; <span class="built_in">abs</span>(nums[pl])) &#123;</span><br><span class="line">			ans[k--] = nums[pr] * nums[pr];</span><br><span class="line">			pr--;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="comment">// 此时pr指向第一个小于或等于pl指向的绝对值的值</span></span><br><span class="line">		ans[k--] = nums[pl] * nums[pl];</span><br><span class="line">		pl ++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>第二种就是采用左闭右开的方法，将右指针指向数组最后一个元素的下一位。采用这种方式，当l $&#x3D;$ r时再比较是没有意义的，所以只需<code>while(l &lt; r)</code>即可，代码如下：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">BinarySearch</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>(); <span class="comment">// 注意这里的r和之前不同了</span></span><br><span class="line">	<span class="keyword">while</span> (l &lt; r)&#123;</span><br><span class="line">		<span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)</span><br><span class="line">			l = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			r = mid;  <span class="comment">// 注意这里的r的更新不同了</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>注意这里的<code>while (pl &lt;= pr)</code>以及<code>nums[pr] &gt; abs(nums[pl])</code>的符号差异，后者保证循环下来pr指<mark>最大的小于或等于abs(nums[pl])</mark>的值，前者保证当首尾指针交叉时数据会被写入新数组。</p>
+<h2 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的<strong>连续</strong>子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。</p>
+<p>示例：</p>
+<ul>
+<li>输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3]</li>
+<li>输出：2</li>
+<li>解释：子数组 [4,3] 是该条件下的长度最小的子数组。</li>
+</ul>
+<p>提示：</p>
+<ul>
+<li>1 &lt;&#x3D; target &lt;&#x3D; 10^9</li>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 10^5</li>
+<li>1 &lt;&#x3D; nums[i] &lt;&#x3D; 10^5</li>
+</ul>
+<h3 id="思路解析-1"><a href="#思路解析-1" class="headerlink" title="思路解析"></a>思路解析</h3><p>此题需要注意的一个很重要的点是<strong>连续</strong>，刚开始没注意连续，想着直接给数组排序了。如果是连续的话，就需要设置指针来探究了。暴力法很好想，全部元素遍历一遍，对于每一个遍历的元素都求一个连续子数组，记录这个过程中的最小数组长度即可。</p>
+<p>但是本题可以用<strong>双指针</strong>的方法实现<strong>线性</strong>的时间复杂度，昨天的消除连续指针是用快慢指针，上一题是用双向指针，这里因为需要求区间长度，所以想到用两个指针维护一个“窗口”。从左到右滑动这个窗口，我们设置右指针为遍历指针，然后利用<strong>贪心思想</strong>，左指针每次都指向能满足条件的最大下标处，通过这样的方式来计算出<strong>最短的区间</strong>。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif"
+                      
+                > 
 
 
-<h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个数组 <code>nums</code> 和一个值 <code>val</code>，你需要 <strong><a class="link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95"  title="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95">原地 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong> 移除所有数值等于 <code>val</code> 的元素，并返回移除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须仅使用 <code>O(1)</code> 额外空间并 <strong><a class="link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95"  title="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95">原地 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 修改输入数组</strong>。</p>
-<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
-<h3 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h3><p>这道题需要思考如何用<strong>线性的时间复杂度</strong>去解决问题，为此我们需要从前向后扫描数组，在发现val元素时及时移动数组元素，这样就可以达到线性的时间复杂度。</p>
-<p>然后可以注意到，从左向右扫描元素的过程中，非val元素需要往左边移动的格子数从0一直累加自增，每发现一个val元素就会增加1，所以这里引出第一种方法：<strong>记录移动位置数</strong>。</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> offset = <span class="number">0</span>; <span class="comment">// 记录后续元素的偏移量</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] == val)&#123;</span><br><span class="line">			offset++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		nums[i - offset] = nums[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> nums.<span class="built_in">size</span>() - offset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> minLen = INT32_MAX;</span><br><span class="line">	<span class="keyword">for</span>(r;r &lt; nums.<span class="built_in">size</span>();r++)&#123;</span><br><span class="line">		sum += nums[r];</span><br><span class="line">		<span class="keyword">while</span> (sum &gt;= target)&#123;</span><br><span class="line">			sum -= nums[l++]; <span class="comment">// 贪心右移</span></span><br><span class="line">			minLen = minLen &lt; (r - l + <span class="number">1</span> + <span class="number">1</span>)?minLen:(r-l+<span class="number">1</span> + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> minLen == INT32_MAX?<span class="number">0</span>:minLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
+<p>代码中的贪心右移是精髓，其实反过来，把左边的指针作为遍历指针，右边的指针作为贪心指针也可以，所以说这种双指针的思想就是<strong>一个遍历指针，一个贪心指针</strong>。</p>
+<h2 id="螺旋矩阵II"><a href="#螺旋矩阵II" class="headerlink" title="螺旋矩阵II"></a>螺旋矩阵II</h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个正整数 <code>n</code> ，生成一个包含 <code>1</code> 到 <code>n2</code> 所有元素，且元素按顺时针顺序螺旋排列的 <code>n x n</code> 正方形矩阵 <code>matrix</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg"
+                     
+                ></p>
+<h3 id="思路解析-2"><a href="#思路解析-2" class="headerlink" title="思路解析"></a>思路解析</h3><p>此题没有涉及算法，主要是模拟过程，其中涉及很多边界判断，需要细心发掘规律，耐心编程即可。</p>
+<p>当n为3的时候，首先将外圈填完，可以看到最终填入的数字是$n^2 - 1$,然后填$n^2$;当n $&#x3D;$ 5时,首先填外圈(边长为5)，然后填边长为3的内圈(起点是(1,1))，最后填边长为1的格子。</p>
+<p>由此可以发现规律，边长逐渐变小，每次减2，起点逐渐增大，每次递增1，并且<mark>只要确定了边长和起点，就可以确定该圈填入的所有数字</mark>,可以根据这一点来写循环。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">ans</span>(n,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n));</span><br><span class="line">	<span class="type">int</span> st = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = n; i &gt; <span class="number">0</span>; i-=<span class="number">2</span>,st++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> offs = st; offs &lt; st + i; offs++)</span><br><span class="line">			ans[st][offs] = ++k;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> offs = st + <span class="number">1</span>; offs &lt; st + i; offs++)</span><br><span class="line">			ans[offs][st + i - <span class="number">1</span>] = ++k;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> offs = st + i - <span class="number">1</span> - <span class="number">1</span>; offs &gt;= st; offs--)</span><br><span class="line">			ans[st + i - <span class="number">1</span>][offs] = ++k;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> offs = st + i - <span class="number">1</span> - <span class="number">1</span>; offs &gt; st; offs--)</span><br><span class="line">			ans[offs][st] = ++k;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>还有一种很巧妙但很常用的方法，那就是使用快慢双指针进行求解，<mark>快指针用来遍历数组判断条件，慢指针用来记录新数组更新的位置</mark>,因为快指针永远不会落后于慢指针，所以慢指针的更新不会影响到快指针的判断。下面是代码，非常简洁：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> fp = <span class="number">0</span>, sp = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (fp; fp &lt; nums.<span class="built_in">size</span>(); fp++)&#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[fp] == val) <span class="keyword">continue</span>;</span><br><span class="line">		nums[sp++] = nums[fp];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
+<p>需要额外注意的是，在我们以<strong>右-下-左-上</strong>的顺序填入的时候，当向右填完后不能从行为st开始填，这样会覆盖掉刚刚填的内容，需要从st + 1开始，其他方向同理。</p>
 
             </div>
 
@@ -286,16 +318,16 @@
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 60天算法训练 Day1 数组基础</li>
+        <li><strong>Title:</strong> 60天算法训练 Day2 数组基础</li>
         <li><strong>Author:</strong> Ao Jiao</li>
-        <li><strong>Created at:</strong> 2023-08-24 14:40:00</li>
+        <li><strong>Created at:</strong> 2023-08-25 11:12:00</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-08-24 14:40:16
+                <strong>Updated at:</strong> 2023-08-25 11:12:38
             </li>
         
         <li>
-            <strong>Link:</strong> https://github.com/Tj-jiaoao/2023/08/24/第一天 数组基础 Part1/
+            <strong>Link:</strong> https://github.com/Tj-jiaoao/2023/08/25/第二天 数组基础 Part2/
         </li>
         <li>
             <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
@@ -321,29 +353,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/08/25/%E7%AC%AC%E4%BA%8C%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part2/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">60天算法训练 Day2 数组基础</span>
-                                    <span class="post-nav-item">Prev posts</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/"
+                            href="/2023/08/24/%E7%AC%AC%E4%B8%80%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part1/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">分层架构</span>
+                                    <span class="post-nav-title-item">60天算法训练 Day1 数组基础</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -408,8 +425,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">60天算法训练 Day1 数组基础</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%B3%95%E6%9F%A5%E6%89%BE"><span class="nav-text">二分法查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-text">移除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">思路解析</span></a></li></ol></li></ol>
+        <div class="page-title">60天算法训练 Day2 数组基础</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9"><span class="nav-text">有序数组的平方</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">思路解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-text">长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90-1"><span class="nav-text">思路解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II"><span class="nav-text">螺旋矩阵II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90-2"><span class="nav-text">思路解析</span></a></li></ol></li></ol>
 
     </div>
 </div>
