@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ao Jiao">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/01/24/2024-01-24-day7-哈希表-part2/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="1 快乐数1.1 题目描述编写一个算法来判断一个数 n 是不是快乐数。 「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为 1，那么这个数就是快乐数。 如果 n 是快乐数就返回 True ；不是，则返回 False 。 示例： 输入：19输出：true解释：1^2 + 9^2 &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day7 哈希表 Part2">
+<meta property="og:url" content="http://example.com/2024/01/24/2024-01-24-Day7-%E5%93%88%E5%B8%8C%E8%A1%A8-Part2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 快乐数1.1 题目描述编写一个算法来判断一个数 n 是不是快乐数。 「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为 1，那么这个数就是快乐数。 如果 n 是快乐数就返回 True ；不是，则返回 False 。 示例： 输入：19输出：true解释：1^2 + 9^2 &amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-24T14:50:10.000Z">
+<meta property="article:modified_time" content="2024-01-24T14:50:10.612Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法,哈希表">
+<meta name="twitter:card" content="summary">
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Day7 哈希表 Part2 -
+        
+        Tj-Jiaoao
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"https://baidu.com","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png","dark":"https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png"},"title":"Hello There","subtitle":{"text":["To make each day count."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":100,"starting_delay":500,"backing_delay":1200,"loop":false,"smart_backspace":false},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/Tj-Jiaoao","instagram":"https://instagram.com/jiaoao73?igshid=YmMyMTA2M2Y=","zhihu":null,"twitter":null,"email":"2050780@tongji.edu.cn"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"wanderer","artist":"cafe ibiza","url":"img/bgmusic.mp3","cover":"https://th.bing.com/th/id/R.268b1b0e03fb11335fe433f15ddabe60?rik=U%2f5d2RdbWQK9xA&pid=ImgRaw&r=0"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Tj-Jiaoao
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Day7 哈希表 Part2</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://th.bing.com/th/id/OIP.OJ53CYMW1JkTD-QHGI1wTgHaFj?pid=ImgDet&rs=1">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Ao Jiao</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-01-24 22:50:10</span>
+        <span class="mobile">2024-01-24 22:50</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-24 22:50:10</span>
+            <span class="mobile">2024-01-24 22:50</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8/">算法,哈希表</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="1-快乐数"><a href="#1-快乐数" class="headerlink" title="1 快乐数"></a>1 快乐数</h2><h3 id="1-1-题目描述"><a href="#1-1-题目描述" class="headerlink" title="1.1 题目描述"></a>1.1 题目描述</h3><p>编写一个算法来判断一个数 n 是不是快乐数。</p>
+<p>「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为 1，那么这个数就是快乐数。</p>
+<p>如果 n 是快乐数就返回 True ；不是，则返回 False 。</p>
+<p><strong>示例：</strong></p>
+<p>输入：19<br>输出：true<br>解释：<br>1^2 + 9^2 &#x3D; 82<br>8^2 + 2^2 &#x3D; 68<br>6^2 + 8^2 &#x3D; 100<br>1^2 + 0^2 + 0^2 &#x3D; 1</p>
+<h3 id="1-2-思路解析"><a href="#1-2-思路解析" class="headerlink" title="1.2 思路解析"></a>1.2 思路解析</h3><p>刚开始还以为这是个数学题，总是想着是不是会出现6和8的组合才是快乐数，仔细想又不是这样，因为如果数字的位数多的话完全可以不是6和8的组合凑成10，100，或者1000这样子。</p>
+<p>后来看解析焕然大悟，真是太久没有写题了，一个浅显的道理都没有意识到：<mark>如果不是快乐数，那么通过求平方算出来的数字一定会出现重复的数字</mark>，由于是在数组中查找对应元素，所以用哈希表最快，所以数据结构选用<code>set</code>.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">set&lt;<span class="type">int</span>&gt; mySet;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">computeJoyNum</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">pow</span>(n % <span class="number">10</span>,<span class="number">2</span>) + <span class="built_in">computeJoyNum</span>(n/<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isHappy</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = n;</span><br><span class="line">        <span class="keyword">while</span>(mySet.<span class="built_in">find</span>(m) == mySet.<span class="built_in">end</span>())&#123;</span><br><span class="line">            mySet.<span class="built_in">insert</span>(m);</span><br><span class="line">            m = <span class="built_in">computeJoyNum</span>(m);</span><br><span class="line">            <span class="keyword">if</span> (m == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里需要注意，CPP中的求幂运算是<code>std::pow</code>函数，<code>^</code>是按位异或运算。</p>
+<h2 id="2-两数之和"><a href="#2-两数之和" class="headerlink" title="2 两数之和"></a>2 两数之和</h2><h3 id="2-1-题目描述"><a href="#2-1-题目描述" class="headerlink" title="2.1 题目描述"></a>2.1 题目描述</h3><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</p>
+<p><strong>示例:</strong></p>
+<p>给定 nums &#x3D; [2, 7, 11, 15], target &#x3D; 9</p>
+<p>因为 nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9</p>
+<p>所以返回 [0, 1]</p>
+<h3 id="2-2-思路解析"><a href="#2-2-思路解析" class="headerlink" title="2.2 思路解析"></a>2.2 思路解析</h3><p>这个题只涉及两个数，所以在总体策略上，只需要将数组元素插入到一个我们自己构建的容器中，只要这个容器的查找速度够快，就能实现优于O(n$^2$)的时间复杂度。</p>
+<p>刚开始我想到的其实是用set，我想着set内的元素是有序的，也许可以使用distance函数输出下标，但是提交的时候发现不对，查找资料后发现set的底层使用红黑树实现的，内部元素是有序的，但是不支持随机访问，也就是说不能通过下标的方式对元素进行查找。</p>
+<p>所以我就在想换什么容器，数组的话当然可以，但是数组的查找效率太低，就算采用边排序边查找的方式，总共算下来的时间复杂度也要O($n^2$)。</p>
+<p>于是考虑用map，可是map的底层实现也是红黑树，对于这种关联容器来说，cpp中STL与之绑定的迭代器是双向迭代器，而不是随机访问迭代器，所以不支持下标的随机访问。但是好在我们可以用空间换时间，map是一种键-值关联的数据结构，我们只需要在map的值的地方存取下标就好了。</p>
+<p><mark>注意这里键是nums中的元素，值是对应元素的下标。不能交换位置，因为在unordered_map中，查找键的时间复杂度是O($log_{}{n}$)，而查找值的时间复杂度是O($n$)。</mark></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">       vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">       unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; s;  <span class="comment">//临时存储判断过的数字</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">           <span class="keyword">if</span> (s.<span class="built_in">find</span>(target - nums[i])!= s.<span class="built_in">end</span>())&#123;</span><br><span class="line">               ans.<span class="built_in">push_back</span>(s.<span class="built_in">find</span>(target - nums[i])-&gt;second);</span><br><span class="line">               ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">               <span class="keyword">return</span> ans;</span><br><span class="line">           &#125;</span><br><span class="line">           s.<span class="built_in">insert</span>(&#123;nums[i],i&#125;);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ans;</span><br><span class="line">   </span><br></pre></td></tr></table></figure></div>
+
+<p>我们使用<code>unordered_map</code>是因为其底层实现是哈希表，查找和插入元素的时间复杂度是O(1)。如果用map的话时间复杂度是O($log_{}{n}$)，性能不如哈希表实现。</p>
+<h3 id="2-3-总结归纳"><a href="#2-3-总结归纳" class="headerlink" title="2.3 总结归纳"></a>2.3 总结归纳</h3><h4 id="2-3-1-Map用法总结"><a href="#2-3-1-Map用法总结" class="headerlink" title="2.3.1 Map用法总结"></a>2.3.1 Map用法总结</h4><p><code>std::map</code> 是 C++ 标准库中的关联容器，提供了基于键值对的映射。以下是对 <code>std::map</code> 常用的一些操作：</p>
+<ol>
+<li><p><strong>插入元素：</strong></p>
+<ul>
+<li>使用 <code>insert</code> 函数插入键值对：<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;<span class="type">int</span>, std::string&gt; myMap;</span><br><span class="line">myMap.<span class="built_in">insert</span>(&#123;<span class="number">1</span>, <span class="string">&quot;one&quot;</span>&#125;);</span><br><span class="line">myMap.<span class="built_in">insert</span>(std::<span class="built_in">make_pair</span>(<span class="number">2</span>, <span class="string">&quot;two&quot;</span>));</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>访问元素：</strong></p>
+<ul>
+<li>使用键访问元素，注意如果键不存在，会插入一个默认值：<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;<span class="type">int</span>, std::string&gt; myMap = &#123;&#123;<span class="number">1</span>, <span class="string">&quot;one&quot;</span>&#125;, &#123;<span class="number">2</span>, <span class="string">&quot;two&quot;</span>&#125;&#125;;</span><br><span class="line">std::string value = myMap[<span class="number">1</span>]; <span class="comment">// 访问键为 1 的值</span></span><br></pre></td></tr></table></figure></div></li>
+<li>使用 <code>find</code> 函数查找元素，避免插入默认值：<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> it = myMap.<span class="built_in">find</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> (it != myMap.<span class="built_in">end</span>()) &#123;</span><br><span class="line">    std::string value = it-&gt;second;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>删除元素：</strong></p>
+<ul>
+<li>使用 <code>erase</code> 函数删除指定键的元素：<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myMap.<span class="built_in">erase</span>(<span class="number">1</span>); <span class="comment">// 删除键为 1 的元素</span></span><br></pre></td></tr></table></figure></div></li>
+<li>使用迭代器删除指定位置的元素：<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> it = myMap.<span class="built_in">find</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> (it != myMap.<span class="built_in">end</span>()) &#123;</span><br><span class="line">    myMap.<span class="built_in">erase</span>(it);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>遍历元素：</strong></p>
+<ul>
+<li><p>使用迭代器遍历整个 <code>std::map</code>：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = myMap.<span class="built_in">begin</span>(); it != myMap.<span class="built_in">end</span>(); ++it) &#123;</span><br><span class="line">    <span class="type">int</span> key = it-&gt;first;</span><br><span class="line">    std::string value = it-&gt;second;</span><br><span class="line">    <span class="comment">// 使用 key 和 value 进行操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>使用范围循环（C++11 及以上版本）：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair : myMap) &#123;</span><br><span class="line">    <span class="type">int</span> key = pair.first;</span><br><span class="line">    std::string value = pair.second;</span><br><span class="line">    <span class="comment">// 使用 key 和 value 进行操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>获取容器大小：</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> size = myMap.<span class="built_in">size</span>(); <span class="comment">// 返回键值对的数量</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>判断元素是否存在：</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (myMap.<span class="built_in">find</span>(<span class="number">1</span>) != myMap.<span class="built_in">end</span>()) &#123;</span><br><span class="line">    <span class="comment">// 键为 1 的元素存在</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>清空容器：</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myMap.<span class="built_in">clear</span>(); <span class="comment">// 清空所有键值对</span></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h4 id="2-3-2-迭代器回顾"><a href="#2-3-2-迭代器回顾" class="headerlink" title="2.3.2 迭代器回顾"></a>2.3.2 迭代器回顾</h4><p>C++ 标准库中的迭代器分为五种主要类型，按功能和能力的不同逐步增强，分别是：</p>
+<ol>
+<li><strong>输入迭代器（Input Iterator）：</strong> 只能读取序列中的元素，但不能修改。支持逐个元素读取和后移，不支持随机访问。</li>
+<li><strong>输出迭代器（Output Iterator）：</strong> 只能写入序列中的元素，但不能读取。支持逐个元素写入和后移，不支持随机访问。</li>
+<li><strong>前向迭代器（Forward Iterator）：</strong> 具备输入和输出迭代器的所有功能，并且可以多次遍历同一范围。支持逐个元素读写、前移和后移，不支持随机访问。</li>
+<li><strong>双向迭代器（Bidirectional Iterator）：</strong> 具备前向迭代器的所有功能，并且可以反向遍历。支持逐个元素读写、前移和后移，但不支持随机访问。</li>
+<li><strong>随机访问迭代器（Random Access Iterator）：</strong> 具备双向迭代器的所有功能，并且支持随机访问。可以通过迭代器进行跳跃式的访问和修改。支持逐个元素读写、前移、后移、随机访问、加法和减法运算等。</li>
+</ol>
+<p>不同的 C++ 容器提供不同类型的迭代器。以下是一些常见容器及其迭代器类型：</p>
+<ol>
+<li><p><strong>数组：</strong></p>
+<ul>
+<li>迭代器类型：随机访问迭代器<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">int</span>* begin = std::<span class="built_in">begin</span>(arr);</span><br><span class="line"><span class="type">int</span>* end = std::<span class="built_in">end</span>(arr);</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>向量（<code>std::vector</code>）：</strong></p>
+<ul>
+<li>迭代器类型：随机访问迭代器<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = vec.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = vec.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>列表（<code>std::list</code>）：</strong></p>
+<ul>
+<li>迭代器类型：双向迭代器<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::list&lt;<span class="type">int</span>&gt; myList = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = myList.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = myList.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>双端队列（<code>std::deque</code>）：</strong></p>
+<ul>
+<li>迭代器类型：随机访问迭代器<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::deque&lt;<span class="type">int</span>&gt; myDeque = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = myDeque.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = myDeque.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>集合（<code>std::set</code>）：</strong></p>
+<ul>
+<li>迭代器类型：双向迭代器<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::set&lt;<span class="type">int</span>&gt; mySet = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = mySet.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = mySet.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>映射（<code>std::map</code>）：</strong></p>
+<ul>
+<li>迭代器类型：双向迭代器（针对 <code>std::map</code> 和 <code>std::set</code> 中的键值对）<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;<span class="type">int</span>, std::string&gt; myMap = &#123;&#123;<span class="number">1</span>, <span class="string">&quot;one&quot;</span>&#125;, &#123;<span class="number">2</span>, <span class="string">&quot;two&quot;</span>&#125;, &#123;<span class="number">3</span>, <span class="string">&quot;three&quot;</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = myMap.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = myMap.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>无序集合（<code>std::unordered_set</code>）：</strong></p>
+<ul>
+<li>迭代器类型：前向迭代器（C++11 及以上版本）<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::unordered_set&lt;<span class="type">int</span>&gt; myUnorderedSet = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = myUnorderedSet.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = myUnorderedSet.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>无序映射（<code>std::unordered_map</code>）：</strong></p>
+<ul>
+<li>迭代器类型：前向迭代器（C++11 及以上版本）<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::unordered_map&lt;<span class="type">int</span>, std::string&gt; myUnorderedMap = &#123;&#123;<span class="number">1</span>, <span class="string">&quot;one&quot;</span>&#125;, &#123;<span class="number">2</span>, <span class="string">&quot;two&quot;</span>&#125;, &#123;<span class="number">3</span>, <span class="string">&quot;three&quot;</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">auto</span> it = myUnorderedMap.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">auto</span> end = myUnorderedMap.<span class="built_in">end</span>();</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ol>
+<p>这只是一些基本的例子，具体的迭代器类型可能还受到 C++ 标准库实现的影响。在编写代码时，可以使用 <code>std::begin</code> 和 <code>std::end</code> 函数来获取容器的起始和结束迭代器。在 C++11 及以上版本，可以使用 <code>auto</code> 关键字简化迭代器的声明。</p>
+<h2 id="3-四数之和"><a href="#3-四数之和" class="headerlink" title="3 四数之和"></a>3 四数之和</h2><h3 id="3-1-题目描述"><a href="#3-1-题目描述" class="headerlink" title="3.1 题目描述"></a>3.1 题目描述</h3><p>给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] &#x3D; 0。</p>
+<p>为了使问题简单化，所有的 A, B, C, D 具有相同的长度 N，且 0 ≤ N ≤ 500 。所有整数的范围在 -2^28 到 2^28 - 1 之间，最终结果不会超过 2^31 - 1 。</p>
+<p><strong>例如:</strong></p>
+<p>输入:</p>
+<ul>
+<li>A &#x3D; [ 1, 2]</li>
+<li>B &#x3D; [-2,-1]</li>
+<li>C &#x3D; [-1, 2]</li>
+<li>D &#x3D; [ 0, 2]</li>
+</ul>
+<p>输出:</p>
+<p>2</p>
+<p><strong>解释:</strong></p>
+<p>两个元组如下:</p>
+<ol>
+<li>(0, 0, 0, 1) -&gt; A[0] + B[0] + C[0] + D[1] &#x3D; 1 + (-2) + (-1) + 2 &#x3D; 0</li>
+<li>(1, 1, 0, 0) -&gt; A[1] + B[1] + C[0] + D[0] &#x3D; 2 + (-1) + (-1) + 0 &#x3D; 0</li>
+</ol>
+<h3 id="3-2-思路解析"><a href="#3-2-思路解析" class="headerlink" title="3.2 思路解析"></a>3.2 思路解析</h3><p>本题看着是一个组合数学的问题，但其实可以把两个数组能加和出的数字合在一个容器中，因为本题只需要我们输出元组个数，所以我们可以用map来存储加和出的数字及其出现次数。</p>
+<p>最开始我的想法是A和B统计一次，C和D再统计一次，然后再进行哈希表的匹配搜索。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">fourSumCount</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, vector&lt;<span class="type">int</span>&gt;&amp; nums3, vector&lt;<span class="type">int</span>&gt;&amp; nums4)</span> </span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; sums1;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; sums2;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i:nums1)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j:nums2)&#123;</span><br><span class="line">            <span class="keyword">if</span> (sums1.<span class="built_in">find</span>(i + j)==sums1.<span class="built_in">end</span>())</span><br><span class="line">                sums1.<span class="built_in">insert</span>(&#123;i+j,<span class="number">1</span>&#125;);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                sums1.<span class="built_in">find</span>(i+j)-&gt;second++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i:nums3)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j:nums4)&#123;</span><br><span class="line">            <span class="keyword">if</span> (sums2.<span class="built_in">find</span>(i+j) == sums2.<span class="built_in">end</span>())</span><br><span class="line">                sums2.<span class="built_in">insert</span>(&#123;i+j,<span class="number">1</span>&#125;);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                sums2.<span class="built_in">find</span>(i+j)-&gt;second++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; pair:sums1)&#123;</span><br><span class="line">        <span class="keyword">if</span> (sums2.<span class="built_in">find</span>(<span class="number">-1</span> * pair.first) != sums2.<span class="built_in">end</span>())</span><br><span class="line">            ans += (pair.second * sums2.<span class="built_in">find</span>(<span class="number">-1</span> * pair.first)-&gt;second);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>但是看了解析之后，发现其实还有更加高效的办法，其实只需要统计A和B的加和情况。然后在遍历C和D的过程中进行哈希搜索。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">fourSumCount</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, vector&lt;<span class="type">int</span>&gt;&amp; nums3, vector&lt;<span class="type">int</span>&gt;&amp; nums4)</span> </span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; sums1&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> counts = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 首先计算nums1和nums2的加和可能情况</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i:nums1)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j:nums2)</span><br><span class="line">            sums1[i + j]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i:nums3)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j:nums4)</span><br><span class="line">            <span class="keyword">if</span> (sums1[-i-j])</span><br><span class="line">                counts += sums1[-i-j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> counts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Day7 哈希表 Part2</li>
+        <li><strong>Author:</strong> Ao Jiao</li>
+        <li><strong>Created at:</strong> 2024-01-24 22:50:10</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2024-01-24 22:50:10
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/Tj-jiaoao/2024/01/24/2024-01-24-Day7-哈希表-Part2/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8/">#算法,哈希表</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2024/01/16/Day6%20%E5%93%88%E5%B8%8C%E8%A1%A8Part1/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Day6 哈希表Part1</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Day7 哈希表 Part2</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BF%AB%E4%B9%90%E6%95%B0"><span class="nav-text">1 快乐数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">1.1 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">1.2 思路解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-text">2 两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">2.1 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">2.2 思路解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3"><span class="nav-text">2.3 总结归纳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-text">3 四数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">3.1 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">3.2 思路解析</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ao Jiao</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.2</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
