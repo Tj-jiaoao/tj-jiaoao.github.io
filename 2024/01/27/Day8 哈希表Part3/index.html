@@ -13,27 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/01/26/ch2像经济学家一样思考/"/>
+    <link rel="canonical" href="http://example.com/2024/01/27/day8 哈希表part3/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Thinking Like an Economist 假设与模型 假设：可以简化复杂的世界，使之更容易理解Assumptions: simplify the complex world, make it easier to understand.   模型：一个复杂现象的高度简化Model:  a highly simplified representation of a more complic">
+        <meta name="description" content="Day8 哈希表Part3 哈希表部分的最后一节，三数之和比较难，而且用哈希表实现效率不高，使用双指针可以获得较好的时间效率。  1 赎金信1.1 题目描述给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。 (题目说明：为了不暴">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ch2 像经济学家一样思考">
-<meta property="og:url" content="http://example.com/2024/01/26/ch2%E5%83%8F%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%AE%B6%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/01/27/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Thinking Like an Economist 假设与模型 假设：可以简化复杂的世界，使之更容易理解Assumptions: simplify the complex world, make it easier to understand.   模型：一个复杂现象的高度简化Model:  a highly simplified representation of a more complic">
+<meta property="og:description" content="Day8 哈希表Part3 哈希表部分的最后一节，三数之和比较难，而且用哈希表实现效率不高，使用双指针可以获得较好的时间效率。  1 赎金信1.1 题目描述给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。 (题目说明：为了不暴">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/%E5%BE%AA%E7%8E%AF%E6%B5%81%E9%87%8F%E5%9B%BE.png">
-<meta property="og:image" content="http://example.com/img/%E7%94%9F%E4%BA%A7%E5%8F%AF%E8%83%BD%E6%80%A7%E8%BE%B9%E7%95%8C1.png">
-<meta property="og:image" content="http://example.com/img/%E7%94%9F%E4%BA%A7%E5%8F%AF%E8%83%BD%E6%80%A7%E8%BE%B9%E7%95%8C%E7%A7%BB%E5%8A%A8.png">
-<meta property="article:published_time" content="2024-01-26T14:36:10.000Z">
-<meta property="article:modified_time" content="2024-01-26T14:46:29.628Z">
+<meta property="article:published_time" content="2024-01-27T15:40:28.878Z">
+<meta property="article:modified_time" content="2024-01-29T16:36:59.759Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="微观经济学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/%E5%BE%AA%E7%8E%AF%E6%B5%81%E9%87%8F%E5%9B%BE.png">
     
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png" sizes="192x192">
@@ -43,8 +38,6 @@
     <!--- Page Info-->
     
     <title>
-        
-            ch2 像经济学家一样思考 -
         
         Tj-Jiaoao
     </title>
@@ -199,7 +192,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">ch2 像经济学家一样思考</h1>
+                    <h1 class="article-title-regular"></h1>
                 </div>
             
                 
@@ -221,31 +214,20 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-01-26 22:36:10</span>
-        <span class="mobile">2024-01-26 22:36</span>
+        <span class="desktop">2024-01-27 23:40:28</span>
+        <span class="mobile">2024-01-27 23:40</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-26 22:46:29</span>
-            <span class="mobile">2024-01-26 22:46</span>
+            <span class="desktop">2024-01-30 00:36:59</span>
+            <span class="mobile">2024-01-30 00:36</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/">微观经济学</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
@@ -264,74 +246,40 @@
             
 
             <div class="article-content markdown-body">
-                <p>Thinking Like an Economist</p>
-<h2 id="假设与模型"><a href="#假设与模型" class="headerlink" title="假设与模型"></a>假设与模型</h2><ul>
-<li><p>假设：可以简化复杂的世界，使之更容易理解<br>Assumptions: simplify the complex world, make it easier to understand. </p>
-</li>
-<li><p>模型：一个复杂现象的高度简化<br>Model:  a highly simplified representation of a more complicated reality.</p>
-</li>
-</ul>
-<h2 id="我们的第一个模型：循环流量图"><a href="#我们的第一个模型：循环流量图" class="headerlink" title="我们的第一个模型：循环流量图"></a>我们的第一个模型：循环流量图</h2><ul>
-<li><p>循环流量图：一个说明货币如何通过市场在家庭与企业之间流动的直观经济模型<br>The Circular-Flow Diagram:  a visual model of the economy, shows how dollars flow through markets among households and firms</p>
-</li>
-<li><p>生产要素：社会用来生产物品与劳务的资源，包括：劳动、土地 、资本（建筑物和用于生产的机器）等等。<br>Factors of production:  the resources the economy uses to produce goods &amp; services</p>
-</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./img/%E5%BE%AA%E7%8E%AF%E6%B5%81%E9%87%8F%E5%9B%BE.png"
-                      alt="image-20240126214847836"
-                ></p>
-<p>我觉得就是两个生产者消费者模型。</p>
-<p>物品与服务市场上，企业生产，家庭消费。企业赚的💰通过工资、租金或利润的形式支出给家庭，家庭用这笔💰购买需要的物品或服务。</p>
-<p>生产要素市场上，家庭是生产者，提供生产要素给企业以进行生产活动，企业是消费者，消费家庭提供的生产要素，并生产出对应的物品或服务。</p>
-<h2 id="生产可能性边界-（PPF）"><a href="#生产可能性边界-（PPF）" class="headerlink" title="生产可能性边界 （PPF）"></a>生产可能性边界 （PPF）</h2><ul>
-<li><p>表示在可得到的生产要素与生产技术既定时，一个经济体所能生产的两种产品数量的各种组合的图形<br>The Production Possibilities Frontier (PPF): a graph that shows the combinations of two goods the economy can possibly produce given the available resources and the available technology  </p>
-</li>
-<li><p>斜率（The slope）表示横坐标的机会成本。</p>
-</li>
-<li><p>如果一个经济从它可以获得的稀缺资源中获得了它能得到的，那么这种结果就称为有效率的。在生产可能性边界线内的各点的结果被成为无效率的，超出生产可能性边界的结果是不可能实现的。</p>
-</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./img/%E7%94%9F%E4%BA%A7%E5%8F%AF%E8%83%BD%E6%80%A7%E8%BE%B9%E7%95%8C1.png"
-                      alt="image-20240126220409444"
-                ></p>
-<p>生产可能性边界的移动：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./img/%E7%94%9F%E4%BA%A7%E5%8F%AF%E8%83%BD%E6%80%A7%E8%BE%B9%E7%95%8C%E7%A7%BB%E5%8A%A8.png"
-                      alt="image-20240126221050362"
-                ></p>
-<h2 id="经济学研究分类"><a href="#经济学研究分类" class="headerlink" title="经济学研究分类"></a>经济学研究分类</h2><ul>
-<li><p>微观经济学：研究家庭和企业如何做出决策，以及它们如何在市场上相互交易。<br>Microeconomics is the study of how households and firms make decisions and how they interact in markets.</p>
-</li>
-<li><p>宏观经济学：研究整体经济现象，包括通货膨胀，失业和经济增长。<br>Macroeconomics is the study of economy-wide phenomena, including inflation, unemployment, and economic growth.</p>
-</li>
-</ul>
-<h2 id="作为政策顾问的经济学家"><a href="#作为政策顾问的经济学家" class="headerlink" title="作为政策顾问的经济学家"></a>作为政策顾问的经济学家</h2><ul>
-<li><p>实证表述: 试图描述世界是什么样子的观点。<br>positive statements: claims that attempt to describe the world as it is.</p>
-</li>
-<li><p>规范表述: 试图描述世界应该是什么样子的观点。<br>normative statements：claims that attempt to prescribe how the world should be.</p>
-</li>
-</ul>
-<h2 id="经济学家意见会产生分歧"><a href="#经济学家意见会产生分歧" class="headerlink" title="经济学家意见会产生分歧"></a>经济学家意见会产生分歧</h2><ul>
-<li><p>经济学家经常提供相互矛盾的政策建议。<br>Economists often give conflicting policy advice.</p>
-</li>
-<li><p>他们可能对世界如何运行的不同实证理论的正确性看法不一致。<br>They sometimes disagree about the validity of alternative positive theories about the world. </p>
-</li>
-<li><p>他们可能有不同的价值观，因此对应该尝试实施什么样的政策有不同的规范观点。<br>They may have different values and, therefore, different normative views about what policy should try to accomplish.</p>
-</li>
-</ul>
-<h2 id="书摘"><a href="#书摘" class="headerlink" title="书摘"></a>书摘</h2><ul>
-<li>爱因斯坦说过：“所有科学不过是日常思考的不断完善而已。”</li>
-<li>当经济学家试图去解释世界时，他们是科学家；当经济学家试图去改善世界时，他们是政策顾问。</li>
-<li>经济学是一门容易的学科，但很少人能够在这个学科中做到出类拔萃，也许因为杰出的经济学家应该具有非常罕见的各种天赋的组合。在某种程度上，他应该是数学家，历史学家，政治家和哲学家。他必须了解符号并用文字将其表达出来。他必须根据一般性来深入思考特殊性，并在思绪奔放的同时触及抽象与具体。他必须<mark>根据过去、着眼未来而研究现在</mark>。他必须考虑到人性或人的制度的每一部分。他必须同时保持坚定而客观的情绪，要像艺术家一样超然而不流俗，但有时又要像政治家一样脚踏实地。</li>
-</ul>
+                <h1 id="Day8-哈希表Part3"><a href="#Day8-哈希表Part3" class="headerlink" title="Day8 哈希表Part3"></a>Day8 哈希表Part3</h1><blockquote>
+<p>哈希表部分的最后一节，三数之和比较难，而且用哈希表实现效率不高，使用双指针可以获得较好的时间效率。</p>
+</blockquote>
+<h2 id="1-赎金信"><a href="#1-赎金信" class="headerlink" title="1 赎金信"></a>1 赎金信</h2><h3 id="1-1-题目描述"><a href="#1-1-题目描述" class="headerlink" title="1.1 题目描述"></a>1.1 题目描述</h3><p>给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。</p>
+<p>(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)</p>
+<p><strong>注意：</strong></p>
+<p>你可以假设两个字符串均只含有小写字母。</p>
+<p>canConstruct(“a”, “b”) -&gt; false<br>canConstruct(“aa”, “ab”) -&gt; false<br>canConstruct(“aa”, “aab”) -&gt; true</p>
+<h3 id="1-2-思路解析"><a href="#1-2-思路解析" class="headerlink" title="1.2 思路解析"></a>1.2 思路解析</h3><p>通过构造字符和出现次数的<code>unordered_map</code>即可。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">canConstruct</span><span class="params">(string ransomNote, string magazine)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造字母-次数的映射键值对</span></span><br><span class="line">        unordered_map&lt;<span class="type">char</span>,<span class="type">int</span>&gt; m&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c:magazine)</span><br><span class="line">            m[c]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c:ransomNote)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(--m[c] &lt; <span class="number">0</span>)  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;   </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="2-三数之和"><a href="#2-三数之和" class="headerlink" title="2 三数之和"></a>2 三数之和</h2><h3 id="2-1-题目描述"><a href="#2-1-题目描述" class="headerlink" title="2.1 题目描述"></a>2.1 题目描述</h3><p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c &#x3D; 0 ？请你找出所有满足条件且不重复的三元组。</p>
+<p><strong>注意：</strong> 答案中不可以包含重复的三元组。</p>
+<p>示例：</p>
+<p>给定数组 nums &#x3D; [-1, 0, 1, 2, -1, -4]，</p>
+<p>满足要求的三元组集合为： [ [-1, 0, 1], [-1, -1, 2] ]</p>
+<h3 id="2-2-思路解析"><a href="#2-2-思路解析" class="headerlink" title="2.2 思路解析"></a>2.2 思路解析</h3><p>这个题首先得知道怎么找全三个和为0的数，首先可以用减治的思想化为定值 + 两数之和的问题，之前我们已经用时间复杂度为O($n$)的方法求解过两数之和的问题了，加上固定指针的最外层循环，就可以实现时间复杂度为$O(n^2)$的算法了。</p>
+<p>但是问题来了，找出全部的三元组之后要如何去重呢？</p>
+<p>我想到的方法是利用set的模版以及自动去重的特性。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">twoSum</span>(<span class="type">int</span> target, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        multiset&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = k; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">auto</span> f = s.<span class="built_in">find</span>(target - nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (f == s.<span class="built_in">end</span>())&#123;</span><br><span class="line">                s.<span class="built_in">insert</span>(nums[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span> * target, *f, nums[i]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">threeSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        set&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ansVec;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="comment">// if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) continue;</span></span><br><span class="line">            vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; t = <span class="built_in">twoSum</span>(<span class="number">-1</span> * nums[i], nums, i+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; vec:t)&#123;</span><br><span class="line">                ans.<span class="built_in">insert</span>(vec);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ansVec.<span class="built_in">reserve</span>(ans.<span class="built_in">size</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; vec:ans)&#123;</span><br><span class="line">                ansVec.<span class="built_in">push_back</span>(vec);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> ansVec;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这种方法虽然正确，但是提交的时候却超时了，我们加上这一句剪枝操作试试。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>加上之后就可以顺利通过测试了，但是所用的时间和空间还是太大。分析其中的原因，虽然算法整体的时间复杂度是$O(n^2)$，但是建立哈希表的时间太慢，而这是使用哈希方法不可避免的问题。</p>
+<p>那有没有比哈希表更高效的方法呢？</p>
+<p>有的，答案就是使用<mark>双指针</mark>！</p>
+<p>哈希表实现中，确定好第一个指针之后，每移动一次第二个指针都会调用哈希函数在红黑树中建立一个节点。这在时间和空间上都会有加大的开销。于是我们想，<mark>如果能够用两个指针相反方向遍历剩余数组，找到合适的target值，这样时间和空间开销就会小很多了！</mark></p>
+<p>于是我们构造两个指针，left和right指针来进行遍历。<mark>如果三个数加起来是负数的话，left指针就往右移；如果加起来是正数的话，right指针就往左移。</mark>然后再加上去重操作</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">threeSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>])  <span class="keyword">continue</span>;</span><br><span class="line">            <span class="type">int</span> l = i + <span class="number">1</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (l &lt; r)&#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] &lt; <span class="number">0</span>)</span><br><span class="line">                    l++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] &gt; <span class="number">0</span>)</span><br><span class="line">                    r--;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (nums[l] == nums[l<span class="number">-1</span>] &amp;&amp; r != nums.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; nums[r] == nums[r+<span class="number">1</span>])   &#123;</span><br><span class="line">                    l++;r--;  <span class="comment">// 如果上次push_back时l++与r--的结果还是一样的，那么跳过这个结果</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(&#123;nums[i], nums[l++],nums[r--]&#125;); <span class="comment">// while循环还要进行下去，因为可能还有三元组没有找到，所以用continue</span></span><br><span class="line">                    <span class="keyword">continue</span>;  </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>用这种方法，时间复杂度就很小，算法性能提升了很多。</p>
 
             </div>
 
@@ -339,16 +287,16 @@
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> ch2 像经济学家一样思考</li>
+        <li><strong>Title:</strong> </li>
         <li><strong>Author:</strong> Ao Jiao</li>
-        <li><strong>Created at:</strong> 2024-01-26 22:36:10</li>
+        <li><strong>Created at:</strong> 2024-01-27 23:40:28</li>
         
             <li>
-                <strong>Updated at:</strong> 2024-01-26 22:46:29
+                <strong>Updated at:</strong> 2024-01-30 00:36:59
             </li>
         
         <li>
-            <strong>Link:</strong> https://github.com/Tj-jiaoao/2024/01/26/ch2像经济学家一样思考/
+            <strong>Link:</strong> https://github.com/Tj-jiaoao/2024/01/27/Day8 哈希表Part3/
         </li>
         <li>
             <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
@@ -360,43 +308,20 @@
             
 
             
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/">#微观经济学</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
 
             
 
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2024/01/27/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item"></span>
-                                    <span class="post-nav-item">Prev posts</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2024/01/25/ch1%E7%BB%8F%E6%B5%8E%E5%AD%A6%E7%9A%84%E5%8D%81%E5%A4%A7%E5%8E%9F%E7%90%86/"
+                            href="/2024/01/26/ch2%E5%83%8F%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%AE%B6%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">ch1 经济学的十大原理</span>
+                                    <span class="post-nav-title-item">ch2 像经济学家一样思考</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -461,8 +386,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">ch2 像经济学家一样思考</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E8%AE%BE%E4%B8%8E%E6%A8%A1%E5%9E%8B"><span class="nav-text">假设与模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E6%B5%81%E9%87%8F%E5%9B%BE"><span class="nav-text">我们的第一个模型：循环流量图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E5%8F%AF%E8%83%BD%E6%80%A7%E8%BE%B9%E7%95%8C-%EF%BC%88PPF%EF%BC%89"><span class="nav-text">生产可能性边界 （PPF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E6%B5%8E%E5%AD%A6%E7%A0%94%E7%A9%B6%E5%88%86%E7%B1%BB"><span class="nav-text">经济学研究分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%94%BF%E7%AD%96%E9%A1%BE%E9%97%AE%E7%9A%84%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%AE%B6"><span class="nav-text">作为政策顾问的经济学家</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%AE%B6%E6%84%8F%E8%A7%81%E4%BC%9A%E4%BA%A7%E7%94%9F%E5%88%86%E6%AD%A7"><span class="nav-text">经济学家意见会产生分歧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%A6%E6%91%98"><span class="nav-text">书摘</span></a></li></ol>
+        <div class="page-title"></div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day8-%E5%93%88%E5%B8%8C%E8%A1%A8Part3"><span class="nav-text">Day8 哈希表Part3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%B5%8E%E9%87%91%E4%BF%A1"><span class="nav-text">1 赎金信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">1.1 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">1.2 思路解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-text">2 三数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">2.1 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">2.2 思路解析</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>
