@@ -1,322 +1,199 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="Ao Jiao">
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="http://example.com/2023/04/30/qthread 与 qtimer学习笔记/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-        <meta name="description" content="最近在做HCI的第一个作业语音识别和操作系统课设时需要用到pyqt5做前端界面，而且这两者都涉及多线程，可是操作系统刚刚学完线程的理论🥲，所以又得发扬本专业的优良传统：自学了。为了加深自己的记忆，也为了能给后来者提供参考，现在总结一下做项目需要用到的基本的多线程知识。  多线程简介多线程的目的：   Sometimes you can divide your programs into sev">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>QThread&amp;QTimer讲解和实现 | Hello There</title><meta name="author" content="Jiao Ao"><meta name="copyright" content="Jiao Ao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近在做HCI的第一个作业语音识别和操作系统课设时需要用到pyqt5做前端界面，而且这两者都涉及多线程，可是操作系统刚刚学完线程的理论🥲，所以又得发扬本专业的优良传统：自学了。为了加深自己的记忆，也为了能给后来者提供参考，现在总结一下做项目需要用到的基本的多线程知识。  多线程简介多线程的目的：   Sometimes you can divide your programs into sev">
 <meta property="og:type" content="article">
 <meta property="og:title" content="QThread&amp;QTimer讲解和实现">
 <meta property="og:url" content="http://example.com/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Hello There">
 <meta property="og:description" content="最近在做HCI的第一个作业语音识别和操作系统课设时需要用到pyqt5做前端界面，而且这两者都涉及多线程，可是操作系统刚刚学完线程的理论🥲，所以又得发扬本专业的优良传统：自学了。为了加深自己的记忆，也为了能给后来者提供参考，现在总结一下做项目需要用到的基本的多线程知识。  多线程简介多线程的目的：   Sometimes you can divide your programs into sev">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://doc.qt.io/qtforpython-5/_images/inheritance-92d42ba4c526f8f37c94ef096bf68f0131ef5800.png">
-<meta property="og:image" content="http://example.com/img/demo.png">
+<meta property="og:image" content="http://example.com/img/ja.jpeg">
 <meta property="article:published_time" content="2023-04-30T12:35:10.000Z">
 <meta property="article:modified_time" content="2023-04-30T12:45:52.779Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jiao Ao">
 <meta property="article:tag" content="多线程，Pyqt5">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://doc.qt.io/qtforpython-5/_images/inheritance-92d42ba4c526f8f37c94ef096bf68f0131ef5800.png">
+<meta name="twitter:image" content="http://example.com/img/ja.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'QThread&QTimer讲解和实现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-30 20:45:52'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
     
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
-    <!--- Page Info-->
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
     
-    <title>
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-            QThread&amp;QTimer讲解和实现 -
-        
-        Tj-Jiaoao
-    </title>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-<link rel="stylesheet" href="/css/style.css">
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
 
-    
-<link rel="stylesheet" href="/assets/fonts.css">
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
 
-    <!--- Font Part-->
-    
-    
-    
-    
-
-    <!--- Inject Part-->
-    
-    <script id="hexo-configurations">
-    let Global = window.Global || {};
-    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"16px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"https://baidu.com","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"800px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg","dark":"https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg"},"title":"Hello There","subtitle":{"text":["To make each day count."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":100,"starting_delay":500,"backing_delay":1200,"loop":false,"smart_backspace":false},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/Tj-Jiaoao","instagram":"https://instagram.com/jiaoao73?igshid=YmMyMTA2M2Y=","zhihu":null,"twitter":null,"email":"2050780@tongji.edu.cn"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"wanderer","artist":"cafe ibiza","url":"img/bgmusic.mp3","cover":"img/ja.png"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
-    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-        
-<link rel="stylesheet" href="/fontawesome/thin.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/light.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/duotone.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
-
-    
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="main-content-container">
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-    
-    <div class="navbar-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Tj-Jiaoao
-                
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-house"></i>
-                                        
-                                        首页
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/archives"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-archive"></i>
-                                        
-                                        归档
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer">
-        <ul class="drawer-navbar-list">
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/"  >
-                             
-                                
-                                    <i class="fa-regular fa-house"></i>
-                                
-                                首页
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/archives"  >
-                             
-                                
-                                    <i class="fa-regular fa-archive"></i>
-                                
-                                归档
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="main-content-body">
-
-            
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            
-            
-                <div class="article-title">
-                    <h1 class="article-title-regular">QThread&amp;QTimer讲解和实现</h1>
-                </div>
-            
-                
-            
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="https://th.bing.com/th/id/OIP.OJ53CYMW1JkTD-QHGI1wTgHaFj?pid=ImgDet&rs=1">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">Ao Jiao</span>
-                            
-                                <span class="author-label"></span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-04-30 20:35:10</span>
-        <span class="mobile">2023-04-30 20:35</span>
-        <span class="hover-info">创建</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-04-30 20:45:52</span>
-            <span class="mobile">2023-04-30 20:45</span>
-            <span class="hover-info">更新</span>
-        </span>
-    
-
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8CPyqt5/">多线程，Pyqt5</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content markdown-body">
-                <blockquote>
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ja.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hello There"><span class="site-name">Hello There</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">QThread&amp;QTimer讲解和实现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-30T12:35:10.000Z" title="发表于 2023-04-30 20:35:10">2023-04-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-30T12:45:52.779Z" title="更新于 2023-04-30 20:45:52">2023-04-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="QThread&amp;QTimer讲解和实现"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
 <p>最近在做HCI的第一个作业语音识别和操作系统课设时需要用到<strong>pyqt5</strong>做前端界面，而且这两者都涉及多线程，可是操作系统刚刚学完线程的理论🥲，所以又得发扬本专业的优良传统：自学了。为了加深自己的记忆，也为了能给后来者提供参考，现在总结一下做项目需要用到的基本的多线程知识。</p>
 </blockquote>
 <h2 id="多线程简介"><a href="#多线程简介" class="headerlink" title="多线程简介"></a>多线程简介</h2><p>多线程的目的：</p>
@@ -336,24 +213,19 @@
 <li>工作线程</li>
 </ol>
 <p>应用程序的主线程始终存在，这是应用程序和其GUI运行的地方。另一方面，<strong>工作线程</strong>的存在取决于应用程序的处理需求。例如，如果您的应用程序通常运行需要很长时间才能完成的重型任务，那么您可能需要工作线程来运行这些任务并避免冻结应用程序的GUI。</p>
-<p>在PyQt应用程序中，执行的主线程也称为<strong>GUI线程</strong>，因为它处理所有小部件和其他GUI组件。当您运行应用程序时，Python会启动这个线程。在您在<code>QApplication</code>对象上调用<code>.exec()</code>后，应用程序的<a class="link"   target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qcoreapplication.html#the-event-loop-and-event-handling" >事件循环 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>在该线程中运行。该线程处理您的窗口、对话框，以及与主机操作系统的通信。</p>
+<p>在PyQt应用程序中，执行的主线程也称为<strong>GUI线程</strong>，因为它处理所有小部件和其他GUI组件。当您运行应用程序时，Python会启动这个线程。在您在<code>QApplication</code>对象上调用<code>.exec()</code>后，应用程序的<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qcoreapplication.html#the-event-loop-and-event-handling">事件循环</a>在该线程中运行。该线程处理您的窗口、对话框，以及与主机操作系统的通信。</p>
 <p>重要的是要注意，您必须在GUI线程中创建和更新所有小部件。然而，您可以在工作线程中执行其他长时间运行的任务，并使用它们的结果来提供应用程序的GUI组件。这意味着GUI组件将作为消费者，从执行实际工作的线程中获得信息。</p>
 <p>您可以在PyQt应用程序中创建尽可能多的工作线程，工作线程是次要的执行线程，您可以使用它们来卸载主线程中的长时间运行的任务并防止GUI冻结。</p>
-<p>您可以使用<code>QThread</code>创建工作线程。每个工作线程都可以拥有自己的事件循环，并支持PyQt的<a class="link"   target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html" >信号和槽机制 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>与主线程进行通信。如果您在特定的线程中创建任何从<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html"><code>QObject</code></a>类继承的对象，则该对象被认为<strong>属于</strong>或具有该线程的<strong>关联性</strong>。其子对象也必须属于相同的线程。</p>
+<p>您可以使用<code>QThread</code>创建工作线程。每个工作线程都可以拥有自己的事件循环，并支持PyQt的<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html">信号和槽机制</a>与主线程进行通信。如果您在特定的线程中创建任何从<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html"><code>QObject</code></a>类继承的对象，则该对象被认为<strong>属于</strong>或具有该线程的<strong>关联性</strong>。其子对象也必须属于相同的线程。</p>
 <p><code>QThread</code>本身并不是一个线程，而是对操作系统线程的封装。真正的线程对象是在调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qthread.html#start"><code>QThread.start()</code></a>时创建的。</p>
-<p><code>QThread</code>提供了一个高级应用程序编程接口（<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/API" >API <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>）来管理线程。这个API包括一些信号，比如<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#started"><code>.started()</code></a>和<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#finished"><code>.finished()</code></a>，在线程开始和结束时发出。它还包括一些方法和槽，比如<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#start"><code>.start()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#wait"><code>.wait()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#exit"><code>.exit()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#quit"><code>.quit()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#isFinished"><code>.isFinished()</code></a>和<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#isRunning"><code>.isRunning()</code></a>。</p>
+<p><code>QThread</code>提供了一个高级应用程序编程接口（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/API">API</a>）来管理线程。这个API包括一些信号，比如<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#started"><code>.started()</code></a>和<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#finished"><code>.finished()</code></a>，在线程开始和结束时发出。它还包括一些方法和槽，比如<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#start"><code>.start()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#wait"><code>.wait()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#exit"><code>.exit()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#quit"><code>.quit()</code></a>、<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#isFinished"><code>.isFinished()</code></a>和<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qthread.html#isRunning"><code>.isRunning()</code></a>。</p>
 <p>与任何其他线程解决方案一样，使用<code>QThread</code>时必须保护数据和资源免受<strong>并发</strong>或同时访问。否则，您将面临许多问题，包括死锁、数据损坏等。</p>
 <h2 id="QThread-OR-threading"><a href="#QThread-OR-threading" class="headerlink" title="QThread OR threading?"></a>QThread OR threading?</h2><p>QThread是pyqt5中用来管理多线程的模块。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://doc.qt.io/qtforpython-5/_images/inheritance-92d42ba4c526f8f37c94ef096bf68f0131ef5800.png"
-                      alt="Inheritance diagram of PySide2.QtCore.QThread"
-                ></p>
-<p>在Python中使用线程时，您会发现Python<a class="link"   target="_blank" rel="noopener" href="https://docs.python.org/3/library/index.html" >标准库 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>提供了一个具有一致性和强大的解决方案，即<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/threading.html#module-threading"><code>threading</code></a>模块。该模块提供了一个高级API，用于在Python中进行多线程编程。</p>
+<p><img src="https://doc.qt.io/qtforpython-5/_images/inheritance-92d42ba4c526f8f37c94ef096bf68f0131ef5800.png" alt="Inheritance diagram of PySide2.QtCore.QThread"></p>
+<p>在Python中使用线程时，您会发现Python<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/index.html">标准库</a>提供了一个具有一致性和强大的解决方案，即<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/threading.html#module-threading"><code>threading</code></a>模块。该模块提供了一个高级API，用于在Python中进行多线程编程。</p>
 <p>通常，在Python应用程序中使用<code>threading</code>。然而，如果您使用PyQt来构建使用Python的GUI应用程序，则有另一种选择。PyQt提供了一个完整、完全集成的高级API，用于进行多线程编程。</p>
 <p>您可能会想知道，在我的PyQt应用程序中，应该使用Python的线程支持还是PyQt的线程支持？答案是，这取决于情况。</p>
-<p>例如，如果您正在构建一个既有GUI应用程序，又有一个<a class="link"   target="_blank" rel="noopener" href="https://realpython.com/python-web-applications/" >Web版 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，那么Python的线程可能更合适，因为您的后端不会完全依赖PyQt。然而，如果您正在构建裸的PyQt应用程序，则PyQt的线程适合您。</p>
+<p>例如，如果您正在构建一个既有GUI应用程序，又有一个<a target="_blank" rel="noopener" href="https://realpython.com/python-web-applications/">Web版</a>，那么Python的线程可能更合适，因为您的后端不会完全依赖PyQt。然而，如果您正在构建裸的PyQt应用程序，则PyQt的线程适合您。</p>
 <p>使用PyQt的线程支持提供以下好处：</p>
 <ul>
 <li><strong>线程相关类</strong>与PyQt基础设施完全集成。</li>
@@ -362,477 +234,71 @@
 </ul>
 <p>一个经验法则可能是，如果您要与库的其余部分进行交互，则使用PyQt的线程支持，否则使用Python的线程支持。</p>
 <h2 id="QThread实现流程"><a href="#QThread实现流程" class="headerlink" title="QThread实现流程"></a>QThread实现流程</h2><p>在GUI应用程序中，使用线程的常见用途是将长时间运行的任务分配给工作线程，以便GUI对用户的交互保持响应。在PyQt中，您可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qthread.html"><code>QThread</code></a>来创建和管理工作线程。</p>
-<p>根据Qt的文档，使用<code>QThread</code>创建工作线程有<a class="link"   target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qthread.html#details" >两种主要方式 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>：</p>
+<p>根据Qt的文档，使用<code>QThread</code>创建工作线程有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qthread.html#details">两种主要方式</a>：</p>
 <ol>
 <li>直接实例化<code>QThread</code>，并创建一个工作的<code>QObject</code>，然后使用线程作为参数，调用<a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qobject.html#moveToThread"><code>.moveToThread()</code></a>将工作对象移动到工作线程。工作对象必须包含执行特定任务所需的所有功能。</li>
 <li>子类化<code>QThread</code>并重新实现<code>.run()</code>。<code>.run()</code>的实现必须包含执行特定任务所需的所有功能。</li>
 </ol>
 <p>例化<code>QThread</code>提供了一个并行事件循环。事件循环允许由线程拥有的对象在其槽上接收信号，并且这些槽将在线程内执行。</p>
-<p>另一方面，子类化<code>QThread</code>允许在没有事件循环的情况下运行并行代码。使用这种方法，您始终可以通过显式调用<a class="link"   target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qthread.html#exec" >exec() <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>来创建一个事件循环。</p>
+<p>另一方面，子类化<code>QThread</code>允许在没有事件循环的情况下运行并行代码。使用这种方法，您始终可以通过显式调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qthread.html#exec">exec()</a>来创建一个事件循环。</p>
 <h2 id="QThread实现案例"><a href="#QThread实现案例" class="headerlink" title="QThread实现案例"></a>QThread实现案例</h2><p>考虑这样一段功能：实现两个按钮，按钮1🔘逐次打印1，2，3，4，5。按钮2🔘逐次打印a,b,c,d,e。</p>
 <p>都在主线程里执行必然会卡死，各位读者应该也深有感触，不然也不会想看这篇文章了吧🥹这里就不再错误示范了，直接上多线程代码。注意多线程有两种实现方式，分别是继承QObject作为工作块，之后再创建线程，或者定义类继承QThread并覆写run方法，这里采用第二种方式：</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> PyQt5.Qt <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 继承QThread</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> PyQt5.Qt <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 继承QThread</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 主界面</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWin</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        self.setWindowTitle(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        self.resize(<span class="number">500</span>, <span class="number">400</span>)</span><br><span class="line">        self.btn_1 = QPushButton(<span class="string">&quot;button 1&quot;</span>)</span><br><span class="line">        layout.addWidget(self.btn_1)</span><br><span class="line">        self.btn_1.clicked.connect(self.click_1)</span><br><span class="line">        self.btn_1.setObjectName(<span class="string">&quot;btn_1&quot;</span>)</span><br><span class="line"></span><br><span class="line">        self.btn_2 = QPushButton(<span class="string">&quot;button 2&quot;</span>)</span><br><span class="line">        self.btn_2.setObjectName(<span class="string">&quot;btn_2&quot;</span>)</span><br><span class="line">        self.btn_2.clicked.connect(self.click_2)</span><br><span class="line">        layout.addWidget(self.btn_2)</span><br><span class="line">        self.setLayout(layout)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_1</span>(<span class="params">self</span>):</span><br><span class="line">        self.thread1 = Thread_1()</span><br><span class="line">        self.thread1.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_2</span>(<span class="params">self</span>):</span><br><span class="line">        self.thread2 = Thread_2()</span><br><span class="line">        self.thread2.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    myShow = MyWin()</span><br><span class="line">    myShow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 主界面</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWin</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        self.setWindowTitle(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        self.resize(<span class="number">500</span>, <span class="number">400</span>)</span><br><span class="line">        self.btn_1 = QPushButton(<span class="string">&quot;button 1&quot;</span>)</span><br><span class="line">        layout.addWidget(self.btn_1)</span><br><span class="line">        self.btn_1.clicked.connect(self.click_1)</span><br><span class="line">        self.btn_1.setObjectName(<span class="string">&quot;btn_1&quot;</span>)</span><br><span class="line"></span><br><span class="line">        self.btn_2 = QPushButton(<span class="string">&quot;button 2&quot;</span>)</span><br><span class="line">        self.btn_2.setObjectName(<span class="string">&quot;btn_2&quot;</span>)</span><br><span class="line">        self.btn_2.clicked.connect(self.click_2)</span><br><span class="line">        layout.addWidget(self.btn_2)</span><br><span class="line">        self.setLayout(layout)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_1</span>(<span class="params">self</span>):</span><br><span class="line">        self.thread1 = Thread_1()</span><br><span class="line">        self.thread1.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_2</span>(<span class="params">self</span>):</span><br><span class="line">        self.thread2 = Thread_2()</span><br><span class="line">        self.thread2.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    myShow = MyWin()</span><br><span class="line">    myShow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
 
 <p>注意这里覆写run方法之后只需要在主类中创建线程对象然后调用其start方法即可。这段程序的执行结果如何呢？不会出现卡死，而且可以两个按钮执行内容交替执行。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/img/demo.png"
-                      alt="image-20230430193922703"
-                ></p>
+<p><img src="/img/demo.png" alt="image-20230430193922703"></p>
 <p>但是有一个严重的问题，就是当快速连续按下两次同一个按钮时，当第一次执行完毕后会将线程删除，从而导致这样的闪退：<code>QThread: Destroyed while thread is still running</code>。我们想实现的是在循环没有结束之前线程不允许使用，这时可以采用两种办法：线程锁🔒和信号。</p>
 <p>先来说第一种方法，我们创建两个进程锁，然后在run方法里加锁和解锁，这样可以实现线程的互斥，就和操作系统里讲解的P&amp;V原语一样。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mutex1 = QMutex()</span><br><span class="line">mutex2 = QMutex()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        mutex1.lock()</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line">        mutex1.unlock()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        mutex2.lock()</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        mutex2.unlock()</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mutex1 = QMutex()</span><br><span class="line">mutex2 = QMutex()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        mutex1.lock()</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line">        mutex1.unlock()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        mutex2.lock()</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        mutex2.unlock()</span><br></pre></td></tr></table></figure>
 
 
 
 <p>但这样的策略只是防止了闪退报错而已（emm我的mac在手速很快的情况还是会闪退，难绷），而且还没达到我们的目的。</p>
 <p>所以我们引入信号，在按钮被按下时将按钮设置为不可用，在循环结束之后传递信号使按钮可用，这样就完美实现我们的功能啦～🌹</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWin</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        self.setWindowTitle(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        self.resize(<span class="number">500</span>, <span class="number">400</span>)</span><br><span class="line">        self.btn_1 = QPushButton(<span class="string">&quot;button 1&quot;</span>)</span><br><span class="line">        layout.addWidget(self.btn_1)</span><br><span class="line">        self.btn_1.clicked.connect(self.click_1)</span><br><span class="line">        self.btn_1.setObjectName(<span class="string">&quot;btn_1&quot;</span>)</span><br><span class="line"></span><br><span class="line">        self.btn_2 = QPushButton(<span class="string">&quot;button 2&quot;</span>)</span><br><span class="line">        self.btn_2.setObjectName(<span class="string">&quot;btn_2&quot;</span>)</span><br><span class="line">        self.btn_2.clicked.connect(self.click_2)</span><br><span class="line">        layout.addWidget(self.btn_2)</span><br><span class="line">        self.setLayout(layout)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_1</span>(<span class="params">self</span>):</span><br><span class="line">        self.btn_1.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.thread1 = Thread_1()</span><br><span class="line">        self.thread1.block_signal.connect(<span class="keyword">lambda</span>: self.btn_1.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.thread1.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_2</span>(<span class="params">self</span>):</span><br><span class="line">        self.btn_2.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.thread2 = Thread_2()</span><br><span class="line">        self.thread2.block_signal.connect(<span class="keyword">lambda</span>: self.btn_2.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.thread2.start()</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QThread</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWin</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        self.setWindowTitle(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        self.resize(<span class="number">500</span>, <span class="number">400</span>)</span><br><span class="line">        self.btn_1 = QPushButton(<span class="string">&quot;button 1&quot;</span>)</span><br><span class="line">        layout.addWidget(self.btn_1)</span><br><span class="line">        self.btn_1.clicked.connect(self.click_1)</span><br><span class="line">        self.btn_1.setObjectName(<span class="string">&quot;btn_1&quot;</span>)</span><br><span class="line"></span><br><span class="line">        self.btn_2 = QPushButton(<span class="string">&quot;button 2&quot;</span>)</span><br><span class="line">        self.btn_2.setObjectName(<span class="string">&quot;btn_2&quot;</span>)</span><br><span class="line">        self.btn_2.clicked.connect(self.click_2)</span><br><span class="line">        layout.addWidget(self.btn_2)</span><br><span class="line">        self.setLayout(layout)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_1</span>(<span class="params">self</span>):</span><br><span class="line">        self.btn_1.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.thread1 = Thread_1()</span><br><span class="line">        self.thread1.block_signal.connect(<span class="keyword">lambda</span>: self.btn_1.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.thread1.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_2</span>(<span class="params">self</span>):</span><br><span class="line">        self.btn_2.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.thread2 = Thread_2()</span><br><span class="line">        self.thread2.block_signal.connect(<span class="keyword">lambda</span>: self.btn_2.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.thread2.start()</span><br></pre></td></tr></table></figure>
 
 <p>个人不习惯继承QThread类，虽然简单直接，但是功能没有另一种实现方式广泛（个人觉得），所以这里附上继承QObject的实现方式(yysy继承QObject真的有够累的😇)</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> PyQt5.Qt <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QObject</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QObject</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWin</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        self.setWindowTitle(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        self.resize(<span class="number">500</span>, <span class="number">400</span>)</span><br><span class="line">        self.btn_1 = QPushButton(<span class="string">&quot;button 1&quot;</span>)</span><br><span class="line">        layout.addWidget(self.btn_1)</span><br><span class="line">        self.btn_1.clicked.connect(self.click_1)</span><br><span class="line">        self.btn_1.setObjectName(<span class="string">&quot;btn_1&quot;</span>)</span><br><span class="line"></span><br><span class="line">        self.btn_2 = QPushButton(<span class="string">&quot;button 2&quot;</span>)</span><br><span class="line">        self.btn_2.setObjectName(<span class="string">&quot;btn_2&quot;</span>)</span><br><span class="line">        self.btn_2.clicked.connect(self.click_2)</span><br><span class="line">        layout.addWidget(self.btn_2)</span><br><span class="line">        self.setLayout(layout)</span><br><span class="line"></span><br><span class="line">        self.thread1 = QThread()</span><br><span class="line">        self.thread2 = QThread()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_1</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 把self.thread1的声明放这里也行</span></span><br><span class="line">        self.btn_1.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.worker1 = Thread_1()</span><br><span class="line">        self.worker1.moveToThread(self.thread1)</span><br><span class="line">        self.thread1.started.connect(self.worker1.run)</span><br><span class="line">        self.worker1.block_signal.connect(<span class="keyword">lambda</span>: self.btn_1.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.worker1.block_signal.connect(self.thread1.quit)  <span class="comment"># 这句话非常重要，不然线程不知道啥时候结束，下一次信号就没法执行</span></span><br><span class="line">        self.thread1.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_2</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 把self.thread2的声明放这里也行</span></span><br><span class="line">        self.btn_2.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.worker2 = Thread_2()</span><br><span class="line">        self.worker2.moveToThread(self.thread2)</span><br><span class="line">        self.thread2.started.connect(self.worker2.run)</span><br><span class="line">        self.worker2.block_signal.connect(<span class="keyword">lambda</span>: self.btn_2.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.worker2.block_signal.connect(self.thread2.quit)  <span class="comment"># 这句话非常重要，不然线程不知道啥时候结束，下一次信号就没法执行</span></span><br><span class="line"></span><br><span class="line">        self.thread2.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    myShow = MyWin()</span><br><span class="line">    myShow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure></div>
-
-
-            </div>
-
-            
-                <div class="post-copyright-info">
-                    <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>标题:</strong> QThread&amp;QTimer讲解和实现</li>
-        <li><strong>作者:</strong> Ao Jiao</li>
-        <li><strong>创建于:</strong> 2023-04-30 20:35:10</li>
-        
-            <li>
-                <strong>更新于:</strong> 2023-04-30 20:45:52
-            </li>
-        
-        <li>
-            <strong>链接:</strong> https://github.com/Tj-jiaoao/2023/04/30/QThread 与 QTimer学习笔记/
-        </li>
-        <li>
-            <strong>版权声明:</strong> 本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
-        </li>
-    </ul>
-</div>
-
-                </div>
-            
-
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8CPyqt5/">#多线程，Pyqt5</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
-
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">数据库范式详解</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/04/26/Macbook%20pro%20%EF%BC%88M1%20pro%202021%E6%AC%BE%EF%BC%89%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md%20622142e968f04dd9bd9a74015534c219/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Macbook pro （M1 pro 2021款）语音识别环境搭建</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-
-            
-                <div class="comment-container">
-                    <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fa-solid fa-comments"></i>&nbsp;评论
-    </div>
-    
-
-        
-            
- 
-    <div id="waline"></div>
-    <script type="module"  data-pjax>
-        import { init } from 'https://evan.beee.top/js/waline.mjs';
-
-        function loadWaline() {
-            init({
-                el: '#waline',
-                serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
-                lang: 'zh-CN',
-                dark: 'body[class~="dark-mode"]',
-                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
-            });
-        }
-
-        if ('true') {
-            const loadWalineTimeout = setTimeout(() => {
-                loadWaline();
-                clearTimeout(loadWalineTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadWaline);
-        }
-        
-    </script>
-
-
-
-        
-    
-</div>
-
-                </div>
-            
-        </div>
-
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">此页目录</div>
-        <div class="page-title">QThread&amp;QTimer讲解和实现</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-text">多线程简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QThread-OR-threading"><span class="nav-text">QThread OR threading?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QThread%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="nav-text">QThread实现流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QThread%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B"><span class="nav-text">QThread实现案例</span></a></li></ol>
-
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
-
-
-                
-
-            </div>
-            
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info">
-            &copy;
-            
-              <span>2022</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ao Jiao</a>
-        </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
-                <br>
-            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.2</a>
-        </div>
-        
-        
-        
-            <div id="start_div" style="display:none">
-                2022/8/17 11:45:14
-            </div>
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
-        
-        
-        
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
-</footer>
-        </div>
-    </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fa-regular fa-comments"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-expand-width flex-center">
-            <i class="fa-regular fa-expand"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-
-</main>
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/layouts/navbarShrink.js"></script>
-
-<script src="/js/tools/scrollTopBottom.js"></script>
-
-<script src="/js/tools/lightDarkSwitch.js"></script>
-
-
-
-    
-<script src="/js/tools/localSearch.js"></script>
-
-
-
-
-    
-<script src="/js/tools/codeBlock.js"></script>
-
-
-
-
-    
-<script src="/js/layouts/lazyload.js"></script>
-
-
-
-
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
-  
-<script src="/js/libs/Typed.min.js"></script>
-
-  
-<script src="/js/plugins/typed.js"></script>
-
-
-
-
-
-
-
-<div class="post-scripts pjax">
-    
-        
-<script src="/js/tools/tocToggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/layouts/toc.js"></script>
-
-<script src="/js/plugins/tabs.js"></script>
-
-    
-</div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax',
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            Global.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            Global.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            Global.refresh();
-        });
-    });
-</script>
-
-
-
-
-    <div id="aplayer"></div>
-
-<script src="/js/libs/APlayer.min.js"></script>
-
-
-<script src="/js/plugins/aplayer.js"></script>
-
-
-</body>
-</html>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> PyQt5.Qt <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_1</span>(<span class="title class_ inherited__">QObject</span>):  <span class="comment"># 线程1</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)  <span class="comment"># 休眠</span></span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread_2</span>(<span class="title class_ inherited__">QObject</span>):  <span class="comment"># 线程2</span></span><br><span class="line">    block_signal = pyqtSignal()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        values = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> values:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        self.block_signal.emit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWin</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        self.setWindowTitle(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        self.resize(<span class="number">500</span>, <span class="number">400</span>)</span><br><span class="line">        self.btn_1 = QPushButton(<span class="string">&quot;button 1&quot;</span>)</span><br><span class="line">        layout.addWidget(self.btn_1)</span><br><span class="line">        self.btn_1.clicked.connect(self.click_1)</span><br><span class="line">        self.btn_1.setObjectName(<span class="string">&quot;btn_1&quot;</span>)</span><br><span class="line"></span><br><span class="line">        self.btn_2 = QPushButton(<span class="string">&quot;button 2&quot;</span>)</span><br><span class="line">        self.btn_2.setObjectName(<span class="string">&quot;btn_2&quot;</span>)</span><br><span class="line">        self.btn_2.clicked.connect(self.click_2)</span><br><span class="line">        layout.addWidget(self.btn_2)</span><br><span class="line">        self.setLayout(layout)</span><br><span class="line"></span><br><span class="line">        self.thread1 = QThread()</span><br><span class="line">        self.thread2 = QThread()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_1</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 把self.thread1的声明放这里也行</span></span><br><span class="line">        self.btn_1.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.worker1 = Thread_1()</span><br><span class="line">        self.worker1.moveToThread(self.thread1)</span><br><span class="line">        self.thread1.started.connect(self.worker1.run)</span><br><span class="line">        self.worker1.block_signal.connect(<span class="keyword">lambda</span>: self.btn_1.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.worker1.block_signal.connect(self.thread1.quit)  <span class="comment"># 这句话非常重要，不然线程不知道啥时候结束，下一次信号就没法执行</span></span><br><span class="line">        self.thread1.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">click_2</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 把self.thread2的声明放这里也行</span></span><br><span class="line">        self.btn_2.setEnabled(<span class="literal">False</span>)</span><br><span class="line">        self.worker2 = Thread_2()</span><br><span class="line">        self.worker2.moveToThread(self.thread2)</span><br><span class="line">        self.thread2.started.connect(self.worker2.run)</span><br><span class="line">        self.worker2.block_signal.connect(<span class="keyword">lambda</span>: self.btn_2.setEnabled(<span class="literal">True</span>))</span><br><span class="line">        self.worker2.block_signal.connect(self.thread2.quit)  <span class="comment"># 这句话非常重要，不然线程不知道啥时候结束，下一次信号就没法执行</span></span><br><span class="line"></span><br><span class="line">        self.thread2.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    myShow = MyWin()</span><br><span class="line">    myShow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Jiao Ao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://example.com/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hello There</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8CPyqt5/">多线程，Pyqt5</a></div><div class="post_share"><div class="social-share" data-image="/img/ja.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/" title="数据库范式详解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据库范式详解</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/26/Macbook%20pro%20%EF%BC%88M1%20pro%202021%E6%AC%BE%EF%BC%89%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md%20622142e968f04dd9bd9a74015534c219/" title="Macbook pro （M1 pro 2021款）语音识别环境搭建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Macbook pro （M1 pro 2021款）语音识别环境搭建</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ja.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiao Ao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tj-jiaoao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tj-jiaoao" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2050780@tongji.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hello there!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">多线程简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QThread-OR-threading"><span class="toc-number">2.</span> <span class="toc-text">QThread OR threading?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QThread%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">QThread实现流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QThread%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">QThread实现案例</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记"><img src="/img/CNN1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNN学习笔记"/></a><div class="content"><a class="title" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记">CNN学习笔记</a><time datetime="2024-03-09T07:30:00.000Z" title="发表于 2024-03-09 15:30:00">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BC%98%E5%8C%96/" title="机器学习之模型的评估与优化">机器学习之模型的评估与优化</a><time datetime="2024-02-28T07:36:00.000Z" title="发表于 2024-02-28 15:36:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/02/ch4%E4%BE%9B%E7%BB%99%E4%B8%8E%E9%9C%80%E6%B1%82%E7%9A%84%E5%B8%82%E5%9C%BA%E5%8A%9B%E9%87%8F/" title="ch4 供给与需求的市场力量">ch4 供给与需求的市场力量</a><time datetime="2024-02-02T14:33:10.000Z" title="发表于 2024-02-02 22:33:10">2024-02-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/31/ch3%E7%9B%B8%E4%BA%92%E4%BE%9D%E5%AD%98%E6%80%A7%E4%B8%8E%E8%B4%B8%E6%98%93%E7%9A%84%E5%A5%BD%E5%A4%84/" title="ch3 相互依存性与贸易的好处">ch3 相互依存性与贸易的好处</a><time datetime="2024-01-31T14:36:10.000Z" title="发表于 2024-01-31 22:36:10">2024-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/30/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/" title="Day8 哈希表Part3">Day8 哈希表Part3</a><time datetime="2024-01-29T16:37:10.000Z" title="发表于 2024-01-30 00:37:10">2024-01-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Jiao Ao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.css')
+      const { init } = await import('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

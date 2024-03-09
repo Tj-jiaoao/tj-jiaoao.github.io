@@ -1,325 +1,200 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="Ao Jiao">
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="http://example.com/2023/05/14/一到五范式、bc 范式与反范式详解/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-        <meta name="description" content="本文由 简悦 SimpRead  转码， 原文地址 zhuanlan.zhihu.com   引言MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲着敲着会去重构某张表结构，甚至大面积重构多张表结构，这种随心所欲的设计方式，无疑给开发造成了很大困扰。 但实际上设计 DB 库表结构时，也有一些共同需">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据库范式详解 | Hello There</title><meta name="author" content="Jiao Ao"><meta name="copyright" content="Jiao Ao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文由 简悦 SimpRead 转码， 原文地址 zhuanlan.zhihu.com  引言MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲着敲着会去重构某张表结构，甚至大面积重构多张表结构，这种随心所欲的设计方式，无疑给开发造成了很大困扰。 但实际上设计 DB 库表结构时，也有一些共同需要遵">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库范式详解">
 <meta property="og:url" content="http://example.com/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文由 简悦 SimpRead  转码， 原文地址 zhuanlan.zhihu.com   引言MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲着敲着会去重构某张表结构，甚至大面积重构多张表结构，这种随心所欲的设计方式，无疑给开发造成了很大困扰。 但实际上设计 DB 库表结构时，也有一些共同需">
+<meta property="og:site_name" content="Hello There">
+<meta property="og:description" content="本文由 简悦 SimpRead 转码， 原文地址 zhuanlan.zhihu.com  引言MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲着敲着会去重构某张表结构，甚至大面积重构多张表结构，这种随心所欲的设计方式，无疑给开发造成了很大困扰。 但实际上设计 DB 库表结构时，也有一些共同需要遵">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic2.zhimg.com/v2-496b967f6c3aa611b64bc79f989779a9_r.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-26727d186138101d2a3475e5bdf1bcdf_r.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-78f17064a4291bf2bde99bf29c325e4f_r.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-490230ba2efebb1c924891092bbc990b_r.jpg">
+<meta property="og:image" content="http://example.com/img/ja.jpeg">
 <meta property="article:published_time" content="2023-05-14T12:35:10.000Z">
 <meta property="article:modified_time" content="2023-05-14T07:34:25.080Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jiao Ao">
 <meta property="article:tag" content="数据库，范式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic2.zhimg.com/v2-496b967f6c3aa611b64bc79f989779a9_r.jpg">
+<meta name="twitter:image" content="http://example.com/img/ja.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据库范式详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-14 15:34:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
     
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
-    <!--- Page Info-->
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
     
-    <title>
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-            数据库范式详解 -
-        
-        Tj-Jiaoao
-    </title>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-<link rel="stylesheet" href="/css/style.css">
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
 
-    
-<link rel="stylesheet" href="/assets/fonts.css">
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
 
-    <!--- Font Part-->
-    
-    
-    
-    
-
-    <!--- Inject Part-->
-    
-    <script id="hexo-configurations">
-    let Global = window.Global || {};
-    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"16px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"https://baidu.com","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"800px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg","dark":"https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg"},"title":"Hello There","subtitle":{"text":["To make each day count."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":100,"starting_delay":500,"backing_delay":1200,"loop":false,"smart_backspace":false},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/Tj-Jiaoao","instagram":"https://instagram.com/jiaoao73?igshid=YmMyMTA2M2Y=","zhihu":null,"twitter":null,"email":"2050780@tongji.edu.cn"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"wanderer","artist":"cafe ibiza","url":"img/bgmusic.mp3","cover":"img/ja.png"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
-    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-        
-<link rel="stylesheet" href="/fontawesome/thin.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/light.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/duotone.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
-
-    
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="main-content-container">
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-    
-    <div class="navbar-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Tj-Jiaoao
-                
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-house"></i>
-                                        
-                                        首页
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/archives"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-archive"></i>
-                                        
-                                        归档
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer">
-        <ul class="drawer-navbar-list">
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/"  >
-                             
-                                
-                                    <i class="fa-regular fa-house"></i>
-                                
-                                首页
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/archives"  >
-                             
-                                
-                                    <i class="fa-regular fa-archive"></i>
-                                
-                                归档
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="main-content-body">
-
-            
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            
-            
-                <div class="article-title">
-                    <h1 class="article-title-regular">数据库范式详解</h1>
-                </div>
-            
-                
-            
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="https://th.bing.com/th/id/OIP.OJ53CYMW1JkTD-QHGI1wTgHaFj?pid=ImgDet&rs=1">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">Ao Jiao</span>
-                            
-                                <span class="author-label"></span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-05-14 20:35:10</span>
-        <span class="mobile">2023-05-14 20:35</span>
-        <span class="hover-info">创建</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-05-14 15:34:25</span>
-            <span class="mobile">2023-05-14 15:34</span>
-            <span class="hover-info">更新</span>
-        </span>
-    
-
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E8%8C%83%E5%BC%8F/">数据库，范式</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content markdown-body">
-                <blockquote>
-<p>本文由 <a class="link"   target="_blank" rel="noopener" href="http://ksria.com/simpread/" >简悦 SimpRead <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 转码， 原文地址 <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/568559424" >zhuanlan.zhihu.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ja.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hello There"><span class="site-name">Hello There</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据库范式详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-14T12:35:10.000Z" title="发表于 2023-05-14 20:35:10">2023-05-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-14T07:34:25.080Z" title="更新于 2023-05-14 15:34:25">2023-05-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据库范式详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文由 <a target="_blank" rel="noopener" href="http://ksria.com/simpread/">简悦 SimpRead</a> 转码， 原文地址 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/568559424">zhuanlan.zhihu.com</a></p>
 </blockquote>
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲着敲着会去重构某张表结构，甚至大面积重构多张表结构，这种随心所欲的设计方式，无疑给开发造成了很大困扰。</p>
 <p>但实际上设计 DB 库表结构时，也有一些共同需要遵守的规范，这些规范在数据库设计中被称为 “范式”，理解并掌握这些设计时的规范，能让咱们在项目之初，设计的库表结构更为合理且优雅。数据库范式中，声名远扬的有三大范式，但除此之外也有一些其他设计规范，如：</p>
@@ -339,10 +214,10 @@
 <p>写在前面的话：其实对于数据库三范式相关的资料，网上也有很多很多，但大部分资料都涉及了太多的概念，通篇看下来也很难让人理解，因此下述的三范式则会结合具体的设计实例来让诸位彻底理解三范式。</p>
 </blockquote>
 <h2 id="1-1、第一范式（1NF）"><a href="#1-1、第一范式（1NF）" class="headerlink" title="1.1、第一范式（1NF）"></a>1.1、第一范式（1NF）</h2><p>库表设计时的第一范式，主要是为了确保原子性的，也就是存储的数据具备不可再分性，这话咋理解呢？上个案例：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+----------------------+--------+-------+</span><br><span class="line">| student              | course | score |</span><br><span class="line">+----------------------+--------+-------+</span><br><span class="line">| 竹子，男，185cm      | 语文   |    95 |</span><br><span class="line">| 竹子，男，185cm      | 数学   |   100 |</span><br><span class="line">| 竹子，男，185cm      | 英语   |    88 |</span><br><span class="line">| 熊猫，女，170cm      | 语文   |    99 |</span><br><span class="line">| 熊猫，女，170cm      | 数学   |    90 |</span><br><span class="line">| 熊猫，女，170cm      | 英语   |    95 |</span><br><span class="line">+----------------------+--------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+----------------------+--------+-------+</span><br><span class="line">| student              | course | score |</span><br><span class="line">+----------------------+--------+-------+</span><br><span class="line">| 竹子，男，185cm      | 语文   |    95 |</span><br><span class="line">| 竹子，男，185cm      | 数学   |   100 |</span><br><span class="line">| 竹子，男，185cm      | 英语   |    88 |</span><br><span class="line">| 熊猫，女，170cm      | 语文   |    99 |</span><br><span class="line">| 熊猫，女，170cm      | 数学   |    90 |</span><br><span class="line">| 熊猫，女，170cm      | 英语   |    95 |</span><br><span class="line">+----------------------+--------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>在上述的学生表中，其中有一个 student 学生列，这一列存储的数据则明显不符合第一范式：原子性的规定，因为这一列的数据还可以再拆分为姓名、性别、身高三项数据，因此为了符合第一范式，应该将表结构更改为：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| student_name | student_sex | student_height | course | score |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| 竹子         | 男          | 185cm          | 语文   |    95 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 数学   |   100 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 英语   |    88 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 语文   |    99 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 数学   |    90 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 英语   |    95 |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| student_name | student_sex | student_height | course | score |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| 竹子         | 男          | 185cm          | 语文   |    95 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 数学   |   100 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 英语   |    88 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 语文   |    99 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 数学   |    90 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 英语   |    95 |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>将 student 这一列数据，分别拆分为姓名、性别、身高三列，然后分别存储对应的数据才合理，通过这样的优化后，此时 zz_student 这张表则符合了数据库设计的第一范式。</p>
 <blockquote>
@@ -355,10 +230,10 @@
 </ul>
 <p>简单来说，如果按照原本那张形式去做业务开发，显然操作起来会更加麻烦且复杂一些，但第一范式的原子性，除开对列级别生效之外，行级别的数据也是同理，也就是每一行数据之间是互不影响的，都是独立的一个整体。</p>
 <h2 id="1-2、第二范式（2NF）"><a href="#1-2、第二范式（2NF）" class="headerlink" title="1.2、第二范式（2NF）"></a>1.2、第二范式（2NF）</h2><p>上述的第一范式还是比较容易理解，紧接着来看看第二范式，第二范式的要求表中的所有列，其数据都必须依赖于主键，也就是一张表只存储同一类型的数据，不能有任何一列数据与主键没有关系，还是上面的那张表数据为例：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| student_name | student_sex | student_height | course | score |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| 竹子         | 男          | 185cm          | 语文   |    95 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 数学   |   100 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 英语   |    88 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 语文   |    99 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 数学   |    90 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 英语   |    95 |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| student_name | student_sex | student_height | course | score |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">| 竹子         | 男          | 185cm          | 语文   |    95 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 数学   |   100 |</span><br><span class="line">| 竹子         | 男          | 185cm          | 英语   |    88 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 语文   |    99 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 数学   |    90 |</span><br><span class="line">| 熊猫         | 女          | 170cm          | 英语   |    95 |</span><br><span class="line">+--------------+-------------+----------------+--------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>虽然此时已经满足了数据库的第一范式，但此刻观察 course 课程、score 分数这两列数据，跟前面的几列数据实际上依赖关系并不大，同时也由于这样的结构，导致前面几列的数据出现了大量冗余，所以此时可以再次拆分一下表结构：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">| student_id | name   | sex  | height | department   | dean         |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  | 计算机系     | 竹子老大     |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  | 金融系       | 熊猫老大     |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_course`;</span><br><span class="line">+-----------+-------------+</span><br><span class="line">| course_id | course_name |</span><br><span class="line">+-----------+-------------+</span><br><span class="line">|         1 | 语文        |</span><br><span class="line">|         2 | 数学        |</span><br><span class="line">|         3 | 英语        |</span><br><span class="line">+-----------+-------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_score`;</span><br><span class="line">+----------+------------+-----------+-------+</span><br><span class="line">| score_id | student_id | course_id | score |</span><br><span class="line">+----------+------------+-----------+-------+</span><br><span class="line">|        1 |          1 |         1 |    95 |</span><br><span class="line">|        2 |          1 |         2 |   100 |</span><br><span class="line">|        3 |          1 |         3 |    88 |</span><br><span class="line">|        4 |          2 |         1 |    99 |</span><br><span class="line">|        5 |          2 |         2 |    90 |</span><br><span class="line">|        6 |          2 |         3 |    95 |</span><br><span class="line">+----------+------------+-----------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">| student_id | name   | sex  | height | department   | dean         |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  | 计算机系     | 竹子老大     |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  | 金融系       | 熊猫老大     |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_course`;</span><br><span class="line">+-----------+-------------+</span><br><span class="line">| course_id | course_name |</span><br><span class="line">+-----------+-------------+</span><br><span class="line">|         1 | 语文        |</span><br><span class="line">|         2 | 数学        |</span><br><span class="line">|         3 | 英语        |</span><br><span class="line">+-----------+-------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_score`;</span><br><span class="line">+----------+------------+-----------+-------+</span><br><span class="line">| score_id | student_id | course_id | score |</span><br><span class="line">+----------+------------+-----------+-------+</span><br><span class="line">|        1 |          1 |         1 |    95 |</span><br><span class="line">|        2 |          1 |         2 |   100 |</span><br><span class="line">|        3 |          1 |         3 |    88 |</span><br><span class="line">|        4 |          2 |         1 |    99 |</span><br><span class="line">|        5 |          2 |         2 |    90 |</span><br><span class="line">|        6 |          2 |         3 |    95 |</span><br><span class="line">+----------+------------+-----------+-------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>经过上述结构优化后，之前的一张表此时被我们拆分成学生表、课程表、成绩表三张，每张表中的 id 字段作为主键，其他字段都依赖这个主键。无论在哪张表中，都可以通过 id 主键确定其他字段的信息。</p>
 <blockquote>
@@ -366,10 +241,10 @@
 </blockquote>
 <p>此时再将目光看到先后两张学生表，原本的学生表有六条学生记录，其中有四条是冗余数据，此时的学生表则只有两条数据，同时这张学生表中只存储学生信息相关的数据。经过本次结构优化后，每张表的业务属性都具备 “唯一性”，也就是每张表都只会描述了 “一件事情”，不会存在一张表中会出现两个业务属性（例如之前的学生表包含了学生信息和课程成绩）。</p>
 <h2 id="1-3、第三范式（3NF）"><a href="#1-3、第三范式（3NF）" class="headerlink" title="1.3、第三范式（3NF）"></a>1.3、第三范式（3NF）</h2><p>前面已经对第一范式、第二范式进行了直观阐述，接下来聊一聊数据库的第三范式，第三范式要求表中每一列数据不能与主键之外的字段有直接关系，怎么理解呢？基于上述的例子：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">| student_id | name   | sex  | height | department   | dean         |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  | 计算机系     | 竹子老大     |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  | 金融系       | 熊猫老大     |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">| student_id | name   | sex  | height | department   | dean         |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  | 计算机系     | 竹子老大     |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  | 金融系       | 熊猫老大     |</span><br><span class="line">+------------+--------+------+--------+--------------+--------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>比如这张学生表，目前即符合第一范式，也符合第二范式，但看最后的两个字段，department 表示当前学生所属的院校，dean 则表示这个院系的院长是谁。一般来说，一个学生的院长是谁，首先是取决于学生所在的院系的，因此最后的 dean 字段明显与 department 字段存在依赖关系，因此需要进一步调整表结构：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `department`;</span><br><span class="line">+---------------+-----------------+-----------------+</span><br><span class="line">| department_id | department_name | department_dean |</span><br><span class="line">+---------------+-----------------+-----------------+</span><br><span class="line">|             1 | 计算机系        | 竹子老大        |</span><br><span class="line">|             2 | 金融系          | 熊猫老大        |</span><br><span class="line">+---------------+-----------------+-----------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+------------+--------+------+--------+---------------+</span><br><span class="line">| student_id | name   | sex  | height | department_id |</span><br><span class="line">+------------+--------+------+--------+---------------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  |             1 |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  |             2 |</span><br><span class="line">+------------+--------+------+--------+---------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `department`;</span><br><span class="line">+---------------+-----------------+-----------------+</span><br><span class="line">| department_id | department_name | department_dean |</span><br><span class="line">+---------------+-----------------+-----------------+</span><br><span class="line">|             1 | 计算机系        | 竹子老大        |</span><br><span class="line">|             2 | 金融系          | 熊猫老大        |</span><br><span class="line">+---------------+-----------------+-----------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+------------+--------+------+--------+---------------+</span><br><span class="line">| student_id | name   | sex  | height | department_id |</span><br><span class="line">+------------+--------+------+--------+---------------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  |             1 |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  |             2 |</span><br><span class="line">+------------+--------+------+--------+---------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>经过进一步的结构优化后，又将原本的学生表拆为了院系表、学生表两张，学生表中则是只存储一个院系 ID，由院系表存储院系相关的所有数据。至此，学生表中的每个非主键字段与其他非主键字段之间，都是相互独立的，之间不会再存在任何依赖性，所有的字段都依赖于主键。</p>
 <p>那这里为什么要调整呢？不调整不行吗？还真不行，来简单思考一下不调整结构的情况下会发生什么问题：</p>
@@ -396,12 +271,7 @@
 <p>因此，经过三范式的设计优化后，整个库中的所有表结构，会显得更为优雅，灵活性也会更强。</p>
 </blockquote>
 <h2 id="二、巴斯-科德范式与第四、五范式"><a href="#二、巴斯-科德范式与第四、五范式" class="headerlink" title="二、巴斯 - 科德范式与第四、五范式"></a>二、巴斯 - 科德范式与第四、五范式</h2><p>第一阶段中，简单了解了库表设计时最基本的三大范式，但除此之外还有另外三种设计范式，即巴斯 - 科德范式与第四、第五范式，这后续三种范式可能有很多小伙伴没接触过，但当你尝试从网上去了解时，相信绝大部分能看到的资料你都看不懂，例如：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-496b967f6c3aa611b64bc79f989779a9_r.jpg"
-                     
-                ></p>
+<p><img src="https://pic2.zhimg.com/v2-496b967f6c3aa611b64bc79f989779a9_r.jpg"></p>
 <p>观察上图中的描述，这一眼望过去几乎不是给人看的（没有诋毁的意思，单纯感慨~），其中涉及的码、完全函数依赖等名词，至少刚接触的小白是读不懂的，因此接下来则依旧采用上面那种案例 + 大白话的模式，简单阐述一下这三种设计范式。</p>
 <h2 id="2-1、巴斯-科德范式（BCNF）"><a href="#2-1、巴斯-科德范式（BCNF）" class="headerlink" title="2.1、巴斯 - 科德范式（BCNF）"></a>2.1、巴斯 - 科德范式（BCNF）</h2><p>在了解后续这些范式之前，首先得弄明白一个概念，一般在一张表中，可以用于区分每行数据的一个列，通常会被咱们设为主键，例如常用的 ID 字段就是如此，这类主键通常被称为单一主键，即一个列组成的主键。但除此之外，还有一个联合主键的概念，也就是由多个列组成的主键，相信这点大家在学习数据库的时候也接触过。</p>
 <p>巴斯 - 科德范式也被称为 3.5NF，至于为何不称为第四范式，这主要是由于它是第三范式的补充版，第三范式的要求是：任何非主键字段不能与其他非主键字段间存在依赖关系，也就是要求每个非主键字段之间要具备独立性。而巴斯 - 科德范式在第三范式的基础上，进一步要求：<strong>任何主属性不能对其他主键子集存在依赖</strong>。</p>
@@ -409,7 +279,7 @@
 <p>对于上述的范式定义大家估计有些晕，那用大白话说简单一点，也就是规定了联合主键中的某列值，不能与联合主键中的其他列存在依赖关系，相信这样讲大家更加容易理解。当然，还是结合一个案例阐述。</p>
 </blockquote>
 <p>先来看一张表：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------------+---------------+--------+------+--------+</span><br><span class="line">| classes           | class_adviser | name   | sex  | height |</span><br><span class="line">+-------------------+---------------+--------+------+--------+</span><br><span class="line">| 计算机-2201班     | 熊竹老师      | 竹子   | 男   | 185cm  |</span><br><span class="line">| 金融-2201班       | 竹熊老师      | 熊猫   | 女   | 170cm  |</span><br><span class="line">| 计算机-2201班     | 熊竹老师      | 子竹   | 男   | 180cm  |</span><br><span class="line">+-------------------+---------------+--------+------+--------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------------+---------------+--------+------+--------+</span><br><span class="line">| classes           | class_adviser | name   | sex  | height |</span><br><span class="line">+-------------------+---------------+--------+------+--------+</span><br><span class="line">| 计算机-2201班     | 熊竹老师      | 竹子   | 男   | 185cm  |</span><br><span class="line">| 金融-2201班       | 竹熊老师      | 熊猫   | 女   | 170cm  |</span><br><span class="line">| 计算机-2201班     | 熊竹老师      | 子竹   | 男   | 180cm  |</span><br><span class="line">+-------------------+---------------+--------+------+--------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>例如这张学生表，此时假设以 classes 班级字段、class_adviser 班主任字段、name 学生姓名字段，组合成一个联合主键，在这里我们可以通过联合主键，确定学生表中任何一个学生的信息，比如：</p>
 <blockquote>
@@ -433,7 +303,7 @@
 <li>③想要增加一个班级时，同时必须添加学生姓名数据，因为主键不允许为空。</li>
 </ul>
 <p>通过上述分析可以明显得知，如果联合主键中的一个字段依赖于另一个字段，同样也会造成不小的问题，使得整张表的维护性变差，因此这里需要进一步调整结构：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_classes`;</span><br><span class="line">+------------+-------------------+---------------+</span><br><span class="line">| classes_id | classes_name      | class_adviser |</span><br><span class="line">+------------+-------------------+---------------+</span><br><span class="line">|          1 | 计算机-2201班     | 熊竹老师      |</span><br><span class="line">|          2 | 金融-2201班       | 竹熊老师      |</span><br><span class="line">+------------+-------------------+---------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+------------+--------+------+--------+</span><br><span class="line">| classes_id | name   | sex  | height |</span><br><span class="line">+------------+--------+------+--------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  |</span><br><span class="line">|          1 | 子竹   | 男   | 180cm  |</span><br><span class="line">+------------+--------+------+--------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_classes`;</span><br><span class="line">+------------+-------------------+---------------+</span><br><span class="line">| classes_id | classes_name      | class_adviser |</span><br><span class="line">+------------+-------------------+---------------+</span><br><span class="line">|          1 | 计算机-2201班     | 熊竹老师      |</span><br><span class="line">|          2 | 金融-2201班       | 竹熊老师      |</span><br><span class="line">+------------+-------------------+---------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_student`;</span><br><span class="line">+------------+--------+------+--------+</span><br><span class="line">| classes_id | name   | sex  | height |</span><br><span class="line">+------------+--------+------+--------+</span><br><span class="line">|          1 | 竹子   | 男   | 185cm  |</span><br><span class="line">|          2 | 熊猫   | 女   | 170cm  |</span><br><span class="line">|          1 | 子竹   | 男   | 180cm  |</span><br><span class="line">+------------+--------+------+--------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>经过结构调整后，原本的学生表则又被拆为了班级表、学生表两张，在学生表中只存储班级 ID，然后使用 classes_id 班级 ID 和 name 学生姓名两个字段作为联合主键。</p>
 <blockquote>
@@ -448,12 +318,7 @@
 <p>第三范式只要求非主键字段之间，不能存在依赖关系，但没要求联合主键中的字段不能存在依赖，因此第三范式并未考虑完善，巴斯 - 科德范式修正的就是这点。</p>
 </blockquote>
 <h2 id="2-2、第四范式（4NF）"><a href="#2-2、第四范式（4NF）" class="headerlink" title="2.2、第四范式（4NF）"></a>2.2、第四范式（4NF）</h2><p>认识了巴斯 - 科德范式后，再来看看数据库的第四范式，第四范式是基于 BC 范式之上的，但在理解第四范式之前，首先得理解 “多值依赖” 的概念，先贴一下学术论文中常见的定义：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-26727d186138101d2a3475e5bdf1bcdf_r.jpg"
-                     
-                ></p>
+<p><img src="https://pic4.zhimg.com/v2-26727d186138101d2a3475e5bdf1bcdf_r.jpg"></p>
 <blockquote>
 <p>论文来源于：《道客巴巴 - 多值依赖》，大部分网上资料的描述也都来自于这些学术论文。</p>
 </blockquote>
@@ -462,7 +327,7 @@
 <p>一个表中至少需要有三个独立的字段才会出现多值依赖问题，多值依赖是指表中的字段之间存在一对多的关系，也就是一个字段的具体值会由多个字段来决定。</p>
 </blockquote>
 <p>这样写出来似乎比前面好理解一些了，但相对来说还是很绕，那就再上个例子：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_user_role_permission`;</span><br><span class="line">+-----------+----------+-------+------------+</span><br><span class="line">| user_name | user_sex | role  | permission |</span><br><span class="line">+-----------+----------+-------+------------+</span><br><span class="line">| 竹子      | 男       | ROOT  | *          |</span><br><span class="line">| 熊猫      | 女       | ADMIN | BACKSTAGE  |</span><br><span class="line">| 竹子      | 男       | ADMIN | BACKSTAGE  |</span><br><span class="line">| 熊猫      | 女       | USER  | LOGIN      |</span><br><span class="line">| 竹子      | 男       | USER  | LOGIN      |</span><br><span class="line">| 子竹      | 男       | USER  | LOGIN      |</span><br><span class="line">+-----------+----------+-------+------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_user_role_permission`;</span><br><span class="line">+-----------+----------+-------+------------+</span><br><span class="line">| user_name | user_sex | role  | permission |</span><br><span class="line">+-----------+----------+-------+------------+</span><br><span class="line">| 竹子      | 男       | ROOT  | *          |</span><br><span class="line">| 熊猫      | 女       | ADMIN | BACKSTAGE  |</span><br><span class="line">| 竹子      | 男       | ADMIN | BACKSTAGE  |</span><br><span class="line">| 熊猫      | 女       | USER  | LOGIN      |</span><br><span class="line">| 竹子      | 男       | USER  | LOGIN      |</span><br><span class="line">| 子竹      | 男       | USER  | LOGIN      |</span><br><span class="line">+-----------+----------+-------+------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>上述是一个经典的业务，也就是一张用户角色权限表，先简单介绍一下表中各字段的信息：</p>
 <ul>
@@ -485,7 +350,7 @@
 <blockquote>
 <p>到这里是不是就理解了多值依赖？再举个例子，也就是网上经典的例子。</p>
 </blockquote>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_course_scheduling`;</span><br><span class="line">+--------+--------------+---------------------------+</span><br><span class="line">| course | teacher      | book                      |</span><br><span class="line">+--------+--------------+---------------------------+</span><br><span class="line">| 语文   | 竹熊老师     | 人教版-新课标教材         |</span><br><span class="line">| 语文   | 黑竹老师     | 人教版-现行教材           |</span><br><span class="line">| 语文   | 竹熊老师     | 北师大版教材              |</span><br><span class="line">| 数学   | 熊竹老师     | 人教版-新课标教材         |</span><br><span class="line">| 英语   | 黑熊老师     | 人教版-新课标教材         |</span><br><span class="line">+--------+--------------+---------------------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_course_scheduling`;</span><br><span class="line">+--------+--------------+---------------------------+</span><br><span class="line">| course | teacher      | book                      |</span><br><span class="line">+--------+--------------+---------------------------+</span><br><span class="line">| 语文   | 竹熊老师     | 人教版-新课标教材         |</span><br><span class="line">| 语文   | 黑竹老师     | 人教版-现行教材           |</span><br><span class="line">| 语文   | 竹熊老师     | 北师大版教材              |</span><br><span class="line">| 数学   | 熊竹老师     | 人教版-新课标教材         |</span><br><span class="line">| 英语   | 黑熊老师     | 人教版-新课标教材         |</span><br><span class="line">+--------+--------------+---------------------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>上述是一张教师排课表，分别有课程、老师、教材三个字段，一个课程会有多位老师授课，同时一个课程也会有多个版本的教材，因此在这里也是相同的，我们无法只根据课程字段决定教材字段的值，而是要结合课程、老师两个字段，才能确定教材字段的值，此时教材字段也存在多值依赖的问题。</p>
 <blockquote>
@@ -495,7 +360,7 @@
 <blockquote>
 <p>因此第四范式的定义就是要消除表中的多值依赖关系。怎么做呢？拿前面的权限表举例。</p>
 </blockquote>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_users`;</span><br><span class="line">+---------+-----------+----------+----------+---------------------+</span><br><span class="line">| user_id | user_name | user_sex | password | register_time       |</span><br><span class="line">+---------+-----------+----------+----------+---------------------+</span><br><span class="line">|       1 | 熊猫      | 女       | 6666     | 2022-08-14 15:22:01 |</span><br><span class="line">|       2 | 竹子      | 男       | 1234     | 2022-09-14 16:17:44 |</span><br><span class="line">|       3 | 子竹      | 男       | 4321     | 2022-09-16 07:42:21 |</span><br><span class="line">+---------+-----------+----------+----------+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_roles`;</span><br><span class="line">+---------+-----------+---------------------+</span><br><span class="line">| role_id | role_name | created_time        |</span><br><span class="line">+---------+-----------+---------------------+</span><br><span class="line">|       1 | ROOT      | 2022-08-14 15:12:00 |</span><br><span class="line">|       2 | ADMIN     | 2022-08-14 15:12:00 |</span><br><span class="line">|       3 | USER      | 2022-08-14 15:12:00 |</span><br><span class="line">+---------+-----------+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_permissions`;</span><br><span class="line">+---------------+-----------------+---------------------+</span><br><span class="line">| permission_id | permission_name | created_time        |</span><br><span class="line">+---------------+-----------------+---------------------+</span><br><span class="line">|             1 | *               | 2022-08-14 15:12:00 |</span><br><span class="line">|             2 | BACKSTAGE       | 2022-08-14 15:12:00 |</span><br><span class="line">|             3 | LOGIN           | 2022-08-14 15:12:00 |</span><br><span class="line">+---------------+-----------------+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_users_roles`;</span><br><span class="line">+----+---------+---------+</span><br><span class="line">| id | user_id | role_id |</span><br><span class="line">+----+---------+---------+</span><br><span class="line">|  1 |       1 |       1 |</span><br><span class="line">|  2 |       1 |       2 |</span><br><span class="line">|  3 |       1 |       3 |</span><br><span class="line">|  4 |       2 |       2 |</span><br><span class="line">|  5 |       2 |       3 |</span><br><span class="line">|  6 |       3 |       3 |</span><br><span class="line">+----+---------+---------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_roles_permissions`;</span><br><span class="line">+----+---------+---------------+</span><br><span class="line">| id | role_id | permission_id |</span><br><span class="line">+----+---------+---------------+</span><br><span class="line">|  1 |       1 |             1 |</span><br><span class="line">|  2 |       2 |             2 |</span><br><span class="line">|  3 |       3 |             3 |</span><br><span class="line">+----+---------+---------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zz_users`;</span><br><span class="line">+---------+-----------+----------+----------+---------------------+</span><br><span class="line">| user_id | user_name | user_sex | password | register_time       |</span><br><span class="line">+---------+-----------+----------+----------+---------------------+</span><br><span class="line">|       1 | 熊猫      | 女       | 6666     | 2022-08-14 15:22:01 |</span><br><span class="line">|       2 | 竹子      | 男       | 1234     | 2022-09-14 16:17:44 |</span><br><span class="line">|       3 | 子竹      | 男       | 4321     | 2022-09-16 07:42:21 |</span><br><span class="line">+---------+-----------+----------+----------+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_roles`;</span><br><span class="line">+---------+-----------+---------------------+</span><br><span class="line">| role_id | role_name | created_time        |</span><br><span class="line">+---------+-----------+---------------------+</span><br><span class="line">|       1 | ROOT      | 2022-08-14 15:12:00 |</span><br><span class="line">|       2 | ADMIN     | 2022-08-14 15:12:00 |</span><br><span class="line">|       3 | USER      | 2022-08-14 15:12:00 |</span><br><span class="line">+---------+-----------+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_permissions`;</span><br><span class="line">+---------------+-----------------+---------------------+</span><br><span class="line">| permission_id | permission_name | created_time        |</span><br><span class="line">+---------------+-----------------+---------------------+</span><br><span class="line">|             1 | *               | 2022-08-14 15:12:00 |</span><br><span class="line">|             2 | BACKSTAGE       | 2022-08-14 15:12:00 |</span><br><span class="line">|             3 | LOGIN           | 2022-08-14 15:12:00 |</span><br><span class="line">+---------------+-----------------+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_users_roles`;</span><br><span class="line">+----+---------+---------+</span><br><span class="line">| id | user_id | role_id |</span><br><span class="line">+----+---------+---------+</span><br><span class="line">|  1 |       1 |       1 |</span><br><span class="line">|  2 |       1 |       2 |</span><br><span class="line">|  3 |       1 |       3 |</span><br><span class="line">|  4 |       2 |       2 |</span><br><span class="line">|  5 |       2 |       3 |</span><br><span class="line">|  6 |       3 |       3 |</span><br><span class="line">+----+---------+---------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM `zz_roles_permissions`;</span><br><span class="line">+----+---------+---------------+</span><br><span class="line">| id | role_id | permission_id |</span><br><span class="line">+----+---------+---------------+</span><br><span class="line">|  1 |       1 |             1 |</span><br><span class="line">|  2 |       2 |             2 |</span><br><span class="line">|  3 |       3 |             3 |</span><br><span class="line">+----+---------+---------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <p>观察上述的五张表，如果有做过权限设计，或用过 Shiro 框架的小伙伴应该会感到额外的亲切，这个正是大名鼎鼎的权限五表，将原本的用户角色权限表，拆分成了用户表、角色表、权限表、用户角色关系表、角色权限关系表。经过这次拆分之后，一方面用户表、角色表、权限表中都不会有数据冗余，第二方面无论是要删除亦或新增一个角色、权限时，都不会影响其他表。</p>
 <blockquote>
@@ -503,12 +368,7 @@
 </blockquote>
 <p>对于前面的教师排课表，就不再拆分啦，大家如若想要锻炼一下掌握程度，可自行将其拆分成符合第四范式的表结构。</p>
 <h2 id="2-3、第五范式（5NF）-x2F-完美范式"><a href="#2-3、第五范式（5NF）-x2F-完美范式" class="headerlink" title="2.3、第五范式（5NF）&#x2F; 完美范式"></a>2.3、第五范式（5NF）&#x2F; 完美范式</h2><p>了解了第四范式后，再来看看第五范式，这个范式也被称为完美范式，先来说一下第五范式的定义：<strong>建立在 4NF 的基础上，进一步消除表中的连接依赖，直到表中的连接依赖都是主键所蕴含的</strong>。等等，连接依赖又是个啥？</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-78f17064a4291bf2bde99bf29c325e4f_r.jpg"
-                     
-                ></p>
+<p><img src="https://pic4.zhimg.com/v2-78f17064a4291bf2bde99bf29c325e4f_r.jpg"></p>
 <blockquote>
 <p>看不懂对不？说实话我也看着迷糊，大概能确定的是：多值依赖也属于连接依赖的一种，而连接依赖也包含了多值依赖。</p>
 </blockquote>
@@ -518,12 +378,7 @@
 <p>同时，由于后面的几种范式在实际项目中应用较少，因此关于这块的资料也会较少，后续的几种范式也仅有一些学术机构在琢磨，所以当我们试图去窥探时，能看到的也是一堆学术词汇。</p>
 </blockquote>
 <p>除开聊到的六大范式外，还有一种范式名为域键范式，也被称之为终极范式，但目前也仅有学术机构在研究，在生产环境中实际的用途也不大，诸位有兴趣可以自己看看，最后再上一个各范式之间的递进关系图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-490230ba2efebb1c924891092bbc990b_r.jpg"
-                     
-                ></p>
+<p><img src="https://pic4.zhimg.com/v2-490230ba2efebb1c924891092bbc990b_r.jpg"></p>
 <ul>
 <li>第一范式：原子性，每个字段的值不能再分。</li>
 <li>第二范式：唯一性，表内每行数据必须描述同一业务属性的数据。</li>
@@ -558,442 +413,41 @@
 <li>不合理的结构设计会造成的问题： 数据冗余，会浪费一定程度上的存储空间 不便于常规 SQL 操作（例如插入、删除），甚至会出现异常</li>
 <li>合理的结构设计带来的好处： 节省空间，SQL 执行时能节省内存空间，数据存储时能节省磁盘空间 数据划分较为合理，DB 性能整体较高，并且数据也非常完整 结构便于维护和进行常规 SQL 操作</li>
 </ul>
-
-            </div>
-
-            
-                <div class="post-copyright-info">
-                    <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>标题:</strong> 数据库范式详解</li>
-        <li><strong>作者:</strong> Ao Jiao</li>
-        <li><strong>创建于:</strong> 2023-05-14 20:35:10</li>
-        
-            <li>
-                <strong>更新于:</strong> 2023-05-14 15:34:25
-            </li>
-        
-        <li>
-            <strong>链接:</strong> https://github.com/Tj-jiaoao/2023/05/14/一到五范式、BC 范式与反范式详解/
-        </li>
-        <li>
-            <strong>版权声明:</strong> 本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
-        </li>
-    </ul>
-</div>
-
-                </div>
-            
-
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E8%8C%83%E5%BC%8F/">#数据库，范式</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
-
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">分层架构</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">QThread&amp;QTimer讲解和实现</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-
-            
-                <div class="comment-container">
-                    <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fa-solid fa-comments"></i>&nbsp;评论
-    </div>
-    
-
-        
-            
- 
-    <div id="waline"></div>
-    <script type="module"  data-pjax>
-        import { init } from 'https://evan.beee.top/js/waline.mjs';
-
-        function loadWaline() {
-            init({
-                el: '#waline',
-                serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
-                lang: 'zh-CN',
-                dark: 'body[class~="dark-mode"]',
-                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
-            });
-        }
-
-        if ('true') {
-            const loadWalineTimeout = setTimeout(() => {
-                loadWaline();
-                clearTimeout(loadWalineTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadWaline);
-        }
-        
-    </script>
-
-
-
-        
-    
-</div>
-
-                </div>
-            
-        </div>
-
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">此页目录</div>
-        <div class="page-title">数据库范式详解</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F"><span class="nav-text">一、数据库三大范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1%E3%80%81%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%EF%BC%881NF%EF%BC%89"><span class="nav-text">1.1、第一范式（1NF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E3%80%81%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F%EF%BC%882NF%EF%BC%89"><span class="nav-text">1.2、第二范式（2NF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3%E3%80%81%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F%EF%BC%883NF%EF%BC%89"><span class="nav-text">1.3、第三范式（3NF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F%E5%B0%8F%E7%BB%93"><span class="nav-text">1.4、数据库三范式小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B7%B4%E6%96%AF-%E7%A7%91%E5%BE%B7%E8%8C%83%E5%BC%8F%E4%B8%8E%E7%AC%AC%E5%9B%9B%E3%80%81%E4%BA%94%E8%8C%83%E5%BC%8F"><span class="nav-text">二、巴斯 - 科德范式与第四、五范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1%E3%80%81%E5%B7%B4%E6%96%AF-%E7%A7%91%E5%BE%B7%E8%8C%83%E5%BC%8F%EF%BC%88BCNF%EF%BC%89"><span class="nav-text">2.1、巴斯 - 科德范式（BCNF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2%E3%80%81%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F%EF%BC%884NF%EF%BC%89"><span class="nav-text">2.2、第四范式（4NF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3%E3%80%81%E7%AC%AC%E4%BA%94%E8%8C%83%E5%BC%8F%EF%BC%885NF%EF%BC%89-x2F-%E5%AE%8C%E7%BE%8E%E8%8C%83%E5%BC%8F"><span class="nav-text">2.3、第五范式（5NF）&#x2F; 完美范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4%E3%80%81%E5%85%AD%E5%A4%A7%E8%8C%83%E5%BC%8F%E5%B0%8F%E7%BB%93"><span class="nav-text">2.4、六大范式小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="nav-text">三、数据库反范式设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%BA%93%E8%A1%A8%E8%AE%BE%E8%AE%A1%E7%AF%87%E6%80%BB%E7%BB%93"><span class="nav-text">四、库表设计篇总结</span></a></li></ol>
-
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
-
-
-                
-
-            </div>
-            
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info">
-            &copy;
-            
-              <span>2022</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ao Jiao</a>
-        </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
-                <br>
-            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.2</a>
-        </div>
-        
-        
-        
-            <div id="start_div" style="display:none">
-                2022/8/17 11:45:14
-            </div>
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
-        
-        
-        
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
-</footer>
-        </div>
-    </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fa-regular fa-comments"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-expand-width flex-center">
-            <i class="fa-regular fa-expand"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-
-</main>
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/layouts/navbarShrink.js"></script>
-
-<script src="/js/tools/scrollTopBottom.js"></script>
-
-<script src="/js/tools/lightDarkSwitch.js"></script>
-
-
-
-    
-<script src="/js/tools/localSearch.js"></script>
-
-
-
-
-    
-<script src="/js/tools/codeBlock.js"></script>
-
-
-
-
-    
-<script src="/js/layouts/lazyload.js"></script>
-
-
-
-
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
-  
-<script src="/js/libs/Typed.min.js"></script>
-
-  
-<script src="/js/plugins/typed.js"></script>
-
-
-
-
-
-
-
-<div class="post-scripts pjax">
-    
-        
-<script src="/js/tools/tocToggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/layouts/toc.js"></script>
-
-<script src="/js/plugins/tabs.js"></script>
-
-    
-</div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax',
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            Global.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            Global.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            Global.refresh();
-        });
-    });
-</script>
-
-
-
-
-    <div id="aplayer"></div>
-
-<script src="/js/libs/APlayer.min.js"></script>
-
-
-<script src="/js/plugins/aplayer.js"></script>
-
-
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Jiao Ao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/">http://example.com/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hello There</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E8%8C%83%E5%BC%8F/">数据库，范式</a></div><div class="post_share"><div class="social-share" data-image="/img/ja.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/" title="分层架构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">分层架构</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="QThread&amp;QTimer讲解和实现"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">QThread&amp;QTimer讲解和实现</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ja.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiao Ao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tj-jiaoao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tj-jiaoao" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2050780@tongji.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hello there!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">一、数据库三大范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%EF%BC%881NF%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">1.1、第一范式（1NF）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F%EF%BC%882NF%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">1.2、第二范式（2NF）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E3%80%81%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F%EF%BC%883NF%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">1.3、第三范式（3NF）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F%E5%B0%8F%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">1.4、数据库三范式小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B7%B4%E6%96%AF-%E7%A7%91%E5%BE%B7%E8%8C%83%E5%BC%8F%E4%B8%8E%E7%AC%AC%E5%9B%9B%E3%80%81%E4%BA%94%E8%8C%83%E5%BC%8F"><span class="toc-number">7.</span> <span class="toc-text">二、巴斯 - 科德范式与第四、五范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81%E5%B7%B4%E6%96%AF-%E7%A7%91%E5%BE%B7%E8%8C%83%E5%BC%8F%EF%BC%88BCNF%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">2.1、巴斯 - 科德范式（BCNF）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F%EF%BC%884NF%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">2.2、第四范式（4NF）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E3%80%81%E7%AC%AC%E4%BA%94%E8%8C%83%E5%BC%8F%EF%BC%885NF%EF%BC%89-x2F-%E5%AE%8C%E7%BE%8E%E8%8C%83%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">2.3、第五范式（5NF）&#x2F; 完美范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E3%80%81%E5%85%AD%E5%A4%A7%E8%8C%83%E5%BC%8F%E5%B0%8F%E7%BB%93"><span class="toc-number">11.</span> <span class="toc-text">2.4、六大范式小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">12.</span> <span class="toc-text">三、数据库反范式设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BA%93%E8%A1%A8%E8%AE%BE%E8%AE%A1%E7%AF%87%E6%80%BB%E7%BB%93"><span class="toc-number">13.</span> <span class="toc-text">四、库表设计篇总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记"><img src="/img/CNN1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNN学习笔记"/></a><div class="content"><a class="title" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记">CNN学习笔记</a><time datetime="2024-03-09T07:30:00.000Z" title="发表于 2024-03-09 15:30:00">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BC%98%E5%8C%96/" title="机器学习之模型的评估与优化">机器学习之模型的评估与优化</a><time datetime="2024-02-28T07:36:00.000Z" title="发表于 2024-02-28 15:36:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/02/ch4%E4%BE%9B%E7%BB%99%E4%B8%8E%E9%9C%80%E6%B1%82%E7%9A%84%E5%B8%82%E5%9C%BA%E5%8A%9B%E9%87%8F/" title="ch4 供给与需求的市场力量">ch4 供给与需求的市场力量</a><time datetime="2024-02-02T14:33:10.000Z" title="发表于 2024-02-02 22:33:10">2024-02-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/31/ch3%E7%9B%B8%E4%BA%92%E4%BE%9D%E5%AD%98%E6%80%A7%E4%B8%8E%E8%B4%B8%E6%98%93%E7%9A%84%E5%A5%BD%E5%A4%84/" title="ch3 相互依存性与贸易的好处">ch3 相互依存性与贸易的好处</a><time datetime="2024-01-31T14:36:10.000Z" title="发表于 2024-01-31 22:36:10">2024-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/30/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/" title="Day8 哈希表Part3">Day8 哈希表Part3</a><time datetime="2024-01-29T16:37:10.000Z" title="发表于 2024-01-30 00:37:10">2024-01-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Jiao Ao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.css')
+      const { init } = await import('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

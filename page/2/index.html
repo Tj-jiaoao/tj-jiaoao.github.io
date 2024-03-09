@@ -1,684 +1,245 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="Ao Jiao">
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="http://example.com/page/2/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hello There</title><meta name="author" content="Jiao Ao"><meta name="copyright" content="Jiao Ao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Hello There">
 <meta property="og:url" content="http://example.com/page/2/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Hello There">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
+<meta property="og:image" content="http://example.com/img/ja.jpeg">
+<meta property="article:author" content="Jiao Ao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/ja.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hello There',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-09 20:29:49'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
     
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="https://img1.imgtp.com/2023/08/24/1UUhbQ1y.png">
-    <!--- Page Info-->
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
     
-    <title>
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-        Tj-Jiaoao
-    </title>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-<link rel="stylesheet" href="/css/style.css">
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
 
-    
-<link rel="stylesheet" href="/assets/fonts.css">
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
 
-    <!--- Font Part-->
-    
-    
-    
-    
-
-    <!--- Inject Part-->
-    
-    <script id="hexo-configurations">
-    let Global = window.Global || {};
-    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"16px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"https://baidu.com","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"800px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg","dark":"https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg"},"title":"Hello There","subtitle":{"text":["To make each day count."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":100,"starting_delay":500,"backing_delay":1200,"loop":false,"smart_backspace":false},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/Tj-Jiaoao","instagram":"https://instagram.com/jiaoao73?igshid=YmMyMTA2M2Y=","zhihu":null,"twitter":null,"email":"2050780@tongji.edu.cn"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"wanderer","artist":"cafe ibiza","url":"img/bgmusic.mp3","cover":"img/ja.png"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
-    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-        
-<link rel="stylesheet" href="/fontawesome/thin.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/light.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/duotone.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
-
-    
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="main-content-container">
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-    
-    <div class="navbar-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                <h1>
-                Tj-Jiaoao
-                </h1>
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="active" 
-                                    href="/"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-house"></i>
-                                        
-                                        首页
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/archives"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-archive"></i>
-                                        
-                                        归档
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer">
-        <ul class="drawer-navbar-list">
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="active" 
-                        href="/"  >
-                             
-                                
-                                    <i class="fa-regular fa-house"></i>
-                                
-                                首页
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-                
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/archives"  >
-                             
-                                
-                                    <i class="fa-regular fa-archive"></i>
-                                
-                                归档
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="main-content-body">
-
-            
-                <div class="home-sidebar-container fade-in-down-animation">
-    <div class="sticky-container">
-        
-            
-                <div class="sidebar-links">
-                    <div class="site-info">
-                        <div class="site-name">Tj-Jiaoao</div>
-                        
-                    </div>
-                    
-                        
-                            
-                                <a class="links" href="/archives" target="_blank">
-                                    
-                                        <i class="fa-regular fa-archive icon-space"></i>
-                                    
-                                    <span class="link-name">Archives</span>
-                                </a>
-                            
-                        
-                            
-                                <a class="links" href="/tags" target="_blank">
-                                    
-                                        <i class="fa-regular fa-tags icon-space"></i>
-                                    
-                                    <span class="link-name">Tags</span>
-                                </a>
-                            
-                        
-                            
-                                <a class="links" href="/categories" target="_blank">
-                                    
-                                        <i class="fa-regular fa-folder icon-space"></i>
-                                    
-                                    <span class="link-name">Categories</span>
-                                </a>
-                            
-                        
-                    
-                </div>
-            
-            <div class="sidebar-content"  marginTop >
-                <div class="avatar">
-                    <img src="https://th.bing.com/th/id/OIP.OJ53CYMW1JkTD-QHGI1wTgHaFj?pid=ImgDet&rs=1">
-                </div>
-                <div class="author">
-                    <div class="name">Ao Jiao</div>
-                    
-                        <div class="label"></div>
-                    
-                </div>
-                <div class="statistics">
-                    <a class="item" href="/tags">
-                        <div class="number">12</div>
-                        <div class="label">标签</div>
-                    </a>
-                    <a class="item" href="/categories">
-                        <div class="number">0</div>
-                        <div class="label">分类</div>
-                    </a>
-                    <a class="item" href="/archives">
-                        <div class="number">20</div>
-                        <div class="label">文章</div>
-                    </a>
-                </div>
-            </div>
-        
-
-    </div>
-</div>
-
-            
-
-            <div class="main-content">
-
-                
-                    <div class="home-content-container fade-in-down-animation">
-    <ul class="home-article-list">
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/08/28/%E7%AC%AC%E4%B8%89%E5%A4%A9%20%E9%93%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%20Part1/">
-                        Day3 链表基础
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        移除链表元素题目描述给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ja.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/o5/wallhaven-o5vel5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Hello There"><span class="site-name">Hello There</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Hello There</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Tj-jiaoao" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2050780@tongji.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/28/%E7%AC%AC%E4%B8%89%E5%A4%A9%20%E9%93%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%20Part1/" title="Day3 链表基础">Day3 链表基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-28T09:27:00.000Z" title="发表于 2023-08-28 17:27:00">2023-08-28</time></span></div><div class="content">移除链表元素题目描述给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
 示例 1：
 
-12输入：head = [1,2,6,3,4,5,6], val = 6输...
-                    
-                </div>
+12输入：head = [1,2,6,3,4,5,6], val = 6输出：[1,2,3,4,5]
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Aug 28 2023 17:27:00 GMT+0800">
-                
-                    2023-08-28
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/08/28/%E7%AC%AC%E4%B8%89%E5%A4%A9%20%E9%93%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%20Part1/">阅读全文<span class="seo-reader-text">Day3 链表基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/08/25/%E7%AC%AC%E4%BA%8C%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part2/">
-                        Day2 数组基础
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        有序数组的平方题目描述给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
-思路解析此题很容易想到暴力解法，只需要先平方再排序即可，但是那样的话时间复杂度最快是O(nlogn)，不够好，像...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Aug 25 2023 11:12:00 GMT+0800">
-                
-                    2023-08-25
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/08/25/%E7%AC%AC%E4%BA%8C%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part2/">阅读全文<span class="seo-reader-text">Day2 数组基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/08/24/%E7%AC%AC%E4%B8%80%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part1/">
-                        Day1 数组基础
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        二分法查找二分查找适用于有序数组中的元素查找，时间复杂度为O(logn)，根据右指针设置的不同可以有两种不同的写法。
-第一种也是我主要记忆的方法就是左闭右闭区间查找，右指针指向nums.size() - 1，这种方法的重要特征是循环条件while(l...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Aug 24 2023 14:40:00 GMT+0800">
-                
-                    2023-08-24
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/08/24/%E7%AC%AC%E4%B8%80%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part1/">阅读全文<span class="seo-reader-text">Day1 数组基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/">
-                        分层架构
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-本文由 简悦 SimpRead  转码， 原文地址 www.oreilly.com 
+思路解析此题考查链表的删除操作，设置一个虚拟头节点指向第一个节点，这样就可以统一删除操作了。
+12345678910111213141516171819202122struct ListNode &#123;	int val;	ListNode *next;	ListNode() : val(0), next(nullptr) &#123;&#125;	ListNode(int x) : val(x), next(nullptr) &#123;&#125;	ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;&#125;;ListNode* removeElements(ListNode* head, int val) &#123;  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/25/%E7%AC%AC%E4%BA%8C%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part2/" title="Day2 数组基础">Day2 数组基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-25T03:12:00.000Z" title="发表于 2023-08-25 11:12:00">2023-08-25</time></span></div><div class="content">有序数组的平方题目描述给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
+思路解析此题很容易想到暴力解法，只需要先平方再排序即可，但是那样的话时间复杂度最快是O(nlogn)，不够好，像这样的题追求的基本都是线性的时间复杂度。
+注意到对于非负值来说，其原来的顺序就是平方后的顺序，可能改变的就是负数平方之后会插入在这些非负数平方之间。另外，负数越小，平方之后就越大，插入的位置就越往后。所以我们想到用双指针的方法，设置一前一后两个指针，前指针指向要插入的负数，后指针指向负数平方后将要插入的位置。
+基本的代码逻辑是，右指针不断向左移动找插入位置，左指针一个个插入右指针找好的位置，直到左指针与右指针相遇后传入最后一个值随后退出循环。
+代码如下：
+1234567891011121314151617vector&lt;int&gt; sortedSquares(vector&lt;int&gt;&amp; nums) &#123;	int pl = 0, pr = nums.size() - 1;	int k = nums.size( ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/24/%E7%AC%AC%E4%B8%80%E5%A4%A9%20%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80%20Part1/" title="Day1 数组基础">Day1 数组基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-24T06:40:00.000Z" title="发表于 2023-08-24 14:40:00">2023-08-24</time></span></div><div class="content">二分法查找二分查找适用于有序数组中的元素查找，时间复杂度为O(logn)，根据右指针设置的不同可以有两种不同的写法。
+第一种也是我主要记忆的方法就是左闭右闭区间查找，右指针指向nums.size() - 1，这种方法的重要特征是循环条件while(l &lt;= r), 当左边与右边相等时是有比较意义的，因为本来就需要看两边的值。这种实现方式的C++代码如下:
+12345678910111213141516int BinarySearch(vector&lt;int&gt; nums, int target)&#123;	int l = 0, r = nums.size() - 1;	while (l &lt;= r)&#123;		int mid = (l + r) &gt;&gt; 1;		if (nums[mid] == target)			return mid;		else if (num[mid] &lt; target)&#123;			r = mid + 1;		&#125;		else&#123;			l = mid - 1;		&#125;		&#125;	retur ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/" title="分层架构">分层架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-17T12:35:10.000Z" title="发表于 2023-05-17 20:35:10">2023-05-17</time></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 www.oreilly.com
 
 
-Chapter 1. Layered Architecture The most common architecture pattern is the lay...
-                    
-                </div>
+Chapter 1. Layered Architecture The most common architecture pattern is the layered architecture pat……
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed May 17 2023 20:35:10 GMT+0800">
-                
-                    2023-05-17
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%8C%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/">系统分析与设计，分层架构</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
+Chapter 1. Layered Architecture第一章分层架构The most common architecture pattern is the layered architecture pattern, otherwise known as the n-tier architecture pattern. This pattern is the de facto standard for most Java EE applications and therefore is widely known by most architects, designers, and developers. The layered architecture pattern closely ma ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/" title="数据库范式详解">数据库范式详解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-14T12:35:10.000Z" title="发表于 2023-05-14 20:35:10">2023-05-14</time></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 zhuanlan.zhihu.com
 
-    <a href="/2023/05/17/%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/">阅读全文<span class="seo-reader-text">分层架构</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
+引言MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲着敲着会去重构某张表结构，甚至大面积重构多张表结构，这种随心所欲的设计方式，无疑给开发造成了很大困扰。
+但实际上设计 DB 库表结构时，也有一些共同需要遵守的规范，这些规范在数据库设计中被称为 “范式”，理解并掌握这些设计时的规范，能让咱们在项目之初，设计的库表结构更为合理且优雅。数据库范式中，声名远扬的有三大范式，但除此之外也有一些其他设计规范，如：
 
-            </li>
-        
-            <li class="home-article-item">
+①数据库三大范式（1NF、2NF、3NF）
+③第四范式 (4NF）和第五范式：完美范式（5NF）
+②巴斯 - 科德范式（BCNF）
+④反范式设计
 
-                
+不过对于上述的几种设计范式，大部分小伙伴应该仅了解过三范式，对于其他的应该未曾接触，那在本篇中会重点阐述库表设计时，会用到的这些范式。
+一、数据库三大范式范式 (Normal Form) 在前面也提到过，它就是指设计数据库时要遵守的一些原则，而数据 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="QThread&amp;QTimer讲解和实现">QThread&amp;QTimer讲解和实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-30T12:35:10.000Z" title="发表于 2023-04-30 20:35:10">2023-04-30</time></span></div><div class="content">
+最近在做HCI的第一个作业语音识别和操作系统课设时需要用到pyqt5做前端界面，而且这两者都涉及多线程，可是操作系统刚刚学完线程的理论🥲，所以又得发扬本专业的优良传统：自学了。为了加深自己的记忆，也为了能给后来者提供参考，现在总结一下做项目需要用到的基本的多线程知识。
 
-                
+多线程简介多线程的目的：
 
-                <h3 class="home-article-title">
-                    <a href="/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
-                        数据库范式详解
-                    </a>
-                </h3>
+ Sometimes you can divide your programs into several smaller subprograms, or tasks, that you can run in several threads. This might make your programs faster, or it might help you improve the user experience by preventing your programs from freezing while executing long-running tasks.
 
-                <div class="home-article-content markdown-body">
-                    
-                        
-本文由 简悦 SimpRead  转码， 原文地址 zhuanlan.zhihu.com 
-
-引言MySQL 的库表设计，在很多时候我们都是率性而为，往往在前期的设计中考虑并不全面，同时对于库表结构的划分也并不明确，所以很多时候在开发过程中，代码敲...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun May 14 2023 20:35:10 GMT+0800">
-                
-                    2023-05-14
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E8%8C%83%E5%BC%8F/">数据库，范式</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/05/14/%E4%B8%80%E5%88%B0%E4%BA%94%E8%8C%83%E5%BC%8F%E3%80%81BC%20%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F%E8%AF%A6%E8%A7%A3/">阅读全文<span class="seo-reader-text">数据库范式详解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        QThread&amp;QTimer讲解和实现
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-最近在做HCI的第一个作业语音识别和操作系统课设时需要用到pyqt5做前端界面，而且这两者都涉及多线程，可是操作系统刚刚学完线程的理论🥲，所以又得发扬本专业的优良传统：自学了。为了加深自己的记忆，也为了能给后来者提供参考，现在总结一下做项目需要用...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Apr 30 2023 20:35:10 GMT+0800">
-                
-                    2023-04-30
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8CPyqt5/">多线程，Pyqt5</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/30/QThread%20%E4%B8%8E%20QTimer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">阅读全文<span class="seo-reader-text">QThread&amp;QTimer讲解和实现</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/04/26/Macbook%20pro%20%EF%BC%88M1%20pro%202021%E6%AC%BE%EF%BC%89%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md%20622142e968f04dd9bd9a74015534c219/">
-                        Macbook pro （M1 pro 2021款）语音识别环境搭建
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        环境准备
+多线程程序通常比单线程程序更难编写、维护和调试，因为涉及到在线程之间共享资源、同步数据访问和协调线程执行方面的复杂性。这可 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/26/Macbook%20pro%20%EF%BC%88M1%20pro%202021%E6%AC%BE%EF%BC%89%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md%20622142e968f04dd9bd9a74015534c219/" title="Macbook pro （M1 pro 2021款）语音识别环境搭建">Macbook pro （M1 pro 2021款）语音识别环境搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-26T11:53:10.000Z" title="发表于 2023-04-26 19:53:10">2023-04-26</time></span></div><div class="content">环境准备
 Anaconda
 pycharm
 Mac os Ventura 13.2.1
 
 搭建步骤
-安装Anaconda，然后在命令行里输入 conda —version(双横线） ，如果显示找不到conda的话，那就需要将conda加入到环境变量中...
-                    
-                </div>
+安装Anaconda，然后在命令行里输入 conda —version(双横线） ，如果显示找不到conda的话，那就需要将conda加入到环境变量中。参考方法如下：（本教程使用了全局设置&#x2F;etc&#x2F;paths）
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 26 2023 19:53:10 GMT+0800">
-                
-                    2023-04-26
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%EF%BC%8CMac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">语音识别，Mac环境配置</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
+MAC 设置环境变量path的几种方法
 
-    <a href="/2023/04/26/Macbook%20pro%20%EF%BC%88M1%20pro%202021%E6%AC%BE%EF%BC%89%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md%20622142e968f04dd9bd9a74015534c219/">阅读全文<span class="seo-reader-text">Macbook pro （M1 pro 2021款）语音识别环境搭建</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/04/26/Activate_function/">
-                        神经网络中激活函数的选取
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
+然后使用conda create -n &lt;name&gt; python=3.7创建虚拟环境，注意这里的python环境是3.7版本，如果用别的版本很可能会出问题！
+conda activate &lt;name&gt;激活虚拟环境
+然后就可以使用conda install &lt;package_name&gt;来安装库了，注意安装的库在Users&#x2F;jiaoao&#x2F;anaconda3&#x2F;pkgs 文件夹中，也可以用conda list来显示已安装的库
+🔥如果安装的过程中提示：****PackagesNotFoundError: The following packages are  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/26/Activate_function/" title="神经网络中激活函数的选取">神经网络中激活函数的选取</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-26T11:03:10.000Z" title="发表于 2023-04-26 19:03:10">2023-04-26</time></span></div><div class="content">
 
 输出层
 
@@ -686,394 +247,153 @@ Mac os Ventura 13.2.1
 当输出是连续值，并且能取正负值时选取线性激活函数（也就是没有激活函数）
 当输出是非负值时取ReLU激活函数：g(z) &#x3D; max(0,z)
 
-隐藏层隐藏层中最广...
-                    
-                </div>
+隐藏层隐藏层中最广泛使用的是**ReLU函数**，对比Sigmoid函数的原因如下：
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 26 2023 19:03:10 GMT+0800">
-                
-                    2023-04-26
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">神经网络，深度学习</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
+计算ReLU函数比Sigmoid函数快很多
+计算梯度下降时速度和图像的斜率有关，因为sigmoid函数在图像两边的斜率太小，梯度要迭代很多次才能收敛。而RELU不会出现这个问题
 
-    <a href="/2023/04/26/Activate_function/">阅读全文<span class="seo-reader-text">神经网络中激活函数的选取</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
+代码1234567from tf.keras.layers import Densemodel = Sequential([	Dense(units = 25, activation = &#x27;relu&#x27;), # layer1	Dense(units = 15, activation = &#x27;relu&#x27;), # layer2	Dense(units = 1, activation = &#x27;sigmoid&#x27;) # output layer])
 
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/04/26/Tensor_Flow&Sklearn%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-                        Mac m1 tensor-flow 和 sklearn环境配置
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        Tensor Flow&amp;Sklearn 环境配置环境
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/26/Tensor_Flow&amp;Sklearn%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Mac m1 tensor-flow 和 sklearn环境配置">Mac m1 tensor-flow 和 sklearn环境配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-26T07:23:12.000Z" title="发表于 2023-04-26 15:23:12">2023-04-26</time></span></div><div class="content">Tensor Flow&amp;Sklearn 环境配置环境
 Mac OS Ventura 13.2.1
 Macbook pro M1 pro 2021
 Python 3.9
 conda 23.1.0
 
-Tensor Flow检查自己的conda环境...
-                    
-                </div>
+Tensor Flow检查自己的conda环境虽然conda官方已提供minicoda的mac m1适配，但也不能用，一定需要miniforge3,如以前环境较乱，最好是删除自己装过的miniforge3环境重装。
+安装miniforge3步骤
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 26 2023 15:23:12 GMT+0800">
-                
-                    2023-04-26
-                
-            </span>
-        </span>
-        
-        
-    </div>
+删除已有环境
 
-    <a href="/2023/04/26/Tensor_Flow&Sklearn%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">阅读全文<span class="seo-reader-text">Mac m1 tensor-flow 和 sklearn环境配置</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
+12345cd ~  rm -rf ~/miniforge3  rm -rf .conda  rm -rf .condarc  完成后，进入 .zshrc ，gg 将末端配置 miniforge3 的 PATH 配置删除。 ``
 
-            </li>
-        
-            <li class="home-article-item">
 
-                
+下载 Miniforge3_MacOS_ARM64 选择 Miniforge3-MacOSX-arm64
 
-                
+1234567chmod +x ~/Downloads/Miniforge3-MacOSX-arm64.sh   sh ~/Downloads/Miniforge3-MacOSX-arm64 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/26/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-26T06:03:10.325Z" title="发表于 2023-04-26 14:03:10">2023-04-26</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
 
-                <h3 class="home-article-title">
-                    <a href="/2023/04/26/hello-world/">
-                        Hello World
-                    </a>
-                </h3>
+More info: Writing
+Run server1$ hexo server
 
-                <div class="home-article-content markdown-body">
-                    
-                        Welcome to Hexo ! This is your very first post. Check documentation  for more info. If you get any problems when using Hexo, ...
-                    
-                </div>
+More info: Server
+Generate static files1$ hexo generate
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 26 2023 14:03:10 GMT+0800">
-                
-                    2023-04-26
-                
-            </span>
-        </span>
-        
-        
-    </div>
+More info: Generating
+Deploy to remote sites1$ hexo deploy
 
-    <a href="/2023/04/26/hello-world/">阅读全文<span class="seo-reader-text">Hello World</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-    </ul>
-
-    <div class="home-paginator">
-        <div class="paginator">
-    <a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-</div>
-
-    </div>
-</div>
-
-                
-
-            </div>
+More info: Deployment
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ja.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiao Ao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tj-jiaoao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tj-jiaoao" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2050780@tongji.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hello there!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记"><img src="/img/CNN1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNN学习笔记"/></a><div class="content"><a class="title" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记">CNN学习笔记</a><time datetime="2024-03-09T07:30:00.000Z" title="发表于 2024-03-09 15:30:00">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BC%98%E5%8C%96/" title="机器学习之模型的评估与优化">机器学习之模型的评估与优化</a><time datetime="2024-02-28T07:36:00.000Z" title="发表于 2024-02-28 15:36:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/02/ch4%E4%BE%9B%E7%BB%99%E4%B8%8E%E9%9C%80%E6%B1%82%E7%9A%84%E5%B8%82%E5%9C%BA%E5%8A%9B%E9%87%8F/" title="ch4 供给与需求的市场力量">ch4 供给与需求的市场力量</a><time datetime="2024-02-02T14:33:10.000Z" title="发表于 2024-02-02 22:33:10">2024-02-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/31/ch3%E7%9B%B8%E4%BA%92%E4%BE%9D%E5%AD%98%E6%80%A7%E4%B8%8E%E8%B4%B8%E6%98%93%E7%9A%84%E5%A5%BD%E5%A4%84/" title="ch3 相互依存性与贸易的好处">ch3 相互依存性与贸易的好处</a><time datetime="2024-01-31T14:36:10.000Z" title="发表于 2024-01-31 22:36:10">2024-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/30/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/" title="Day8 哈希表Part3">Day8 哈希表Part3</a><time datetime="2024-01-29T16:37:10.000Z" title="发表于 2024-01-30 00:37:10">2024-01-30</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
             
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info">
-            &copy;
-            
-              <span>2022</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ao Jiao</a>
-        </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
-                    </span>
-                
             </div>
-        
-        <div class="theme-info info-item">
-            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
-                <br>
-            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.2</a>
-        </div>
-        
-        
-        
-            <div id="start_div" style="display:none">
-                2022/8/17 11:45:14
-            </div>
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
-        
-        
-        
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
-</footer>
-        </div>
-    </div>
-
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-expand-width flex-center">
-            <i class="fa-regular fa-expand"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-
-</main>
-
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/layouts/navbarShrink.js"></script>
-
-<script src="/js/tools/scrollTopBottom.js"></script>
-
-<script src="/js/tools/lightDarkSwitch.js"></script>
-
-
-
-    
-<script src="/js/tools/localSearch.js"></script>
-
-
-
-
-    
-<script src="/js/tools/codeBlock.js"></script>
-
-
-
-
-    
-<script src="/js/layouts/lazyload.js"></script>
-
-
-
-
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
-  
-<script src="/js/libs/Typed.min.js"></script>
-
-  
-<script src="/js/plugins/typed.js"></script>
-
-
-
-
-
-
-
-<div class="post-scripts pjax">
-    
-</div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax',
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            Global.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            Global.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            Global.refresh();
-        });
-    });
-</script>
-
-
-
-
-    <div id="aplayer"></div>
-
-<script src="/js/libs/APlayer.min.js"></script>
-
-
-<script src="/js/plugins/aplayer.js"></script>
-
-
-</body>
-</html>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 1.1em; color: #999">算法,哈希表</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%8C%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84/" style="font-size: 1.1em; color: #999">系统分析与设计，分层架构</a> <a href="/tags/CNN/" style="font-size: 1.1em; color: #999">CNN</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 1.3em; color: #99a1ac">链表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E8%8C%83%E5%BC%8F/" style="font-size: 1.1em; color: #999">数据库，范式</a> <a href="/tags/%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">微观经济学</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 1.3em; color: #99a1ac">哈希表</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">神经网络，深度学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">机器学习</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%EF%BC%8CMac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">语音识别，Mac环境配置</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 1.3em; color: #99a1ac">数组</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8CPyqt5/" style="font-size: 1.1em; color: #999">多线程，Pyqt5</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">5</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">20</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-09T12:29:49.446Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Jiao Ao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["to make each day count."])
+  } else {
+    document.getElementById("subtitle").textContent = "to make each day count."
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://jochen-7x521f722-tj-jiaoao.vercel.app/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
