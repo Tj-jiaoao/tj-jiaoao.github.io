@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Numpy： 对Axis的理解 | Hello There</title><meta name="author" content="Jiao Ao"><meta name="copyright" content="Jiao Ao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文转载自kksk知乎高赞回答，原文地址 [zhuanlan.zhihu.com](https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;31275071)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy： 对Axis的理解">
+<meta property="og:url" content="http://example.com/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hello There">
+<meta property="og:description" content="本文转载自kksk知乎高赞回答，原文地址 [zhuanlan.zhihu.com](https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;31275071)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/3D-banner.jpg">
+<meta property="article:published_time" content="2024-04-10T07:20:00.000Z">
+<meta property="article:modified_time" content="2024-04-10T07:22:28.728Z">
+<meta property="article:author" content="Jiao Ao">
+<meta property="article:tag" content="Numpy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/3D-banner.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Numpy： 对Axis的理解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-10 15:22:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ja.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/3D-banner.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Hello There"><span class="site-name">Hello There</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Numpy： 对Axis的理解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T07:20:00.000Z" title="发表于 2024-04-10 15:20:00">2024-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-10T07:22:28.728Z" title="更新于 2024-04-10 15:22:28">2024-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Numpy： 对Axis的理解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li><strong>Axis 就是数组层级</strong></li>
+<li><strong>设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作</strong></li>
+<li><strong>Axis 的应用</strong></li>
+</ul>
+<h2 id="Axis-就是数组层级"><a href="#Axis-就是数组层级" class="headerlink" title="Axis 就是数组层级"></a><strong>Axis 就是数组层级</strong></h2><p>要想理解 axis，首先我们先要弄清楚 “Numpy 中数组的维数” 和 “线性代数中矩阵的维数” 这两个概念以及它们之间的关系。在数学或者物理的概念中，dimensions 被认为是在空间中表示一个点所需要的最少坐标个数，但是在 Numpy 中，dimensions 指代的是数组的维数。比如下面这个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt;&gt; a = np.array([[1,2,3],[2,3,4],[3,4,9]])</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">       [2, 3, 4],</span><br><span class="line">       [3, 4, 9]])</span><br></pre></td></tr></table></figure>
+
+<p>这个 array 的维数只有 2，即 axis 轴有两个，分别是 axis=0 和 axis=1。如下图所示，该二维数组的第 0 维 (axis=0) 有三个元素 (左图)，即 axis=0 轴的长度 length 为 3；第 1 维(axis=1) 也有三个元素(右图)，即 axis=1 轴的长度 length 为 3。正是因为 axis=0、axis=1 的长度都为 3，矩阵横着竖着都有 3 个数，所以该矩阵在线性代数是 3 维的(rank 秩为 3)。</p>
+<p><img src="https://pic4.zhimg.com/v2-76b727aedf756d03c854f3b045345c23_r.jpg"></p>
+<p>因此，axis 就是数组层级。</p>
+<p>当 axis=0，该轴上的元素有 3 个 (数组的 size 为 3)</p>
+<p><code>a[0]</code>、<code>a[1]</code>、<code>a[2]</code></p>
+<p>当 axis=1，该轴上的元素有 3 个 (数组的 size 为 3)</p>
+<p><code>a[0][0]</code>、<code>a[0][1]</code>、<code>a[0][2]</code></p>
+<p>（或者<code>a[1][0]</code>、<code>a[1][1]</code>、<code>a[1][2]</code>）</p>
+<p>（或者<code>a[2][0]</code>、<code>a[2][1]</code>、<code>a[2][2]</code>）</p>
+<p>再比如下面 shape 为 (3,2,4) 的 array：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = np.array([[[1,2,3,4],[1,3,4,5]],[[2,4,7,5],[8,4,3,5]],[[2,5,7,3],[1,5,3,7]]])</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[[1, 2, 3, 4],</span><br><span class="line">        [1, 3, 4, 5]],</span><br><span class="line"></span><br><span class="line">       [[2, 4, 7, 5],</span><br><span class="line">        [8, 4, 3, 5]],</span><br><span class="line"></span><br><span class="line">       [[2, 5, 7, 3],</span><br><span class="line">        [1, 5, 3, 7]]])</span><br><span class="line">&gt;&gt;&gt; b.shape</span><br><span class="line">(3, 2, 4)</span><br></pre></td></tr></table></figure>
+
+<p>这个 shape（用 tuple 表示）可以理解为在每个轴（axis）上的 size，也即占有的长度（length)。为了更进一步理解，我们可以暂时把多个 axes 想象成多层 layers。axis=0 表示第一层 (下图黑色框框)，该层数组的 size 为 3，对应轴上的元素 length = 3；axis=1 表示第二层 (下图红色框框)，该层数组的 size 为 2，对应轴上的元素 length = 2；axis=2 表示第三层 (下图蓝色框框)，对应轴上的元素 length = 4。</p>
+<p><img src="https://pic3.zhimg.com/v2-5c8aad40f74a3adee72f8f7fb5be89a6_b.jpg"></p>
+<h2 id="设-axis-x3D-i，则-Numpy-沿着第-i-个下标变化的方向进行操作"><a href="#设-axis-x3D-i，则-Numpy-沿着第-i-个下标变化的方向进行操作" class="headerlink" title="设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作"></a><strong>设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作</strong></h2><ol>
+<li>二维数组示例：</li>
+</ol>
+<p>比如<code>np.sum(a, axis=1)</code>，结合下面的数组， <code>a[0][0]</code>=1、<code>a[0][1]</code>=2、<code>a[0][2]</code>=3 ，下标会发生变化的方向是数组的第一维。</p>
+<p><img src="https://pic3.zhimg.com/v2-7a0716230a6f3d4840a6098001b1d2a2_b.jpg"></p>
+<p>我们往下标会变化的方向，把元素相加后即可得到最终结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [6],</span><br><span class="line">  [9],</span><br><span class="line">  [16]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>三维数组示例：</li>
+</ol>
+<p>再举个例子，比如下边这个<code>np.shape(a)=(3,2,4)</code>的 3 维数组，该数组第 0 维的长度为 3(黑色框框)，再深入一层，第 1 维的长度为 2(红色框框)，再深入一层，第 2 维的长度为 4(蓝色框框)。</p>
+<p><img src="https://pic3.zhimg.com/v2-2036beabc1c7e7d5dc8437a475766052_r.jpg"></p>
+<p>如果我们要计算<code>np.sum(a, axis=1)</code>，在第一个黑色框框中，</p>
+<p><img src="https://pic3.zhimg.com/v2-f77a4317e1fe6f139718acb7c80a3e86_b.jpg"></p>
+<p>下标的变化方向如下所示：</p>
+<p><img src="https://pic2.zhimg.com/v2-4b303d4c375ed35f2e3a336287b0980d_b.jpg"></p>
+<p>所以，我们要把上下两个红色框框相加起来</p>
+<p><img src="https://pic1.zhimg.com/v2-6ab2e0351a2a84204be79acfe7c399d8_b.jpg"></p>
+<p>按照同样的逻辑处理第二个和第三个黑色的框框，可以得出最终结果：</p>
+<p><img src="https://pic4.zhimg.com/v2-be09442b6ad87f96932412c5b8ab6fe3_r.jpg"></p>
+<p>所以，依然是我们前边总结的那一句话，设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作。</p>
+<p><img src="https://pic2.zhimg.com/v2-4b303d4c375ed35f2e3a336287b0980d_b.jpg"></p>
+<ol start="3">
+<li>四维数组示例：</li>
+</ol>
+<p>比如下面这个巨复杂的 4 维数组，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data = np.random.randint(0, 5, [4,3,2,3])</span><br><span class="line">&gt;&gt;&gt; data</span><br><span class="line">array([[[[4, 1, 0],</span><br><span class="line">         [4, 3, 0]],</span><br><span class="line">        [[1, 2, 4],</span><br><span class="line">         [2, 2, 3]],</span><br><span class="line">        [[4, 3, 3],</span><br><span class="line">         [4, 2, 3]]],</span><br><span class="line"></span><br><span class="line">       [[[4, 0, 1],</span><br><span class="line">         [1, 1, 1]],</span><br><span class="line">        [[0, 1, 0],</span><br><span class="line">         [0, 4, 1]],</span><br><span class="line">        [[1, 3, 0],</span><br><span class="line">         [0, 3, 0]]],</span><br><span class="line"></span><br><span class="line">       [[[3, 3, 4],</span><br><span class="line">         [0, 1, 0]],</span><br><span class="line">        [[1, 2, 3],</span><br><span class="line">         [4, 0, 4]],</span><br><span class="line">        [[1, 4, 1],</span><br><span class="line">         [1, 3, 2]]],</span><br><span class="line"></span><br><span class="line">       [[[0, 1, 1],</span><br><span class="line">         [2, 4, 3]],</span><br><span class="line">        [[4, 1, 4],</span><br><span class="line">         [1, 4, 1]],</span><br><span class="line">        [[0, 1, 0],</span><br><span class="line">         [2, 4, 3]]]])</span><br></pre></td></tr></table></figure>
+
+<p>当 axis=0 时，numpy 沿着第 0 维的方向进行求和，也就是第一个元素值 = a0000+a1000+a2000+a3000=11, 第二个元素 = a0001+a1001+a2001+a3001=5，同理可得最后的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data.sum(axis=0)</span><br><span class="line">array([[[11,  5,  6],</span><br><span class="line">        [ 7,  9,  4]],</span><br><span class="line"></span><br><span class="line">       [[ 6,  6, 11],</span><br><span class="line">        [ 7, 10,  9]],</span><br><span class="line"></span><br><span class="line">       [[ 6, 11,  4],</span><br><span class="line">        [ 7, 12,  8]]])</span><br></pre></td></tr></table></figure>
+
+<p>当 axis=3 时，numpy 沿着第 3 维的方向进行求和，也就是第一个元素值 = a0000+a0001+a0002=5, 第二个元素 = a0010+a0011+a0012=7，同理可得最后的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data.sum(axis=3)</span><br><span class="line">array([[[ 5,  7],</span><br><span class="line">        [ 7,  7],</span><br><span class="line">        [10,  9]],</span><br><span class="line"></span><br><span class="line">       [[ 5,  3],</span><br><span class="line">        [ 1,  5],</span><br><span class="line">        [ 4,  3]],</span><br><span class="line"></span><br><span class="line">       [[10,  1],</span><br><span class="line">        [ 6,  8],</span><br><span class="line">        [ 6,  6]],</span><br><span class="line"></span><br><span class="line">       [[ 2,  9],</span><br><span class="line">        [ 9,  6],</span><br><span class="line">        [ 1,  9]]])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Axis-的应用"><a href="#Axis-的应用" class="headerlink" title="Axis 的应用"></a><strong>Axis 的应用</strong></h2><p>例如现在我们收集了四个同学对苹果、榴莲、西瓜这三种水果的喜爱程度进行打分的数据（总分为 10），每个同学都有三个特征：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; item = np.array([[1,4,8],[2,3,5],[2,5,1],[1,10,7]])</span><br><span class="line">&gt;&gt;&gt; item</span><br><span class="line">array([[1, 4, 8],</span><br><span class="line">       [2, 3, 5],</span><br><span class="line">       [2, 5, 1],</span><br><span class="line">       [1, 10, 7]])</span><br></pre></td></tr></table></figure>
+
+<p>每一行包含了同一个人的三个特征，如果我们想看看哪个同学最喜欢吃水果，那就可以用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; item.sum(axis = 1)</span><br><span class="line">array([13, 10,  8, 18])</span><br></pre></td></tr></table></figure>
+
+<p>可以大概看出来同学 4 最喜欢吃水果。</p>
+<p>如果我们想看看哪种水果最受欢迎，那就可以用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; item.sum(axis = 0)</span><br><span class="line">array([ 6, 22, 21])</span><br></pre></td></tr></table></figure>
+
+<p>可以看出基本是<strong>榴莲</strong>最受欢迎。</p>
+<h2 id="低维度axis理解"><a href="#低维度axis理解" class="headerlink" title="低维度axis理解"></a>低维度axis理解</h2><h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><p>对于一维数组，只有一个轴：</p>
+<ul>
+<li><code>axis=0</code>：这是唯一的轴，代表数组的唯一维度。</li>
+</ul>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p>二维数组（例如矩阵）有两个轴：</p>
+<ul>
+<li><code>axis=0</code>：代表行。对于操作而言，这意味着会==沿着列的方向==进行，即跨越不同的行。</li>
+<li><code>axis=1</code>：代表列。操作将沿着行的方向进行，即跨越不同的列。</li>
+</ul>
+<h3 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h3><p>对于三维数组，有三个轴：</p>
+<ul>
+<li><code>axis=0</code>：可以想象为不同的==”页”==或”深度层”。</li>
+<li><code>axis=1</code>：在给定的页中，沿着”行”的方向。</li>
+<li><code>axis=2</code>：在给定的页中，沿着”列”的方向。</li>
+</ul>
+<p>以三维数组为例，我们可以将其视为一个数据块，这个数据块由多个二维矩阵（页）堆叠而成。每个”页”是一个二维数组，有其自己的行和列。在这种情况下：</p>
+<ul>
+<li><code>axis=0</code> 表示沿着堆叠的方向，或者说是”深度”方向。==操作将跨越不同的页==。</li>
+<li><code>axis=1</code> 表示在每个单独的页中，沿着行的方向。这意味着操作将在每页的所有行上进行，但是在同一页内。</li>
+<li><code>axis=2</code> 表示在每个单独的页中，沿着列的方向。操作将在每页的所有列上进行，但是在同一页内。</li>
+</ul>
+<p>假设我们有一个三维数组 <code>arr</code>，它由 2 个 3x4 的二维数组（页）组成，形状为 <code>(2, 3, 4)</code>。这意味着我们有 2 页，每页 3 行 4 列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个三维数组，形状为 (2, 3, 4)</span></span><br><span class="line">arr = np.array([[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                 [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                 [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]],</span><br><span class="line">                </span><br><span class="line">                [[<span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>],</span><br><span class="line">                 [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>],</span><br><span class="line">                 [<span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>]]])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>使用 <code>axis=0</code> 对数组进行求和：<code>np.sum(arr, axis=0)</code> 会将两个 3x4 的矩阵对应位置的元素相加，结果是一个 3x4 的矩阵。</li>
+<li>使用 <code>axis=1</code> 对数组进行求和：<code>np.sum(arr, axis=1)</code> 对每个二维数组（页）的所有行进行求和，结果是每页一个行向量，形状变为 <code>(2, 4)</code>。</li>
+<li>使用 <code>axis=2</code> 对数组进行求和：<code>np.sum(arr, axis=2)</code> 对每个二维数组（页）的所有列进行求和，结果是每页一个列向量，形状变为 <code>(2, 3)</code>。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Jiao Ao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://example.com/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hello There</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Numpy/">Numpy</a></div><div class="post_share"><div class="social-share" data-image="/img/3D-banner.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/03/10/2024-03-10-GAN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="GAN学习笔记"><img class="cover" src="/img/NOGAN.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GAN学习笔记</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ja.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiao Ao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tj-jiaoao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tj-jiaoao" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2050780@tongji.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hello there!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Axis-%E5%B0%B1%E6%98%AF%E6%95%B0%E7%BB%84%E5%B1%82%E7%BA%A7"><span class="toc-number">1.</span> <span class="toc-text">Axis 就是数组层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE-axis-x3D-i%EF%BC%8C%E5%88%99-Numpy-%E6%B2%BF%E7%9D%80%E7%AC%AC-i-%E4%B8%AA%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96%E7%9A%84%E6%96%B9%E5%90%91%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">设 axis&#x3D;i，则 Numpy 沿着第 i 个下标变化的方向进行操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Axis-%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">Axis 的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E7%BB%B4%E5%BA%A6axis%E7%90%86%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">低维度axis理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">4.1.</span> <span class="toc-text">一维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">4.2.</span> <span class="toc-text">二维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">4.3.</span> <span class="toc-text">三维数组</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Numpy： 对Axis的理解"><img src="/img/3D-banner.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Numpy： 对Axis的理解"/></a><div class="content"><a class="title" href="/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Numpy： 对Axis的理解">Numpy： 对Axis的理解</a><time datetime="2024-04-10T07:20:00.000Z" title="发表于 2024-04-10 15:20:00">2024-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/2024-03-10-GAN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="GAN学习笔记"><img src="/img/NOGAN.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GAN学习笔记"/></a><div class="content"><a class="title" href="/2024/03/10/2024-03-10-GAN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="GAN学习笔记">GAN学习笔记</a><time datetime="2024-03-10T08:00:00.000Z" title="发表于 2024-03-10 16:00:00">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记"><img src="/img/CNN1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNN学习笔记"/></a><div class="content"><a class="title" href="/2024/03/09/CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CNN学习笔记">CNN学习笔记</a><time datetime="2024-03-09T07:30:00.000Z" title="发表于 2024-03-09 15:30:00">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BC%98%E5%8C%96/" title="机器学习之模型的评估与优化">机器学习之模型的评估与优化</a><time datetime="2024-02-28T07:36:00.000Z" title="发表于 2024-02-28 15:36:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/02/ch4%E4%BE%9B%E7%BB%99%E4%B8%8E%E9%9C%80%E6%B1%82%E7%9A%84%E5%B8%82%E5%9C%BA%E5%8A%9B%E9%87%8F/" title="ch4 供给与需求的市场力量">ch4 供给与需求的市场力量</a><time datetime="2024-02-02T14:33:10.000Z" title="发表于 2024-02-02 22:33:10">2024-02-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Jiao Ao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.css')
+      const { init } = await import('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

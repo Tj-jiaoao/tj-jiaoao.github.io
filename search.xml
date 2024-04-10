@@ -1560,4 +1560,114 @@
         <tag>生成模型</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Numpy： 对Axis的理解</title>
+    <url>/2024/04/10/2024-04-10-Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<ul>
+<li><strong>Axis 就是数组层级</strong></li>
+<li><strong>设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作</strong></li>
+<li><strong>Axis 的应用</strong></li>
+</ul>
+<h2 id="Axis-就是数组层级"><a href="#Axis-就是数组层级" class="headerlink" title="Axis 就是数组层级"></a><strong>Axis 就是数组层级</strong></h2><p>要想理解 axis，首先我们先要弄清楚 “Numpy 中数组的维数” 和 “线性代数中矩阵的维数” 这两个概念以及它们之间的关系。在数学或者物理的概念中，dimensions 被认为是在空间中表示一个点所需要的最少坐标个数，但是在 Numpy 中，dimensions 指代的是数组的维数。比如下面这个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt;&gt; a = np.array([[1,2,3],[2,3,4],[3,4,9]])</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">       [2, 3, 4],</span><br><span class="line">       [3, 4, 9]])</span><br></pre></td></tr></table></figure>
+
+<p>这个 array 的维数只有 2，即 axis 轴有两个，分别是 axis=0 和 axis=1。如下图所示，该二维数组的第 0 维 (axis=0) 有三个元素 (左图)，即 axis=0 轴的长度 length 为 3；第 1 维(axis=1) 也有三个元素(右图)，即 axis=1 轴的长度 length 为 3。正是因为 axis=0、axis=1 的长度都为 3，矩阵横着竖着都有 3 个数，所以该矩阵在线性代数是 3 维的(rank 秩为 3)。</p>
+<p><img src="https://pic4.zhimg.com/v2-76b727aedf756d03c854f3b045345c23_r.jpg"></p>
+<p>因此，axis 就是数组层级。</p>
+<p>当 axis=0，该轴上的元素有 3 个 (数组的 size 为 3)</p>
+<p><code>a[0]</code>、<code>a[1]</code>、<code>a[2]</code></p>
+<p>当 axis=1，该轴上的元素有 3 个 (数组的 size 为 3)</p>
+<p><code>a[0][0]</code>、<code>a[0][1]</code>、<code>a[0][2]</code></p>
+<p>（或者<code>a[1][0]</code>、<code>a[1][1]</code>、<code>a[1][2]</code>）</p>
+<p>（或者<code>a[2][0]</code>、<code>a[2][1]</code>、<code>a[2][2]</code>）</p>
+<p>再比如下面 shape 为 (3,2,4) 的 array：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; b = np.array([[[1,2,3,4],[1,3,4,5]],[[2,4,7,5],[8,4,3,5]],[[2,5,7,3],[1,5,3,7]]])</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[[1, 2, 3, 4],</span><br><span class="line">        [1, 3, 4, 5]],</span><br><span class="line"></span><br><span class="line">       [[2, 4, 7, 5],</span><br><span class="line">        [8, 4, 3, 5]],</span><br><span class="line"></span><br><span class="line">       [[2, 5, 7, 3],</span><br><span class="line">        [1, 5, 3, 7]]])</span><br><span class="line">&gt;&gt;&gt; b.shape</span><br><span class="line">(3, 2, 4)</span><br></pre></td></tr></table></figure>
+
+<p>这个 shape（用 tuple 表示）可以理解为在每个轴（axis）上的 size，也即占有的长度（length)。为了更进一步理解，我们可以暂时把多个 axes 想象成多层 layers。axis=0 表示第一层 (下图黑色框框)，该层数组的 size 为 3，对应轴上的元素 length = 3；axis=1 表示第二层 (下图红色框框)，该层数组的 size 为 2，对应轴上的元素 length = 2；axis=2 表示第三层 (下图蓝色框框)，对应轴上的元素 length = 4。</p>
+<p><img src="https://pic3.zhimg.com/v2-5c8aad40f74a3adee72f8f7fb5be89a6_b.jpg"></p>
+<h2 id="设-axis-x3D-i，则-Numpy-沿着第-i-个下标变化的方向进行操作"><a href="#设-axis-x3D-i，则-Numpy-沿着第-i-个下标变化的方向进行操作" class="headerlink" title="设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作"></a><strong>设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作</strong></h2><ol>
+<li>二维数组示例：</li>
+</ol>
+<p>比如<code>np.sum(a, axis=1)</code>，结合下面的数组， <code>a[0][0]</code>=1、<code>a[0][1]</code>=2、<code>a[0][2]</code>=3 ，下标会发生变化的方向是数组的第一维。</p>
+<p><img src="https://pic3.zhimg.com/v2-7a0716230a6f3d4840a6098001b1d2a2_b.jpg"></p>
+<p>我们往下标会变化的方向，把元素相加后即可得到最终结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  [6],</span><br><span class="line">  [9],</span><br><span class="line">  [16]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>三维数组示例：</li>
+</ol>
+<p>再举个例子，比如下边这个<code>np.shape(a)=(3,2,4)</code>的 3 维数组，该数组第 0 维的长度为 3(黑色框框)，再深入一层，第 1 维的长度为 2(红色框框)，再深入一层，第 2 维的长度为 4(蓝色框框)。</p>
+<p><img src="https://pic3.zhimg.com/v2-2036beabc1c7e7d5dc8437a475766052_r.jpg"></p>
+<p>如果我们要计算<code>np.sum(a, axis=1)</code>，在第一个黑色框框中，</p>
+<p><img src="https://pic3.zhimg.com/v2-f77a4317e1fe6f139718acb7c80a3e86_b.jpg"></p>
+<p>下标的变化方向如下所示：</p>
+<p><img src="https://pic2.zhimg.com/v2-4b303d4c375ed35f2e3a336287b0980d_b.jpg"></p>
+<p>所以，我们要把上下两个红色框框相加起来</p>
+<p><img src="https://pic1.zhimg.com/v2-6ab2e0351a2a84204be79acfe7c399d8_b.jpg"></p>
+<p>按照同样的逻辑处理第二个和第三个黑色的框框，可以得出最终结果：</p>
+<p><img src="https://pic4.zhimg.com/v2-be09442b6ad87f96932412c5b8ab6fe3_r.jpg"></p>
+<p>所以，依然是我们前边总结的那一句话，设 axis=i，则 Numpy 沿着第 i 个下标变化的方向进行操作。</p>
+<p><img src="https://pic2.zhimg.com/v2-4b303d4c375ed35f2e3a336287b0980d_b.jpg"></p>
+<ol start="3">
+<li>四维数组示例：</li>
+</ol>
+<p>比如下面这个巨复杂的 4 维数组，</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; data = np.random.randint(0, 5, [4,3,2,3])</span><br><span class="line">&gt;&gt;&gt; data</span><br><span class="line">array([[[[4, 1, 0],</span><br><span class="line">         [4, 3, 0]],</span><br><span class="line">        [[1, 2, 4],</span><br><span class="line">         [2, 2, 3]],</span><br><span class="line">        [[4, 3, 3],</span><br><span class="line">         [4, 2, 3]]],</span><br><span class="line"></span><br><span class="line">       [[[4, 0, 1],</span><br><span class="line">         [1, 1, 1]],</span><br><span class="line">        [[0, 1, 0],</span><br><span class="line">         [0, 4, 1]],</span><br><span class="line">        [[1, 3, 0],</span><br><span class="line">         [0, 3, 0]]],</span><br><span class="line"></span><br><span class="line">       [[[3, 3, 4],</span><br><span class="line">         [0, 1, 0]],</span><br><span class="line">        [[1, 2, 3],</span><br><span class="line">         [4, 0, 4]],</span><br><span class="line">        [[1, 4, 1],</span><br><span class="line">         [1, 3, 2]]],</span><br><span class="line"></span><br><span class="line">       [[[0, 1, 1],</span><br><span class="line">         [2, 4, 3]],</span><br><span class="line">        [[4, 1, 4],</span><br><span class="line">         [1, 4, 1]],</span><br><span class="line">        [[0, 1, 0],</span><br><span class="line">         [2, 4, 3]]]])</span><br></pre></td></tr></table></figure>
+
+<p>当 axis=0 时，numpy 沿着第 0 维的方向进行求和，也就是第一个元素值 = a0000+a1000+a2000+a3000=11, 第二个元素 = a0001+a1001+a2001+a3001=5，同理可得最后的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; data.sum(axis=0)</span><br><span class="line">array([[[11,  5,  6],</span><br><span class="line">        [ 7,  9,  4]],</span><br><span class="line"></span><br><span class="line">       [[ 6,  6, 11],</span><br><span class="line">        [ 7, 10,  9]],</span><br><span class="line"></span><br><span class="line">       [[ 6, 11,  4],</span><br><span class="line">        [ 7, 12,  8]]])</span><br></pre></td></tr></table></figure>
+
+<p>当 axis=3 时，numpy 沿着第 3 维的方向进行求和，也就是第一个元素值 = a0000+a0001+a0002=5, 第二个元素 = a0010+a0011+a0012=7，同理可得最后的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; data.sum(axis=3)</span><br><span class="line">array([[[ 5,  7],</span><br><span class="line">        [ 7,  7],</span><br><span class="line">        [10,  9]],</span><br><span class="line"></span><br><span class="line">       [[ 5,  3],</span><br><span class="line">        [ 1,  5],</span><br><span class="line">        [ 4,  3]],</span><br><span class="line"></span><br><span class="line">       [[10,  1],</span><br><span class="line">        [ 6,  8],</span><br><span class="line">        [ 6,  6]],</span><br><span class="line"></span><br><span class="line">       [[ 2,  9],</span><br><span class="line">        [ 9,  6],</span><br><span class="line">        [ 1,  9]]])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Axis-的应用"><a href="#Axis-的应用" class="headerlink" title="Axis 的应用"></a><strong>Axis 的应用</strong></h2><p>例如现在我们收集了四个同学对苹果、榴莲、西瓜这三种水果的喜爱程度进行打分的数据（总分为 10），每个同学都有三个特征：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; item = np.array([[1,4,8],[2,3,5],[2,5,1],[1,10,7]])</span><br><span class="line">&gt;&gt;&gt; item</span><br><span class="line">array([[1, 4, 8],</span><br><span class="line">       [2, 3, 5],</span><br><span class="line">       [2, 5, 1],</span><br><span class="line">       [1, 10, 7]])</span><br></pre></td></tr></table></figure>
+
+<p>每一行包含了同一个人的三个特征，如果我们想看看哪个同学最喜欢吃水果，那就可以用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; item.sum(axis = 1)</span><br><span class="line">array([13, 10,  8, 18])</span><br></pre></td></tr></table></figure>
+
+<p>可以大概看出来同学 4 最喜欢吃水果。</p>
+<p>如果我们想看看哪种水果最受欢迎，那就可以用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; item.sum(axis = 0)</span><br><span class="line">array([ 6, 22, 21])</span><br></pre></td></tr></table></figure>
+
+<p>可以看出基本是<strong>榴莲</strong>最受欢迎。</p>
+<h2 id="低维度axis理解"><a href="#低维度axis理解" class="headerlink" title="低维度axis理解"></a>低维度axis理解</h2><h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><p>对于一维数组，只有一个轴：</p>
+<ul>
+<li><code>axis=0</code>：这是唯一的轴，代表数组的唯一维度。</li>
+</ul>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p>二维数组（例如矩阵）有两个轴：</p>
+<ul>
+<li><code>axis=0</code>：代表行。对于操作而言，这意味着会==沿着列的方向==进行，即跨越不同的行。</li>
+<li><code>axis=1</code>：代表列。操作将沿着行的方向进行，即跨越不同的列。</li>
+</ul>
+<h3 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h3><p>对于三维数组，有三个轴：</p>
+<ul>
+<li><code>axis=0</code>：可以想象为不同的==”页”==或”深度层”。</li>
+<li><code>axis=1</code>：在给定的页中，沿着”行”的方向。</li>
+<li><code>axis=2</code>：在给定的页中，沿着”列”的方向。</li>
+</ul>
+<p>以三维数组为例，我们可以将其视为一个数据块，这个数据块由多个二维矩阵（页）堆叠而成。每个”页”是一个二维数组，有其自己的行和列。在这种情况下：</p>
+<ul>
+<li><code>axis=0</code> 表示沿着堆叠的方向，或者说是”深度”方向。==操作将跨越不同的页==。</li>
+<li><code>axis=1</code> 表示在每个单独的页中，沿着行的方向。这意味着操作将在每页的所有行上进行，但是在同一页内。</li>
+<li><code>axis=2</code> 表示在每个单独的页中，沿着列的方向。操作将在每页的所有列上进行，但是在同一页内。</li>
+</ul>
+<p>假设我们有一个三维数组 <code>arr</code>，它由 2 个 3x4 的二维数组（页）组成，形状为 <code>(2, 3, 4)</code>。这意味着我们有 2 页，每页 3 行 4 列。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个三维数组，形状为 (2, 3, 4)</span></span><br><span class="line">arr = np.array([[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                 [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                 [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]],</span><br><span class="line">                </span><br><span class="line">                [[<span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>],</span><br><span class="line">                 [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>],</span><br><span class="line">                 [<span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>]]])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>使用 <code>axis=0</code> 对数组进行求和：<code>np.sum(arr, axis=0)</code> 会将两个 3x4 的矩阵对应位置的元素相加，结果是一个 3x4 的矩阵。</li>
+<li>使用 <code>axis=1</code> 对数组进行求和：<code>np.sum(arr, axis=1)</code> 对每个二维数组（页）的所有行进行求和，结果是每页一个行向量，形状变为 <code>(2, 4)</code>。</li>
+<li>使用 <code>axis=2</code> 对数组进行求和：<code>np.sum(arr, axis=2)</code> 对每个二维数组（页）的所有列进行求和，结果是每页一个列向量，形状变为 <code>(2, 3)</code>。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>Numpy</tag>
+      </tags>
+  </entry>
 </search>
