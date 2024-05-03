@@ -1718,4 +1718,33 @@
         <tag>双指针</tag>
       </tags>
   </entry>
+  <entry>
+    <title>翻转单词</title>
+    <url>/2024/05/03/2024%E5%B9%B45%E6%9C%883%E6%97%A5_Algorithm_ReverseWords/</url>
+    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串，逐个翻转字符串中的每个单词。</p>
+<p>示例 1：<br>输入: “the sky is blue”<br>输出: “blue is sky the”</p>
+<p>示例 2：<br>输入: “  hello world!  “<br>输出: “world! hello”<br>解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</p>
+<p>示例 3：<br>输入: “a good   example”<br>输出: “example good a”<br>解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p>
+<h2 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h2><p>这道题的第一个难点是翻转，之前只接触过将字符串从头到尾翻转，但是如何以单词为基本单位进行翻转呢？</p>
+<p>很自然地想到可以用<strong>翻转再翻转</strong>的方式处理，即先把每一个单词翻转，对于 the sky is blue 来说， 翻转成为 eht yks si eulb，然后再整体进行翻转，就得到了 blue is sky the这种形式。其实这种在数组中分块移动的方法非常常用，是一种固定的套路，也被称为左/右旋。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> st = <span class="number">0</span>, ed=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (st &lt; s.<span class="built_in">size</span>()){</span><br><span class="line">	<span class="comment">// 翻转每一个单词</span></span><br><span class="line">	<span class="keyword">while</span> (ed &lt; s.<span class="built_in">length</span>() &amp;&amp; s.<span class="built_in">at</span>(ed) != <span class="string">' '</span>)</span><br><span class="line">		ed++;</span><br><span class="line">	<span class="built_in">reverse</span>(s.<span class="built_in">begin</span>() + st, s.<span class="built_in">begin</span>() + ed);</span><br><span class="line">	<span class="comment">// 略去空格</span></span><br><span class="line">	<span class="keyword">while</span> (ed &lt; s.<span class="built_in">length</span>() &amp;&amp; s[ed]==<span class="string">' '</span>)  ed++;</span><br><span class="line">	st = ed;</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 整体翻转</span></span><br><span class="line"><span class="built_in">reverse</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的操作，就可以得到一个初具雏形的答案了，但是还不够，有下面的问题存在。</p>
+<ol>
+<li>上面的代码只是把所有的字符串重新排布好了，首尾的空格并没有清理掉。</li>
+<li>词与词之间的空格可能有多个的情况需要处理。</li>
+</ol>
+<p>针对上面的情况，我们需要删掉字符串中的首尾空格和句中重复空格，最后得到现在的字符串的子集，所以我们可以用<strong>移除元素</strong>的方法，以<strong>O(n)的时间复杂度，O(1)的空间复杂度</strong>完成这件事情。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">st = <span class="number">0</span>,ed = s.<span class="built_in">length</span>() - <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 除去首尾空格</span></span><br><span class="line"><span class="keyword">while</span> (s[st]==<span class="string">' '</span>)  st++;</span><br><span class="line"><span class="keyword">while</span> (s[ed]==<span class="string">' '</span>)  ed--;</span><br><span class="line"><span class="type">int</span> t = st;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (;st&lt;=ed;st++){</span><br><span class="line">	<span class="comment">// 移除词间重复的空格,经典的在第一个位置不作判断，而是从第二个位置开始，但是这里其实没必要引入t，st &gt; 0就可以了</span></span><br><span class="line">	<span class="comment">// 因为当st == t时s[st] != ' '恒成立（除去字符串本来就是空，那根本不会进行这个判断）</span></span><br><span class="line">	<span class="keyword">if</span> (st &gt; t &amp;&amp; s[st]==<span class="string">' '</span>&amp;&amp;s[st<span class="number">-1</span>]==<span class="string">' '</span>)   <span class="keyword">continue</span>;</span><br><span class="line">	s[j++]=s[st];</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 重新调整字符串大小</span></span><br><span class="line">s.<span class="built_in">resize</span>(j);</span><br></pre></td></tr></table></figure>
+
+<p>我们重新定义一个覆盖指针j，根据满足要求的情况<strong>覆盖式地更新</strong>原字符串即可，这个过程中不会影响st空格的判断，因为<strong>j始终比st慢</strong>。<br>最后j就是新字符串的长度，我们用resize方法更新字符串长度即可。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个题主要考察双指针思想的理解，翻转操作利用的是相向指针，而移除空格，原地覆盖利用的是快慢指针。还有<code>reverse(iter, iter)</code>，<code>str.resize(size)</code>库函数的使用。除此之外还有两批次翻转（左旋/右旋）的思想。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
 </search>
