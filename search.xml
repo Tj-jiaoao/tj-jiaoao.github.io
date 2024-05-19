@@ -1913,4 +1913,52 @@
         <tag>优先队列</tag>
       </tags>
   </entry>
+  <entry>
+    <title>微信读书导出pdf/epub/md/mobi</title>
+    <url>/2024/07/15/2024-7-15-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E5%AF%BC%E5%87%BApdfepubmdmobi/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>书籍对我来说就像良药，总在我伤心难过的时候给我安慰，在我孤独寂寥的时候陪我左右，在我失去前行的动力的时候给我力量。其之于我就像一个家人，我对其敬佩有加，其对我关切备至。之前无意中在Greasyfork中搜索到一个脚本，可以将微信读书中的书籍内容导出成md或者html格式，当时我激动不已，觉得终于可以“书籍自由”了，我可以导出md然后在平板上写写画画，在电脑上记录读书的感想，不必局限于微信读书的条条框框（不过现在觉得其实微信读书社区非常强大，已经无法离开了hh）但是不知为何现在那个插件已经无法实现此功能了，我便怅然有种失落之感，觉得我与这位亲人顿时疏远了不少。为了重拾我的自由，我千方百计在网上寻找，终于找到了GitHub上大佬实现的代码，又经过一个下午的调试，终于成功实现书籍内容导出功能，其间看了许多中文英文的调试指南，又觉得与我今年所培养的debug专业能力非常贴合，于是记录文档如下。</p>
+</blockquote>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>Windows11 联想拯救者 2060Ti</li>
+<li>Python 3.9.8</li>
+<li>Chrome 126.0.6478.127</li>
+<li>gtk3-runtime-3.24.29-2021-04-29</li>
+</ul>
+<h2 id="踩坑经验"><a href="#踩坑经验" class="headerlink" title="踩坑经验"></a>踩坑经验</h2><h3 id="1-安装wereader-exporter"><a href="#1-安装wereader-exporter" class="headerlink" title="1 安装wereader_exporter"></a>1 安装wereader_exporter</h3><p>按照 <a href="https://github.com/drunkdream/weread-exporter">https://github.com/drunkdream/weread-exporter</a> 链接中的教程，安装好所有的依赖库之后执行<code> python -m weread_exporter -b $book_id -o epub -o pdf</code>，结果报错：</p>
+<p>Django：OSError: cannot load library ‘gobject-2.0-0’: error 0x7e.</p>
+<h3 id="2-安装gtk3运行库"><a href="#2-安装gtk3运行库" class="headerlink" title="2 安装gtk3运行库"></a>2 安装gtk3运行库</h3><p>在网上找到了解答 <a href="https://www.cnblogs.com/melloliana/p/16098061.html">https://www.cnblogs.com/melloliana/p/16098061.html</a> ， 于是我按照教程安装了对应的运行时库，配置好环境变量（系统环境变量，位次设的比较高），并在wereader源代码的exporter.py文件下加上了<code>os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")</code>。这下不报上面的gobject错了，程序也可以运行起来，但是运行的时候会显示<code>Fontconfig error: Cannot load default config file</code>错误，紧接着程序崩溃，只能关闭程序。</p>
+<h3 id="3-官网安装weasyPrint"><a href="#3-官网安装weasyPrint" class="headerlink" title="3 官网安装weasyPrint"></a>3 官网安装weasyPrint</h3><p>我尝试了print调试法，锁定了出错的位置在import weasyPrint这句话上，那就是说这个第三方库还是有问题，那么问题在哪呢？我找到官网文档 <a href="https://doc.courtbouillon.org/weasyprint/latest/first_steps.html#missing-library">https://doc.courtbouillon.org/weasyprint/latest/first_steps.html#missing-library</a> ，遵照着教程，将weasyPrint重新安装了一遍，包括MSYS2， mingw-w64-x86_64-pango， 然后pip install，但是上面的问题仍然存在。</p>
+<h3 id="4-卸载Graphviz，解决冲突"><a href="#4-卸载Graphviz，解决冲突" class="headerlink" title="4 卸载Graphviz，解决冲突"></a>4 卸载Graphviz，解决冲突</h3><p>然后我就在网上搜索这个font的问题，找到了最终的解决方案： <a href="https://github.com/Kozea/WeasyPrint/issues/1339">https://github.com/Kozea/WeasyPrint/issues/1339</a> 。问题在于，python的weasyPrint库依赖很多dll动态链接库，其中有一个链接库是fontconfig.dll，安装gtk的时候应该已经安装好了default config了，但是为什么在程序运行的时候还会出现这个问题呢？通过where指令可以返回类似<code>D:\Program Files\Graphviz\bin\fontconfig.dll</code>的结果，但是我们需要gtk的dll才行。所以我们卸载掉Graphviz之后再运行代码，这次就没有问题了。</p>
+<h2 id="思考复盘"><a href="#思考复盘" class="headerlink" title="思考复盘"></a>思考复盘</h2><p>其实问题始终围绕着weasyPrint库展开，动态链接库的配置，python如何寻找到对应的dll，这些都是因为认知模糊才出现的问题。</p>
+<p>在Windows系统中，使用<code>.dll</code>文件（动态链接库）可以通过几种不同的方式将它们集成到你的程序中。以下是一些常见的方法：</p>
+<h4 id="1-动态加载-dll"><a href="#1-动态加载-dll" class="headerlink" title="1. 动态加载 .dll"></a>1. 动态加载 <code>.dll</code></h4><p>在运行时，程序可以使用Windows API函数（如<code>LoadLibrary</code>和<code>GetProcAddress</code>）动态加载和使用<code>.dll</code>文件中的函数。这种方法允许更大的灵活性，因为库可以在程序运行时被加载或卸载。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FunctionType)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">// 加载 DLL</span></span><br><span class="line">    HMODULE hModule = <span class="built_in">LoadLibrary</span>(<span class="built_in">TEXT</span>(<span class="string">"example.dll"</span>));</span><br><span class="line">    <span class="keyword">if</span> (hModule == <span class="literal">NULL</span>) {</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">"加载DLL失败！"</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取函数地址</span></span><br><span class="line">    FunctionType function = (FunctionType)<span class="built_in">GetProcAddress</span>(hModule, <span class="string">"exampleFunction"</span>);</span><br><span class="line">    <span class="keyword">if</span> (function == <span class="literal">NULL</span>) {</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">"获取函数地址失败！"</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">FreeLibrary</span>(hModule);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 调用函数</span></span><br><span class="line">    <span class="built_in">function</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放 DLL</span></span><br><span class="line">    <span class="built_in">FreeLibrary</span>(hModule);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-静态链接-dll"><a href="#2-静态链接-dll" class="headerlink" title="2. 静态链接 .dll"></a>2. 静态链接 <code>.dll</code></h4><p>在编译时，程序可以静态链接到一个导入库（<code>.lib</code>文件），这个库提供了对<code>.dll</code>文件中导出的函数的引用。在链接时，链接器会使用导入库中的信息来解析对<code>.dll</code>文件中函数的调用。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"example.h"</span> <span class="comment">// DLL 导出的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">exampleFunction</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>在构建过程中，你需要将导入库（<code>example.lib</code>）链接到你的程序中：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cl /EHsc example.cpp example.lib</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-配置运行时环境"><a href="#3-配置运行时环境" class="headerlink" title="3. 配置运行时环境"></a>3. 配置运行时环境</h4><p>无论是静态链接还是动态加载，你都需要确保<code>.dll</code>文件在程序运行时可以被找到。常见的方式包括：</p>
+<ul>
+<li>将<code>.dll</code>文件放在与可执行文件相同的目录中。</li>
+<li>将<code>.dll</code>文件路径添加到系统的环境变量<code>PATH</code>中。</li>
+<li>将<code>.dll</code>文件放在系统目录中（如<code>C:\Windows\System32</code>）。</li>
+</ul>
+<h4 id="Python-中使用-dll"><a href="#Python-中使用-dll" class="headerlink" title="Python 中使用 .dll"></a>Python 中使用 <code>.dll</code></h4><p>在Python中，许多第三方库（如WeasyPrint）使用<code>ctypes</code>或<code>cffi</code>库来加载和调用<code>.dll</code>文件中的函数。例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载 DLL</span></span><br><span class="line">example_dll = ctypes.CDLL(<span class="string">"example.dll"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用函数</span></span><br><span class="line">result = example_dll.exampleFunction()</span><br></pre></td></tr></table></figure>
+<h2 id="发些牢骚"><a href="#发些牢骚" class="headerlink" title="发些牢骚"></a>发些牢骚</h2><p>出现上述问题的原因在于，当ctypes调用CDLL函数寻找对应的dll文件时，找到的是Graphviz错误版本的dll，由此才会导致程序崩溃，本质其实是和找CUDA_HOME一个道理，我们既配置了os.add_dll_directory，想让程序去对应的文件夹下寻找dll，但是环境变量已经配置了，而环境变量的优先级又高于library，所以才会报错，掌握了底层原理，排查起来就快了。</p>
+<p>所谓“不患无位，患所以立”，不发愁没有职位，只发愁没有任职的本领，最近身边的人都在实习，越来越多的人都找到实习了，很多时候比较焦虑，觉得是不是自己的能力的问题，但其实我真正应该担心的是有没有和心中想要的职位匹配的本领，前段时间面试了一个AI Research Intern，但是我对大模型并不了解，所以没能得到这个职位，很多人找的实习只是为了让自己有钱拿，有实习经历可以写，但是所找的职位更多的还是拧螺丝的重复工作，或者并不是自己真正想去的公司。</p>
+<p>我一直是个理想主义的“笨人“，我知道是应试教育之下的复习，但我还是力求能通读全书，建立系统性的思维再考试，而不是只针对考点；对于一些“没用”的科目比如美学培养，选修课等，我却觉得非常有趣，于是很认真的学；机器智能方向需要很多数学知识，我便买了Intro to Linear Algebra从头开始看书看视频学习，我其实怀抱的就是能全方面的了解某个领域，然后再加以应用的心，但我现在觉得这样的心态有些不务实，一方面是我在理科学习上天赋欠缺，没有深入的逻辑思维能力，另一方面我并没有掌握关联学习，反馈学习的刻意练习技巧，想一口吃成个胖子，期待着如果能这样的话势必会比别人更优秀，基础更牢，我觉得不然。</p>
+<p>但是这样的学习方式是值得认可的，这样的想法在实用主义的时代必然是有价值的（人总要相信自己所走的路），我坚信世间的许多道理，他们的底层逻辑是互通的，是可以通过深入底层的关联学习触类旁通的，这也是我的初衷所在，我相信有一天当我度过了学习的平台期，量变转为质变之后，我就能更加心安理得地追寻那梦寐以求的自由了。</p>
+]]></content>
+      <categories>
+        <category>踩坑经验</category>
+      </categories>
+      <tags>
+        <tag>踩坑经验</tag>
+      </tags>
+  </entry>
 </search>
