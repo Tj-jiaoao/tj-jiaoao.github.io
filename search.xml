@@ -1992,4 +1992,158 @@
         <tag>影评</tag>
       </tags>
   </entry>
+  <entry>
+    <title>字节实习面经</title>
+    <url>/2024/08/09/%E5%AD%97%E8%8A%82%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>最近在准备保研的机试和笔试题，《认知觉醒》中说，如果要深入地做好某件事，那么就应该：1.有明确的目标；2.极度专注；3.能获得有效的反馈；4.始终在拉伸区练习。笔试和机试范围就是408，机器学习，所以目标很明确，对于408来说就看考研书掌握概念，面试知道怎么答，笔试知道怎么写，机器学习就看课件和西瓜书即可。极度专注的话，我承认放假之后很多时候比较闲散，注意力不是很集中，但是这也可以通过规律去图书馆来改变。这些知识基本上都是之前所学过的，这次复习就相当于是修固一个系统的部件，所以大多数时候是处于拉伸区，学起来不会太痛苦，而且在一整个系统的体系下很方便关联学习，也能提高学习记忆的效率。所以我想要在有效反馈的地方下手，如何能获得有效反馈呢？我认为光靠我自己记忆，刷题是没有用的，可能刷题过了一周又忘了， 首先我需要获得一个持续进行下去的正向反馈，我认为对系统知识的复习和算法题AC就是正向反馈，因为我能实实在在地看到自己的成长，但是还需要一个能够检验我，约束我，鞭策我的负反馈，让我看到自己的差距以及努力的方向的反馈，于是我就想到了实习面试。参加实习面试，一方面可以让我熟悉面试场景和流程，不至于保研面试的时候生疏；另一方面也是检验我计算机基础知识，机器学习知识水平的场合，能够给予我有效的反馈，让我往我不熟悉的地方再努力。最后如果我能得到offer，那么还有💰拿，岂不乐哉？</p>
+</blockquote>
+<h2 id="面试经验"><a href="#面试经验" class="headerlink" title="面试经验"></a>面试经验</h2><p>昨天面试了字节的后端开发岗位，说起来这算是我的第一场技术面试，之前面试过SAP的AI相关岗位，但是在面试中只问了项目，其他的知识一概没问，所以我不把它看成是技术面试。对比起来，字节跳动的面试果然很硬核切，对于技术知识的拷问比较全面，下面总结我的面试过程和经验。</p>
+<p>首先上来说要介绍自己，我没有提前准备自我介绍，于是说了一坨空话（什么终于可以把所学的知识学以致用了啥的）结果被提前打断，说：“好好好，反正你就是想找个实习嘛。”反正我其实也不是找实习嘛，所以倒也没在意他说啥，只想赶紧开始正题，体验一下字节的面试到底如何。</p>
+<p>之后问我在学校里学了啥，我说学了计算机基础知识，数据结构，OS，计算机组成原理，计算机网络。然后问我除了这些，自己下来还学了啥，我就想到了MIT 的那个 Missing semester，说了Git, Linux，然后他就问我git的原理，当时就心想md真是给自己挖坑了，我支支吾吾没回答上来，然后就问Git怎么提交，这种问题我还是会的hh于是我就从Git init讲到Git push的全流程。</p>
+<p>然后问我Linux 内核态和用户态的区别，我回答说内核态可以访问计算机比较底层的硬件，用户态不能，然后内核态的指令涉及很多临界资源，为了实现互斥访问，需要在内核态运行。虽然答的都有道理，但是答的很不全面， 最重要的安全性，稳定性没有明说，还可以答 简化系统设计，资源共享与隔离。然后问我虚拟内存的相关知识，这个我前一天才看，所以说的挺有道理，紧接着又问如果用户程序分配了大于系统内存的空间会怎么样，我说会直接报错或者交换内存（好像也没问题？）</p>
+<p>然后问我熟悉哪种语言，我说C++，然后就问面向对象是什么，我就解释了封装、继承，我没说多态因为我忘了是啥了，然后问我懂不懂虚函数表，我说忘了，确实是不记得虚函数表是啥了，xs学C++的时候我还在学德语呢。然后问我C++的访问控制，Public, Private, Protected, 这个我还是会的。</p>
+<p>之后就让我开始写算法题，第一道题是这个：给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长 子串</strong> 的长度。</p>
+<p><img src="/img/example.png" alt="image-20240809103623815"></p>
+<p>好家伙，我一看就有点懵，之前没做过，有点小慌，之后想到可以用哈希表检验重复之后就好一些了，我总是避免去想那种暴力的算法，但是更好的想法我也没想出来，所以就消耗了很多时间，最后只想到并写下了哈希表的暴力算法，逐个遍历，但是其实可以记录重复的字符位置，遇到重复之后下一次直接从重复字符的下一位开始即可，这个我当时没想到，只能说面试环境确实不利于思考。下来我自己又做了一遍用哈希表的方法。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        unordered_map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; map;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> si = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c: s){</span><br><span class="line">            map[c] = <span class="number">-1</span>;  <span class="comment">// init, set to -1</span></span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span> (i &lt; s.<span class="built_in">length</span>()){</span><br><span class="line">            <span class="keyword">if</span> (map[s[i]] == <span class="number">-1</span>){</span><br><span class="line">                map[s[i]] = i; <span class="comment">// 值取为下标</span></span><br><span class="line">                i++;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">else</span>{</span><br><span class="line">                <span class="comment">// 遇到重复字符</span></span><br><span class="line">                maxLen = <span class="built_in">max</span>(maxLen, i - si);</span><br><span class="line">                si = map[s[i]] + <span class="number">1</span>; <span class="comment">// 重新设置开始下标</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = si;j &lt; s.<span class="built_in">length</span>() &amp;&amp; map[s[j]]!=<span class="number">-1</span>; j++)    map[s[j]] = <span class="number">-1</span>;  <span class="comment">// 如果重新更新之后已经是-1了，那么不需要继续进行了</span></span><br><span class="line">                i = si;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        maxLen = <span class="built_in">max</span>(maxLen, i - si);  <span class="comment">// 还要再求一次最大值</span></span><br><span class="line">        <span class="keyword">return</span> maxLen;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+
+<p>如果不加上对map重复初始化的限制条件<code>map[s[j]]!=-1</code>的话就会报超时的错。</p>
+<p>做完这个题之后又开始问概念了，问我UDP和TCP的区别，真是经典老八股，我没有系统准备，只是凭借印象答了：可靠交付，流量控制与拥塞控制。倒也还行，扯了挺多，不过其实还有很多方面没答全，比如面向连接，使用场景，重传机制。</p>
+<p>再之后就是我没复习到的HTTPS加密，这个我认栽，我忘记加密的内容了，也没复习，记不太清楚了。</p>
+<p>然后问我数据库SQL的group by是什么意思,我不记得group by的具体应用场景，所以就根据这个 group by顾名思义，自创用法，把筛选的数据记录做分组，然后他也没继续问，估计是看出我数据库啥也不会hh</p>
+<p>再之后又让我做题，这次是做用两个栈实现一个队列，这个我倒是熟，做了好多次了，很快就写出了代码，虽然有点小问题被他纠正了，但是也还好。我甚至觉得是他想快点挂掉我，不想让我浪费时间，所以来个简单的。不过我倒也看得开，啥题都可以做，不会就不会了hh只求个体验。</p>
+<p>做完这个题也就快一个小时了，所以就问我有什么问题要问，我当时觉得反正肯定是挂，就不问了，于是就说没问题，就结束了。</p>
+<p>上面就是整个面试过程，第一次技术面试，体验不能说好，因为很多问题都不会，但是确实体会到了大厂面试的感觉，也算是推开大门迈出第一步了。</p>
+<p>人总要从自己和别人的失败里总结教训，下面我系统地梳理一下可以改进的点。</p>
+<p>💡自我介绍提前准备，把自己的优势说清楚，然后引导面试官往自己熟悉的地方问，让面试官有一个“不选其他人而选我”的理由。Git，Vim，Linux都是我可以努力准备然后说出来的点。</p>
+<p>💡对经典八股问题的掌握程度，对于Linux内核态，TCP/UDP，C++面向对象这种基础八股，要能够答得简洁而全面，不能磕磕巴巴，这个我觉得多准备多面试就行了，保研面试想必也会问，还得重点准备一下。</p>
+<p>💡 算法题还是得多刷，其实第一题是哈希表，滑动窗口类型的，如果没有提前做过，现做的话还是挺难的，我觉得这次考我的两个算法题不算难题，只是我在面试环境下还是很难思考，不能很高效地说出想法罢了，保研虽然是机试，但其实也是一样的道理，只有多刷，明确地知道要往哪个方向下手，才能更快更稳地做完题目。</p>
+<p>💡 对于自己不会的至少讲点套话，说自己疏漏了这方面知识的复习，掌握的不是很深入，下来会努力把这部分知识补全。人情世故也是我所欠缺的，不清楚也要说成我会变得清楚的，至少减分减的不要太多。</p>
+<p>暂时就是这些感受，之后应该还会有面试，我认为这种负反馈有助于我精进，引用我母亲的话，“面试能力也是生存能力的重要体现”能够多练练这方面能力对我的未来也很重要。记录如上，路漫漫其修远兮，道阻且长， 继续加油吧！</p>
+<h2 id="回答完整版"><a href="#回答完整版" class="headerlink" title="回答完整版"></a>回答完整版</h2><h3 id="Git的原理是什么？为什么能够做版本控制？"><a href="#Git的原理是什么？为什么能够做版本控制？" class="headerlink" title="Git的原理是什么？为什么能够做版本控制？"></a>Git的原理是什么？为什么能够做版本控制？</h3><p>Git 是一种分布式版本控制系统，用于管理代码和文件的变更历史。它的实现基于快照而不是增量。（<strong>快照</strong>（Snapshot）是指在特定时刻对项目所有文件和目录结构的一个完整记录。这与传统版本控制系统中的“增量”或“差异”记录方式不同。Git的快照机制是其高效管理代码和文件变更历史的核心概念之一。）</p>
+<p>也就是说，每次提交（commit）时，<strong>Git会对当前项目的所有文件和目录结构做一个完整的记录，这个记录称为快照</strong>。但是并不是每次提交都把所有文件的内容完整地存储一遍，而是通过<strong>哈希指针</strong>来引用那些没有变化的文件。因此，只有变更的文件会被新存储，未变化的文件在提交时只会通过指针引用上一次提交的文件版本。这种快照机制给了Git一些很好的特性比如说高效的性能（不用计算增量），安全性和完整性（每个快照都是一个哈希值），易于回滚和恢复。</p>
+<p><img src="/img/snapshot.png" alt="image-20240809111526340"></p>
+<h3 id="Linux内核态和用户态的区别，为什么要设立这两个态呢？"><a href="#Linux内核态和用户态的区别，为什么要设立这两个态呢？" class="headerlink" title="Linux内核态和用户态的区别，为什么要设立这两个态呢？"></a>Linux内核态和用户态的区别，为什么要设立这两个态呢？</h3><p>当执行系统调用，中断程序或者程序处理异常时，操作系统会转换为内核态，内核态能够执行特权指令，操作操作系统内核的代码，包括设备驱动程序、进程调度、内存管理、文件系统等核心组件，另外可以访问内存地址，直接操作硬件资源。（执行特权操作，访问硬件资源）用户态主要运行用户程序代码，具有较低的权限，只能访问有限的内存空间。</p>
+<p>划分这两种运行模式的原因在于：</p>
+<p><strong>可以提高操作系统的安全性</strong>， 不让用户程序随意滥用系统资源，防止恶意代码对系统造成破坏。</p>
+<p><strong>可以提升系统的稳定性</strong>。用户态与内核态的分离确保了用户程序的错误不会直接影响操作系统的核心功能。如果用户程序出现错误，那么将会由内核态进行异常处理，不会影响到其他应用程序的正常执行，保证了系统的稳定性。</p>
+<p><strong>可以简化系统设计</strong>，通过这种分离，内核态的代码可以专注于处理低级别的系统操作，而用户态则专注于处理应用程序逻辑。开发者可以无需关心复杂的硬件问题，而直接通过调用API来实现各种功能。</p>
+<p><strong>可以更好实现资源共享和隔离</strong>，通过用户态和内核态的分离，操作系统可以实现进程之间的隔离，每个进程只访问自己的资源，无法干涉其他进程。对于需要共享资源的进程，统一由内核态管理，确保资源的同步和一致性。</p>
+<h3 id="虚拟内存是什么？"><a href="#虚拟内存是什么？" class="headerlink" title="虚拟内存是什么？"></a>虚拟内存是什么？</h3><p>虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。为了更好的管理内存，操作系统将内存抽象成地址空间，每个程序有自己的地址空间，这个地址空间又被分成很多个页面，页面被映射到物理内存中，页面映射不需要映射到连续的地址空间，也不需要每一页都有对应的物理地址。当程序引用到不在物理内存中的页时，硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。这使得有限的内存运行大程序成为可能。</p>
+<p>物理内存就像缓存，当程序引用了不在物理内存中的页时，物理内存“不命中”，于是缺页中断，请求调页，从磁盘里把对应的页掉进物理内存里，但是如果此时物理内存如果已经满了的话就要页面置换了。</p>
+<h3 id="malloc超过物理内存的空间"><a href="#malloc超过物理内存的空间" class="headerlink" title="malloc超过物理内存的空间"></a>malloc超过物理内存的空间</h3><p>当你使用 <code>malloc</code> 在 C 或 C++ 中请求分配大于系统实际可用内存的空间时，会出现以下几种情况，具体结果取决于操作系统和内存管理机制：</p>
+<h4 id="1-内存分配失败（返回-NULL）"><a href="#1-内存分配失败（返回-NULL）" class="headerlink" title="1. 内存分配失败（返回 NULL）"></a>1. <strong>内存分配失败（返回 <code>NULL</code>）</strong></h4><ul>
+<li><strong>行为</strong>：在大多数情况下，如果 <code>malloc</code> 请求的内存超过了系统实际可用的内存（包括物理内存和交换空间），<code>malloc</code> 会失败，并返回 <code>NULL</code> 指针。</li>
+<li><strong>后果</strong>：程序应检查 <code>malloc</code> 的返回值。如果返回 <code>NULL</code>，表示内存分配失败，程序可以选择处理这种情况，例如释放其他资源、报告错误或退出程序。</li>
+</ul>
+   <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *ptr = <span class="built_in">malloc</span>(very_large_size);</span><br><span class="line"><span class="keyword">if</span> (ptr == <span class="literal">NULL</span>) {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Memory allocation failed!\n"</span>);</span><br><span class="line">    <span class="comment">// Handle the error, possibly exit the program</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-操作系统的过度分配（Overcommit）"><a href="#2-操作系统的过度分配（Overcommit）" class="headerlink" title="2. 操作系统的过度分配（Overcommit）"></a>2. <strong>操作系统的过度分配（Overcommit）</strong></h4><ul>
+<li><p><strong>行为</strong>：在某些操作系统（如Linux）中，内存分配可能会“成功”，即 <code>malloc</code> 返回了一个非 <code>NULL</code> 的指针，尽管请求的内存实际上超出了系统的可用内存。这是因为操作系统使用了一种称为“过度分配”（overcommit）的策略，在实际使用（如访问）这块内存之前不会真正分配物理内存。</p>
+</li>
+<li><p><strong>后果</strong>：当你实际尝试使用这块超出系统内存的区域时（即访问这个内存区域），系统可能会遇到内存不足的情况。这时操作系统可能会触发<code>OOM Killer</code>（Out-Of-Memory Killer）来终止某些进程，通常会选择终止当前请求大内存的进程，以释放内存空间。</p>
+</li>
+<li><p><strong>风险</strong>：虽然 <code>malloc</code> 似乎成功了，但实际使用这些内存时程序可能会崩溃或被操作系统强制终止。因此，即使 <code>malloc</code> 成功，分配非常大的内存时，仍应谨慎处理并监控内存使用。</p>
+</li>
+</ul>
+<h4 id="3-虚拟内存的使用"><a href="#3-虚拟内存的使用" class="headerlink" title="3. 虚拟内存的使用"></a>3. <strong>虚拟内存的使用</strong></h4><ul>
+<li><strong>行为</strong>：在现代操作系统中，虚拟内存管理允许程序请求的内存比物理内存大得多。虚拟内存由物理内存和交换空间（swap）组成。当请求的内存超过物理内存时，操作系统会尝试将一些内存页调入交换空间，尽量满足分配请求。</li>
+<li><strong>后果</strong>：即使 <code>malloc</code> 成功，使用大量虚拟内存会导致系统性能严重下降（即“抖动”现象），因为频繁的页面调度（page swapping）会显著增加磁盘I/O，减慢整个系统的响应速度。</li>
+</ul>
+<h4 id="4-内存不足导致的异常终止"><a href="#4-内存不足导致的异常终止" class="headerlink" title="4. 内存不足导致的异常终止"></a>4. <strong>内存不足导致的异常终止</strong></h4><ul>
+<li><strong>行为</strong>：在某些情况下，如果程序继续访问过多的内存，系统可能会无法分配足够的物理内存或交换空间。操作系统可能无法继续为该进程分配更多内存，最终导致程序异常终止。</li>
+<li><strong>后果</strong>：这种情况通常伴随着系统日志中的<code>OOM</code>信息，程序会收到<code>SIGKILL</code>或<code>SIGSEGV</code>信号而终止。</li>
+</ul>
+<h3 id="C-问题"><a href="#C-问题" class="headerlink" title="C++ 问题"></a>C++ 问题</h3><p>C++面向对象特性： <a href="https://blog.csdn.net/cui_yonghua/article/details/131376206">https://blog.csdn.net/cui_yonghua/article/details/131376206</a></p>
+<p>C++虚函数表： <a href="https://blog.csdn.net/Primeprime/article/details/80776625">https://blog.csdn.net/Primeprime/article/details/80776625</a></p>
+<p>（GPT）C++中的多态是面向对象编程（OOP）的一个重要特性，它允许相同的接口以不同的方式执行，具体表现为“<strong>一个接口，多种实现</strong>”。多态主要通过<strong>函数重载</strong>、<strong>运算符重载</strong>和<strong>虚函数</strong>实现。以下是C++多态的简要介绍：</p>
+<h4 id="1-静态多态（编译时多态）"><a href="#1-静态多态（编译时多态）" class="headerlink" title="1. 静态多态（编译时多态）"></a>1. <strong>静态多态（编译时多态）</strong></h4><p>静态多态是在编译时决定的，它包括<strong>函数重载</strong>和<strong>运算符重载</strong>。</p>
+<ul>
+<li><p><strong>函数重载</strong>：</p>
+<ul>
+<li>同一作用域中可以有多个同名函数，但这些函数的参数列表（参数个数或类型）必须不同。编译器在编译时根据函数调用的参数类型和数量来确定调用哪个函数。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> i)</span> </span>{</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"Integer: "</span> &lt;&lt; i &lt;&lt; std::endl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">double</span> d)</span> </span>{</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"Double: "</span> &lt;&lt; d &lt;&lt; std::endl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(std::string s)</span> </span>{</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"String: "</span> &lt;&lt; s &lt;&lt; std::endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>运算符重载</strong>：</p>
+<ul>
+<li>C++允许开发者为自定义类型重载运算符，使得这些类型的实例可以使用类似于内置类型的运算符（如<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>）来操作。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">double</span> real, imag;</span><br><span class="line">    <span class="built_in">Complex</span>(<span class="type">double</span> r, <span class="type">double</span> i) : <span class="built_in">real</span>(r), <span class="built_in">imag</span>(i) {}</span><br><span class="line"></span><br><span class="line">    Complex <span class="keyword">operator</span> + (<span class="type">const</span> Complex &amp;c) {</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Complex</span>(real + c.real, imag + c.imag);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-动态多态（运行时多态）"><a href="#2-动态多态（运行时多态）" class="headerlink" title="2. 动态多态（运行时多态）"></a>2. <strong>动态多态（运行时多态）</strong></h4><p>动态多态是在运行时通过<strong>虚函数</strong>和<strong>继承</strong>实现的，它是C++多态的核心，也是OOP的一个关键特性。</p>
+<ul>
+<li><p><strong>虚函数</strong>：</p>
+<ul>
+<li>当基类中的函数被声明为<code>virtual</code>时，该函数可以在派生类中被重写。当基类的指针或引用指向派生类对象时，通过该指针或引用调用虚函数时，会根据实际对象的类型调用派生类的版本，而不是基类的版本。这种机制称为“动态绑定”或“后期绑定”。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">show</span><span class="params">()</span> </span>{</span><br><span class="line">        std::cout &lt;&lt; <span class="string">"Base class show function"</span> &lt;&lt; std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">show</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout &lt;&lt; <span class="string">"Derived class show function"</span> &lt;&lt; std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    Base *b = <span class="keyword">new</span> <span class="built_in">Derived</span>();</span><br><span class="line">    b-&gt;<span class="built_in">show</span>();  <span class="comment">// 输出: Derived class show function</span></span><br><span class="line">    <span class="keyword">delete</span> b;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>纯虚函数和抽象类</strong>：</p>
+<ul>
+<li>如果一个类中包含至少一个纯虚函数（即<code>virtual void func() = 0;</code>），那么这个类就是抽象类，不能直接实例化。派生类必须实现所有的纯虚函数，才能实例化。抽象类通常用于定义接口，派生类用于实现这些接口。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Shape</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">draw</span><span class="params">()</span> </span>= <span class="number">0</span>; <span class="comment">// 纯虚函数</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span> : <span class="keyword">public</span> Shape {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout &lt;&lt; <span class="string">"Drawing Circle"</span> &lt;&lt; std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-多态的应用"><a href="#3-多态的应用" class="headerlink" title="3. 多态的应用"></a>3. <strong>多态的应用</strong></h4><p>多态性使得代码具有更好的扩展性和灵活性。通过多态，程序可以处理不同类型的对象，而无需知道这些对象的具体类型。例如，可以通过一个基类指针数组存储不同类型的派生类对象，并通过遍历数组调用它们的虚函数。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><strong>静态多态</strong>：在编译时确定，通过函数重载和运算符重载实现。</li>
+<li><strong>动态多态</strong>：在运行时确定，通过虚函数和继承实现，是C++多态的核心。</li>
+</ul>
+<p>多态是C++中实现代码复用和灵活设计的强大工具，特别是在使用继承和面向对象编程时，动态多态使得代码能够在运行时根据实际对象的类型表现出不同的行为。</p>
+<h3 id="TCP-x2F-UDP"><a href="#TCP-x2F-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h3><p>UDP（User Datagram Protocol）和TCP（Transmission Control Protocol）是互联网协议栈中两种最常用的传输层协议。它们在数据传输方式、可靠性、连接性、以及使用场景等方面有显著的区别。以下是UDP和TCP的主要区别：</p>
+<h4 id="1-连接性"><a href="#1-连接性" class="headerlink" title="1. 连接性"></a>1. <strong>连接性</strong></h4><ul>
+<li><strong>TCP</strong>：面向连接的协议。在传输数据之前，TCP需要建立一个连接，这个过程称为“三次握手”（Three-way Handshake）。三次握手确保双方都准备好进行通信，并且可以通过确认号和序列号来管理数据传输的顺序和完整性。</li>
+<li><strong>UDP</strong>：无连接的协议。UDP在传输数据之前不需要建立连接，数据直接通过数据报（datagram）的形式发送。这意味着发送方不会等待接收方的确认，也没有会话管理的概念。</li>
+</ul>
+<h4 id="2-可靠性"><a href="#2-可靠性" class="headerlink" title="2. 可靠性"></a>2. <strong>可靠性</strong></h4><ul>
+<li><strong>TCP</strong>：提供可靠的数据传输。TCP通过确认（ACK）、序列号、重传机制和流量控制等手段，确保数据按顺序、完整地到达接收方。如果数据丢失或出现错误，TCP会自动进行重传。</li>
+<li><strong>UDP</strong>：不保证数据的可靠性。UDP不提供数据重传、确认、或排序功能，数据包可能会丢失、重复或乱序到达。UDP的简单性使其效率更高，但可靠性较低。</li>
+</ul>
+<h4 id="3-流量控制与拥塞控制"><a href="#3-流量控制与拥塞控制" class="headerlink" title="3. 流量控制与拥塞控制"></a>3. <strong>流量控制与拥塞控制</strong></h4><ul>
+<li><strong>TCP</strong>：支持流量控制和拥塞控制。TCP使用滑动窗口机制来控制数据流的传输速度，防止网络拥塞，并确保接收方不会被数据流淹没。TCP会动态调整传输速率以适应网络状况。</li>
+<li><strong>UDP</strong>：不提供流量控制和拥塞控制。UDP的数据传输速率完全取决于发送方，网络拥塞或接收方的处理能力不足可能会导致数据丢失。</li>
+</ul>
+<h4 id="4-数据传输方式"><a href="#4-数据传输方式" class="headerlink" title="4. 数据传输方式"></a>4. <strong>数据传输方式</strong></h4><ul>
+<li><strong>TCP</strong>：面向字节流的协议。数据被分成一个个字节流，这些字节流通过TCP连接可靠传输，接收方会按顺序接收并重组这些字节流。</li>
+<li><strong>UDP</strong>：面向报文的协议。数据以独立的报文段（datagram）形式发送，每个报文段是一个独立的包，接收方以报文段的形式接收数据，报文段之间没有顺序关系。</li>
+</ul>
+<h4 id="5-开销与性能"><a href="#5-开销与性能" class="headerlink" title="5. 开销与性能"></a>5. <strong>开销与性能</strong></h4><ul>
+<li><strong>TCP</strong>：由于TCP需要建立连接、管理会话、重传丢失数据以及执行流量控制等，因此TCP的头部信息较大，且会有更多的处理开销。这些特性使得TCP更加可靠，但在某些场景下，可能会带来较大的延迟和带宽消耗。</li>
+<li><strong>UDP</strong>：UDP头部信息小，处理开销低，因为它不提供连接建立、会话管理、数据重传等功能。因此，UDP适合需要快速传输、低延迟的数据传输场景。</li>
+</ul>
+<h4 id="6-使用场景"><a href="#6-使用场景" class="headerlink" title="6. 使用场景"></a>6. <strong>使用场景</strong></h4><ul>
+<li><strong>TCP</strong>：适用于需要高可靠性的数据传输场景，如网页浏览（HTTP/HTTPS）、文件传输（FTP）、电子邮件（SMTP）、远程登录（SSH）等。TCP的可靠性和顺序性确保了数据在传输过程中不会出现错误。</li>
+<li><strong>UDP</strong>：适用于对传输速度和实时性要求较高，但对可靠性要求较低的场景，如视频流媒体传输（如YouTube、Netflix）、在线游戏、实时语音或视频通信（如VoIP、Zoom）、DNS查询等。UDP的低延迟特性使其非常适合这些实时应用。</li>
+</ul>
+<h4 id="7-头部结构"><a href="#7-头部结构" class="headerlink" title="7. 头部结构"></a>7. <strong>头部结构</strong></h4><ul>
+<li><strong>TCP头部</strong>：<ul>
+<li>TCP头部较为复杂，至少包含20字节的固定部分，包括源端口、目标端口、序列号、确认号、标志位（如SYN、ACK、FIN等）、窗口大小、校验和等。额外的选项部分可以进一步增加头部的长度。</li>
+</ul>
+</li>
+<li><strong>UDP头部</strong>：<ul>
+<li>UDP头部简单，只有8字节，包括源端口、目标端口、长度和校验和字段。由于头部信息较少，UDP的传输效率较高。</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-重传机制"><a href="#8-重传机制" class="headerlink" title="8. 重传机制"></a>8. <strong>重传机制</strong></h4><ul>
+<li><strong>TCP</strong>：如果接收方未在特定时间内收到数据或ACK确认，则发送方会自动重传丢失的数据段。这种机制确保了数据传输的完整性和正确性。</li>
+<li><strong>UDP</strong>：不提供自动重传机制。如果数据包丢失，发送方不会重传，这意味着应用程序需要自行处理丢失的数据包。</li>
+</ul>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><strong>TCP</strong>：面向连接的、可靠的、按序传输的协议，适用于需要高可靠性和数据完整性的场景，但开销较大，传输速度相对较慢。</li>
+<li><strong>UDP</strong>：无连接的、不可靠的、无需按序的协议，适用于对实时性要求高、容忍一定数据丢失的场景，具有较低的开销和更高的传输速度。</li>
+</ul>
+<h3 id="HTTP-x2F-HTTPS问题："><a href="#HTTP-x2F-HTTPS问题：" class="headerlink" title="HTTP/HTTPS问题："></a>HTTP/HTTPS问题：</h3><p><a href="https://www.cyc2018.xyz/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/HTTP.html#%E4%B8%80-%E3%80%81%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">https://www.cyc2018.xyz/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/HTTP.html#%E4%B8%80-%E3%80%81%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5</a></p>
+<h3 id="数据库Group-By"><a href="#数据库Group-By" class="headerlink" title="数据库Group By"></a>数据库Group By</h3><p><a href="https://blog.csdn.net/weixin_45188218/article/details/137637633">https://blog.csdn.net/weixin_45188218/article/details/137637633</a></p>
+<p>保研真的会问HTTPS和数据库问题嘛？存疑，我现在暂时没有详细对这方面复习，如果需要的话再看。。</p>
+]]></content>
+      <categories>
+        <category>面经</category>
+      </categories>
+      <tags>
+        <tag>面经</tag>
+      </tags>
+  </entry>
 </search>
