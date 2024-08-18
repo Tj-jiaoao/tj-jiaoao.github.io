@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Unity测开实习面经（已过） | Hello There</title><meta name="author" content="Jiao Ao"><meta name="copyright" content="Jiao Ao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="A bit of Madness is Key!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity测开实习面经（已过）">
+<meta property="og:url" content="http://example.com/2024/08/18/Unity%E6%B5%8B%E5%BC%80%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F%EF%BC%88%E5%B7%B2%E8%BF%87%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hello There">
+<meta property="og:description" content="A bit of Madness is Key!">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/unity.png">
+<meta property="article:published_time" content="2024-08-18T07:54:00.000Z">
+<meta property="article:modified_time" content="2024-08-18T07:57:23.072Z">
+<meta property="article:author" content="Jiao Ao">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/unity.png"><link rel="shortcut icon" href="/img/ja.jpeg"><link rel="canonical" href="http://example.com/2024/08/18/Unity%E6%B5%8B%E5%BC%80%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F%EF%BC%88%E5%B7%B2%E8%BF%87%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Unity测开实习面经（已过）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-18 15:57:23'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ja1.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> Book</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/unity.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Hello There"><span class="site-name">Hello There</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> Book</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Unity测开实习面经（已过）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-18T07:54:00.000Z" title="发表于 2024-08-18 15:54:00">2024-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-18T07:57:23.072Z" title="更新于 2024-08-18 15:57:23">2024-08-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Unity测开实习面经（已过）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>有了上次字节面试的失败经验，这次面试Unity便从容了许多，保研复习的这段时间，虽每日勤勤耕耘，但内心颇有不安，一是为身边的同学都找到了实习而焦虑，怀疑自己笨，学不会东西，学了容易忘等等，虽然有论语中“不患无位，患所以立”的言语鼓舞，但始终只是尽力维持内心的一个平衡状态，给我精神上的安慰而已；二是预推免日迫近，担心自己的各方面能力不如别人，预推免名额又很少。这种情况下，我难免产生了自我怀疑，我所决心要走的路，真的能换来我期望的结果吗？我的努力，真的配得上我的梦想吗？我一直在强调的成长，会不会只是我自我欺骗的一种方式，让我只局限于规划的自我感动里，抓不住时代的机遇呢？经过昨天的现场面试，并基本当场给offer，我心里憋着的气一下子就顺了，畅然舒怀之感贯通全身，好像我之前的所有努力，所有痛苦都make sense了，我的努力是有价值的，我是在不断成长的，我不比别人差，我能靠我的努力取得我想要的结果，我能靠我的努力换来我想要的生活，我相信这次的经历能让我以更加自信的姿态去准备保研，规划未来。</p>
+</blockquote>
+<p>上次面试字节的时候刚开始做动规的算法题，虽然没考到动规，但是由于前面的滑动窗口，数组链表已经忘记很多了，所以面试表现不是很好。一周来我基本上每天刷5-10道动规，对背包问题，打家劫舍问题有了比较深入的了解，刷完动规之后我也会专门以我的方式总结这些问题，当我刚开始刷买卖股票问题时，Unity就通知面试了，结果考的算法题还真就是买卖股票，但是我其实只看过最基础版本的动规，甚至没编过代码，所以当面试官说出这道题的时候，一方面我庆幸是刚看过的题，还有些印象，另一方面我又很悔恨，为什么当初没有刷完这个主题再来面试，搞得现在我只知道dp数组要怎么创建，但完全不知道有冷冻期的股票要如何状态转移和更新，所以就只能现场推了。</p>
+<h2 id="第一轮面试"><a href="#第一轮面试" class="headerlink" title="第一轮面试"></a>第一轮面试</h2><p>面试分为两轮，耗时大概两个小时（我做题比较慢，正常时间大概是一个半小时）第一轮是技术面试，面试官上来先让我做了自我介绍，因为是面试测开岗，所以我就比较偏重介绍软件工程和软件测试课程项目的经历，面试官也围绕着我引导的方向走，问了我一些软件工程和软件测试的问题。问了我们的项目有没有用自动化测试工具，还是说要手动去测试，我说我们的集成测试是可以点击一个按钮自动去测试所有测试用例的，第一个面试官对这点倒是没继续延伸，然后因为我是项目组长，就问我团队协作的问题，如果有问题我不会的我是如何解决的，我说了我们是敏捷开发，会有一个例会，经常沟通进度，然后用Jira做项目管理，如果有技术问题，那么我们会互相交流，互相学习；如果是分工和课程要求的问题，我会求助其他组的组长或者老师，我确实是这么做的，她听下来觉得也挺满意，就没继续问了，总之对于项目经历, 由于我在自我介绍的时候就已经挖好坑了，基本是对答入流。</p>
+<p>之后就开始做题环节，就是上面说的买卖股票系列，我只看了最基础的，想着这最基础的用贪心不比动规方便多了，动规方法我也只看了个大概，面试官还很nice地说，如果你没做过，我们可以换一道，但是毕竟我是看过一点了，换一道可能还更难或者我不了解了，索性就硬着头皮推吧。</p>
+<p>她上来直接说了有冷冻期，但是我为了展示我对于这个系列的题目的了解和认识，还是从最基本的给她推起，希望能 buy me some time，来思考冷冻期应该怎么做。正好借这篇面经把这个系列的题解写了吧。</p>
+<h3 id="买卖股票-一次购买"><a href="#买卖股票-一次购买" class="headerlink" title="买卖股票 - 一次购买"></a>买卖股票 - 一次购买</h3><p>买卖股票问题的基础就是给定一个vector数组，每个数字都是当天股票的价格，可以以当天的价格买入或者卖出，对于不同的买入卖出限制，求出能取得的最大利润。</p>
+<p>最简单的一种情况是：只能买入一次，卖出一次。这种情形很好用贪心法解决，只要找到最低点，最高点，在最低点买入，最高点卖出就好了，一次遍历就可以实现。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 贪心</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>{</span><br><span class="line">    <span class="type">int</span> minVal = INT_MAX;</span><br><span class="line">    <span class="type">int</span> maxProfit = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        minVal = <span class="built_in">min</span>(minVal, prices[i]);</span><br><span class="line">        maxProfit = <span class="built_in">max</span>(maxProfit, prices[i] - minVal);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> maxProfit;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>只需要设置两个变量，minVal和maxProfit即可求出来了。</p>
+<p>如果用动态规划方法的话，需要理解：对于某一天结束的时间点来说，状态无非两种：持有股票和不持有股票，这两种状态分别都可以从前一天的持有或不持有转移过来，所以我们可以为每一天设置一个二维的数组，存放持有或者不持有股票，对应的最大利润，最后输出最后一天的不持有股票获取的利润即可。</p>
+<p>至于dp数组的递推，第一列的含义是某一天结束后状态是持有股票所付出的最少钱，显然状态更新的过程就是贪心地找最低点的过程，第二列是当天结束之后状态为不持有股票赚得的最多利润，这一过程其实就是在确实遍历过程中的maxProfit</p>
+<p><img src="/img/stock1.jpeg" alt="IMG_CAC3D22FDBB3-1"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DP</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span></span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(prices.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span>,<span class="number">0</span>));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-1</span> * prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">0</span>], <span class="number">-1</span> * prices[i]);</span><br><span class="line">        dp[i][<span class="number">1</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">1</span>], dp[i<span class="number">-1</span>][<span class="number">0</span>] + prices[i]);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> dp[prices.<span class="built_in">size</span>() - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="买卖股票-无限制购买"><a href="#买卖股票-无限制购买" class="headerlink" title="买卖股票 - 无限制购买"></a>买卖股票 - 无限制购买</h3><p>接下来难度升级，不限制买入卖出次数，此时用贪心算法也很简单粗暴，直接把所有能赚钱的上升阶段都赚到手，就是最大利润了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无数次购买，贪心</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>{</span><br><span class="line">    <span class="type">int</span> profit = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; prices.<span class="built_in">size</span>() - <span class="number">1</span>){  <span class="comment">// 当i == prices.size() - 1的时候，最后一个元素已经处理完毕，可以退出循环</span></span><br><span class="line">        <span class="keyword">while</span>(i &lt; prices.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; prices[i+<span class="number">1</span>] &lt;= prices[i]) i++;</span><br><span class="line">        <span class="type">int</span> low = prices[i];</span><br><span class="line">        <span class="keyword">while</span> (i &lt; prices.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; prices[i+<span class="number">1</span>] &gt;= prices[i]) i++;</span><br><span class="line">        <span class="type">int</span> high = prices[i];</span><br><span class="line">        profit += high - low;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> profit;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>如果用动态规划，和之前的方法的区别最大的一点就是：如果某一天结束后的状态是持有股票，而且这个状态是买入来的话（即，前一天不持有），因为能多次买入，所以我在更新第一列的时候，可以无数次地考虑从不持有到持有的过程, 所以状态转移公式变为：</p>
+<p><img src="/img/stock3.jpeg" alt="IMG_D8DEBDFCAA75-1"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无数次购买，DP</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span></span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(prices.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span>,<span class="number">0</span>));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-1</span> * prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>] - prices[i]);</span><br><span class="line">        dp[i][<span class="number">1</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">0</span>] + prices[i], dp[i<span class="number">-1</span>][<span class="number">1</span>]);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> dp[prices.<span class="built_in">size</span>() - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="买卖股票-两次购买"><a href="#买卖股票-两次购买" class="headerlink" title="买卖股票 - 两次购买"></a>买卖股票 - 两次购买</h3><p>如果限制只能买入两次股票怎么办呢？沿用当前的数组肯定不行，因为没法控制买入多少次，所以我们需要加状态，对于某一天结束这个时间点，可能是 没有买入任何股票，买入了第一支股票并持有但还没买第二支，卖出了第一支股票但还没买第二支，买入了第二支股票并持有，卖出了第二支股票这五种状态，所以对于每一个时间点都设置一个五维的数组。由于第一个状态只能由第一个状态转移而来，其值一直是0，所以我们可以只设置一个4维数组即可。</p>
+<p><img src="/img/stock4.jpeg" alt="IMG_D54A3BB34AEA-1"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两次购买，DP</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span></span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(prices.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">4</span>,<span class="number">0</span>));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = dp[<span class="number">0</span>][<span class="number">2</span>] = <span class="number">-1</span> * prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="built_in">max</span>(<span class="number">-1</span> * prices[i], dp[i<span class="number">-1</span>][<span class="number">0</span>]);</span><br><span class="line">        dp[i][<span class="number">1</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">1</span>], dp[i<span class="number">-1</span>][<span class="number">0</span>] + prices[i]);</span><br><span class="line">        dp[i][<span class="number">2</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">2</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>] - prices[i]);</span><br><span class="line">        dp[i][<span class="number">3</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">3</span>], dp[i<span class="number">-1</span>][<span class="number">2</span>] + prices[i]);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> dp[prices.<span class="built_in">size</span>() - <span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="买卖股票-k次购买"><a href="#买卖股票-k次购买" class="headerlink" title="买卖股票 - k次购买"></a>买卖股票 - k次购买</h3><p>与上面的两次购买同理，只需要扩展dp数组即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfitIVDP</span><span class="params">(<span class="type">int</span> k, vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(prices.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span> * k + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) dp[<span class="number">0</span>][<span class="number">2</span> * i + <span class="number">1</span>] = <span class="number">-1</span> * prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; k; j++){</span><br><span class="line">            dp[i][<span class="number">2</span> * j + <span class="number">1</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">2</span>*j+<span class="number">1</span>], dp[i<span class="number">-1</span>][<span class="number">2</span>*j] <span class="number">-1</span> * prices[i]);</span><br><span class="line">            dp[i][<span class="number">2</span> * j + <span class="number">2</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">2</span>*j+<span class="number">2</span>], dp[i<span class="number">-1</span>][<span class="number">2</span>*j+<span class="number">1</span>] + prices[i]);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> dp[prices.<span class="built_in">size</span>() - <span class="number">1</span>][<span class="number">2</span> * k];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>由代码我们可以看出，加上第一列的不操作其实是简化了循环中的代码量，让我们不用再考虑第一次买入时的特殊情况。</p>
+<p>从这里我们已经可以看出，为什么最开始的只能买一次和无数次，设置的两个状态为持有和不持有，当k -&gt; 无穷，<strong>每一次买入都可以考虑把上一轮卖出的重新买入，可以把所有的买入列和卖出列合并，状态变为： 某一天结束以后是第n次买入且持有但还没买第n+1次的·状态（n不用管，只需取最大的利润值）</strong>，既然n不用管，那就是持有的状态，同理卖出合并之后就是不持有的状态，这样就统一理论了。</p>
+<h3 id="买卖股票-含冷冻期"><a href="#买卖股票-含冷冻期" class="headerlink" title="买卖股票 - 含冷冻期"></a>买卖股票 - 含冷冻期</h3><p>如果不限制买入卖出的次数，但是如果卖出之后的紧接着一天股票会进入冷冻期不能买入，这个时候可以获得的最大利润是多少呢？</p>
+<p>面试的时候考察我的就是这题，现在想来这道题其实挺难的，虽然说不用分第几次买入卖出，但是卖出的下一天是冷冻期这个概念却不好划分状态，当时我和面试官说完最基本的 持有股票和不持有股票两种状态之后，面试官又提示我说，可以把不持有股票继续划分一下，不持有股票且处于冷冻期，不持有股票且不处于冷冻期，我后来按照这个划分推出来了状态转移公式，解释了一遍，自己编程实现，然后设计了一组测试用例现场给面试官说之后，问题基本上解决了。</p>
+<p>但是现在回想起来，面试的时候我其实没有做全对，而且刚开始想的时候，除了上面三种状态，还需要添加一种状态，即在当天结束的时候，是不持有股票且卖出的状态，因为处不处于冷冻期是卖出这个动作决定的，所以加上这个状态之后，状态转换就很方便了。</p>
+<p><img src="/img/stock2.jpeg" alt="截屏 2024-08-18 11.44.04"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 含冷冻期</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfitCool</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span></span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(prices.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">4</span>,<span class="number">0</span>));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-1</span> * prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">3</span>] - prices[i]);</span><br><span class="line">        dp[i][<span class="number">1</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">0</span>] + prices[i], dp[i<span class="number">-1</span>][<span class="number">1</span>]);</span><br><span class="line">        dp[i][<span class="number">2</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">2</span>], dp[i<span class="number">-1</span>][<span class="number">3</span>]);</span><br><span class="line">        dp[i][<span class="number">3</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">3</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>]);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(dp[prices.<span class="built_in">size</span>()<span class="number">-1</span>][<span class="number">1</span>], dp[prices.<span class="built_in">size</span>() - <span class="number">1</span>][<span class="number">3</span>]);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="买卖股票-含手续费"><a href="#买卖股票-含手续费" class="headerlink" title="买卖股票 - 含手续费"></a>买卖股票 - 含手续费</h3><p>这种变体相对简单，只要在每次卖出的时候减去手续费fee，更新dp数组即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfitFee</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices, <span class="type">int</span> fee)</span> </span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(prices.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span>, <span class="number">0</span>));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-1</span> * prices[<span class="number">0</span>] ;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); i++){</span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>] - prices[i]);</span><br><span class="line">        dp[i][<span class="number">1</span>] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="number">1</span>], dp[i<span class="number">-1</span>][<span class="number">0</span>] + prices[i] - fee);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> dp[prices.<span class="built_in">size</span>() <span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>我做含有冷冻期的题花了挺长时间，面试官也没继续问了，就问我还有没有其他问题，根据我的经验，这一环节必须要找点东西问，以此来表达对职位的热情以及兴趣，于是我就询问了一些关于之后做的岗位的具体工作什么的，由于一面只是一个技术工程师，所以就也没有说很多，只是说有很多细分的方向可以做，说接下来是我们的leader面你，他对每个工作方向都懂，然后就进入下一轮面试了。</p>
+<h3 id="第二轮面试"><a href="#第二轮面试" class="headerlink" title="第二轮面试"></a>第二轮面试</h3><p>第二轮面试开始，leader进来，我站起来，让他先坐，客气客气。然后开始自我介绍，我就开始背，然后他很自信，很胸有成竹，在我说到他感兴趣的地方的时候打断我问问题，问题简明扼要，直击重点，很有leader气质。</p>
+<p>问了我单元测试是怎么做的，用什么可视化，有没有做自动化测试，我说java Junit做设计测试用例，用allure做测试可视化，但是对单元测试来说还是要点击按钮才能测试，并没有做那种更改了代码之后自动上传，自动测试那种，他说没关系，至少是知道，然后我还说了jenkins的基本原理，我知道一般是修改代码传到Github，jenkins服务器拉取代码，自动构建，自动部署到tomcat服务器上，然后测试工程师进行测试。其他还问了性能测试是怎么测的，我说用Jmeter去模拟发API，他问我TPS是多少，我其实不是很清楚TPS是什么（事务数每秒），然后我就说了下其他指标，响应时间，吞吐量啥的。</p>
+<p>再之后又是一道算法题，但是比较特别，是一道英文题目，描述也很简单，生成在某个范围内的不重复的k个随机数，我第一反应就是用库函数randint，但是这种方式会生成重复的随机数，我就想到可以用哈希表来查询生成的随机数是否重复，但是如果k比较大的话就会生成很多个重复的随机数，这时候他提示我：就像一个抽奖箱一样，每次从箱子里拿一个数字出来，只要不放回去，就可以做到每次拿不同的随机数，所以说可以用一个数组存放这个范围内的所有数字，每次生成一个随机数，把最后一个数字和抽到的对应位置的数字交换，再把数组容量缩小1即可。之后我问了问GPT，GPT说其实只要随机打乱数组（fisher-Yates算法，从最后一个数字开始，随机取前面的数字与其交换，直到遍历到第一个数字），取前k个数字即可，我觉得这也是一种很好的方法。</p>
+<p>在面试的时候这个题我并没有表现的很好，虽然说在他的提示下我想到了用容器存取这个生成的数字，每次取一个随机数，删掉这个元素，但我没想到数组和交换的道理，我想到用链表比较好删除节点，但是现在想来用链表还是太蠢了，也能看出来我对于这种基础数据结构的应用还是比较欠缺，经验不足。</p>
+<h3 id="一些感想与教训"><a href="#一些感想与教训" class="headerlink" title="一些感想与教训"></a>一些感想与教训</h3><p>这次的Offer给了我极大的鼓舞，但也暴露了许多问题。</p>
+<p>首先就是我对于基础数据结构的不熟练，有套路的动规我相信能够应付得来，但对于一些比较灵活，考察思维的算法问题，我就难以应对。一方面可能是我反应比较慢，没法很快地想到对的解法，如果说这一点我没法改变的话，也许我可以在生活中多思考，多丰富自己对世间规律的经验，我相信积少成多，积跬步以致千里。</p>
+<p>其次，面试礼节与引导。首先要有礼貌，让面试官先坐，和面试官先聊天，扯两句家常，要精心针对面试的岗位设计自我介绍并能够背下来，这样能够很好地引导面试官，甚至能够奠定整场面试的基调。对于自己不会的问题，一定不要说“记不清楚了”这种就没下文了，把自己所知道的一五一十地告诉面试官，然后礼貌地说：“<strong>不好意思，对于。。这块内容，我复习的不够充分，下来我会注意把这部分知识补齐的</strong>”让面试官知道，我对于这部分知识还是了解一部分的，只是刚好ta问到的那部分不太清楚，这样至少不会很减分，也会让面试官觉得是一个<strong>有礼貌，懂沟通，勤上进</strong>的人。</p>
+<p>再次，人生是自己的，要把自己的生活写成诗，活得精彩，就不能盲目地跟从，或者被他人的声音主导，大多数时候，我们需要敞开胸怀，倾听不同的声音，吸收他们的优点，让自己成长，但是对于那些有决定性意义的瞬间，我们要学会倾听自己内心的声音，不要被外界的声音主导，我很喜欢《爱乐之城》Mia试戏时唱的： A bit of madness is key, 一点点疯狂，一点点固执，能够让我们活出自己生命的意义。这一点在我高中平行班考试的时候，在我大学上选选修课的时候，在我降级选择德强班的时候，在这次面试的时候，都有印证。</p>
+<p><img src="/img/mia.png" alt="image-20240817113815397"></p>
+<p>最后，无论人生是起是伏，是贫是富，是顺是逆，有一点不会变： 路漫漫其修远兮，吾将上下而求索。</p>
+<p>后面的人生，会更精彩。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Jiao Ao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/08/18/Unity%E6%B5%8B%E5%BC%80%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F%EF%BC%88%E5%B7%B2%E8%BF%87%EF%BC%89/">http://example.com/2024/08/18/Unity%E6%B5%8B%E5%BC%80%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F%EF%BC%88%E5%B7%B2%E8%BF%87%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hello There</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><div class="post_share"><div class="social-share" data-image="/img/unity.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/08/09/%E5%AD%97%E8%8A%82%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="字节实习面经"><img class="cover" src="/img/bytedance.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">字节实习面经</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/08/09/%E5%AD%97%E8%8A%82%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="字节实习面经"><img class="cover" src="/img/bytedance.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-09</div><div class="title">字节实习面经</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ja1.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiao Ao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tj-jiaoao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tj-jiaoao" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2050780@tongji.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hello there!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%9D%A2%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">第一轮面试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8-%E4%B8%80%E6%AC%A1%E8%B4%AD%E4%B9%B0"><span class="toc-number">1.1.</span> <span class="toc-text">买卖股票 - 一次购买</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8-%E6%97%A0%E9%99%90%E5%88%B6%E8%B4%AD%E4%B9%B0"><span class="toc-number">1.2.</span> <span class="toc-text">买卖股票 - 无限制购买</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8-%E4%B8%A4%E6%AC%A1%E8%B4%AD%E4%B9%B0"><span class="toc-number">1.3.</span> <span class="toc-text">买卖股票 - 两次购买</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8-k%E6%AC%A1%E8%B4%AD%E4%B9%B0"><span class="toc-number">1.4.</span> <span class="toc-text">买卖股票 - k次购买</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8-%E5%90%AB%E5%86%B7%E5%86%BB%E6%9C%9F"><span class="toc-number">1.5.</span> <span class="toc-text">买卖股票 - 含冷冻期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8-%E5%90%AB%E6%89%8B%E7%BB%AD%E8%B4%B9"><span class="toc-number">1.6.</span> <span class="toc-text">买卖股票 - 含手续费</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%BD%AE%E9%9D%A2%E8%AF%95"><span class="toc-number">1.7.</span> <span class="toc-text">第二轮面试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3%E4%B8%8E%E6%95%99%E8%AE%AD"><span class="toc-number">1.8.</span> <span class="toc-text">一些感想与教训</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/18/Unity%E6%B5%8B%E5%BC%80%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F%EF%BC%88%E5%B7%B2%E8%BF%87%EF%BC%89/" title="Unity测开实习面经（已过）"><img src="/img/unity.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity测开实习面经（已过）"/></a><div class="content"><a class="title" href="/2024/08/18/Unity%E6%B5%8B%E5%BC%80%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F%EF%BC%88%E5%B7%B2%E8%BF%87%EF%BC%89/" title="Unity测开实习面经（已过）">Unity测开实习面经（已过）</a><time datetime="2024-08-18T07:54:00.000Z" title="发表于 2024-08-18 15:54:00">2024-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/09/%E5%AD%97%E8%8A%82%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="字节实习面经"><img src="/img/bytedance.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="字节实习面经"/></a><div class="content"><a class="title" href="/2024/08/09/%E5%AD%97%E8%8A%82%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="字节实习面经">字节实习面经</a><time datetime="2024-08-09T04:20:00.000Z" title="发表于 2024-08-09 12:20:00">2024-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/18/%E4%BA%BA%E6%80%A7%E7%9A%84%E5%8D%9A%E5%BC%88/" title="人性的博弈"><img src="/img/squid_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="人性的博弈"/></a><div class="content"><a class="title" href="/2024/07/18/%E4%BA%BA%E6%80%A7%E7%9A%84%E5%8D%9A%E5%BC%88/" title="人性的博弈">人性的博弈</a><time datetime="2024-07-17T17:33:00.000Z" title="发表于 2024-07-18 01:33:00">2024-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/15/2024-7-15-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E5%AF%BC%E5%87%BApdfepubmdmobi/" title="微信读书导出pdf/epub/md/mobi"><img src="/img/book.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微信读书导出pdf/epub/md/mobi"/></a><div class="content"><a class="title" href="/2024/07/15/2024-7-15-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E5%AF%BC%E5%87%BApdfepubmdmobi/" title="微信读书导出pdf/epub/md/mobi">微信读书导出pdf/epub/md/mobi</a><time datetime="2024-07-14T16:52:00.000Z" title="发表于 2024-07-15 00:52:00">2024-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/11/2024-7-11-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" title="优先队列相关问题"><img src="/img/pq.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="优先队列相关问题"/></a><div class="content"><a class="title" href="/2024/07/11/2024-7-11-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" title="优先队列相关问题">优先队列相关问题</a><time datetime="2024-07-11T13:10:00.000Z" title="发表于 2024-07-11 21:10:00">2024-07-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Jiao Ao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://jochen-7x521f722-tj-jiaoao.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.css')
+      const { init } = await import('https://cdn.jsdelivr.net/npm/@waline/client@3.1.2/dist/waline.min.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
