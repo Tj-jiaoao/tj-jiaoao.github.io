@@ -312,7 +312,7 @@
   </entry>
   <entry>
     <title>微信读书导出pdf/epub/md/mobi</title>
-    <url>/2024/07/15/2024-7-15-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E5%AF%BC%E5%87%BApdfepubmdmobi/</url>
+    <url>/2024/07/14/2024-7-15-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E5%AF%BC%E5%87%BApdfepubmdmobi/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>书籍对我来说就像良药，总在我伤心难过的时候给我安慰，在我孤独寂寥的时候陪我左右，在我失去前行的动力的时候给我力量。其之于我就像一个家人，我对其敬佩有加，其对我关切备至。之前无意中在Greasyfork中搜索到一个脚本，可以将微信读书中的书籍内容导出成md或者html格式，当时我激动不已，觉得终于可以“书籍自由”了，我可以导出md然后在平板上写写画画，在电脑上记录读书的感想，不必局限于微信读书的条条框框（不过现在觉得其实微信读书社区非常强大，已经无法离开了hh）但是不知为何现在那个插件已经无法实现此功能了，我便怅然有种失落之感，觉得我与这位亲人顿时疏远了不少。为了重拾我的自由，我千方百计在网上寻找，终于找到了GitHub上大佬实现的代码，又经过一个下午的调试，终于成功实现书籍内容导出功能，其间看了许多中文英文的调试指南，又觉得与我今年所培养的debug专业能力非常贴合，于是记录文档如下。</p>
 </blockquote>
@@ -741,7 +741,7 @@
   </entry>
   <entry>
     <title>Day6 哈希表Part1</title>
-    <url>/2024/01/16/Day6%20%E5%93%88%E5%B8%8C%E8%A1%A8Part1/</url>
+    <url>/2024/01/15/Day6%20%E5%93%88%E5%B8%8C%E8%A1%A8Part1/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="哈希表基础"><a href="#哈希表基础" class="headerlink" title="哈希表基础"></a>哈希表基础</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
 <li>哈希表又称为散列表，是根据<mark>关键码的值</mark>而直接进行访问的数据结构。</li>
 <li>哈希表解决的问题是：快速判断一个元素是否在一个集合中，</li>
@@ -860,7 +860,7 @@
   </entry>
   <entry>
     <title>Day8 哈希表Part3</title>
-    <url>/2024/01/30/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/</url>
+    <url>/2024/01/29/Day8%20%E5%93%88%E5%B8%8C%E8%A1%A8Part3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>哈希表部分的最后一节，三数之和比较难，而且用哈希表实现效率不高，使用双指针可以获得较好的时间效率。</p>
 </blockquote>
@@ -1339,7 +1339,7 @@
   </entry>
   <entry>
     <title>人性的博弈</title>
-    <url>/2024/07/18/%E4%BA%BA%E6%80%A7%E7%9A%84%E5%8D%9A%E5%BC%88/</url>
+    <url>/2024/07/17/%E4%BA%BA%E6%80%A7%E7%9A%84%E5%8D%9A%E5%BC%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>假期赋闲在寝，每日在依照着虽不明确但有方向的学习计划推进之余，还留有许多空闲时间，看了一周的书，本想趁此空闲读读《苏东坡新传》，但是看了冰山一角后终于还是没有坚持下来，其中原因在于品读古文之艰难，成书虽为上世纪李冰先生所写，但其旁征博引，典故甚多，古今混杂，看的十分痛苦，可“读史以明智”，我不想这个计划死于襁褓，于是便问了GPT，其给我的建议是从史记、论语、孟子开始读，我便找到了《论语译注》开始通读，虽有不甚切合如今时代的言语，但亦有值得谨记的箴言，希望我能坚守本心，淡泊明志，宁静致远。兴许是文字摄入太多，昨日在吃外卖的时候想找点剧来看，跟进一下“多模态”的时代，于是便打开了在线影视网站，开始搜罗吸引我的剧集。老友记？短、幽默、下饭，但是我忘记上次看到哪了，懒得再次定位。冰冻星球，地球脉动？无聊不看。黑袍纠察队？天天刷短视频都在看，而且无脑，还不如我的外卖有营养。神探夏洛克？怕太烧脑了，把我用来刷算法题的脑细胞都用光了。鱿鱼游戏？只有九集还不错，之前听许多人讲过评价也可以，就它了！谁知道看了一集之后就上头了，熬到凌晨2点还在看，过瘾之外，感触良多。韩剧向来喜欢以最露骨地方式揭露人性，趁记忆还新鲜，记录如下。</p>
 </blockquote>
